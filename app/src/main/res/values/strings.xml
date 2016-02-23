@@ -11,5 +11,20 @@
     <string name="btn_login_facebook">FaceBook Login</string>
     <string name="login_sigup_text">Is it your first time?</string>
     <string name="login_signup_link"><u>Let`s join us!</u></string>
-    <string name="find_password_email">email</string>
+    <string name="find_password_email">Put your email address</string>
+    <string name="btn_find_password_cancel">Cancel</string>
+    <string name="btn_find_password_send">Send Key</string>
+    <string name="edit_find_password_key">Put the confirm key</string>
+    <string name="btn_confrim_key_cancel">Cancel</string>
+    <string name="btn_change_password">Change pass</string>
+    <string name="edit_change_password1">Put new password</string>
+    <string name="edit_new_password2">Put the password again</string>
+    <string name="btn_new_password_cancel">Cancel</string>
+    <string name="btn_new_password_ok">Done</string>
+    <string name="terms_requirement"><u>Requierment</u></string>
+    <string name="service_terms_agreement">Service terms agreement</string>
+    <string name="personal_info_terms">Personal Info Terms</string>
+    <string name="btn_signup_cancel">Cancel</string>
+    <string name="btn_signup_next">Next</string>
+    <string name="edit_nick_hint">Nick name what you want</string>
 </resources>

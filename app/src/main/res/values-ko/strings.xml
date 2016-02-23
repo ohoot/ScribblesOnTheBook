@@ -7,5 +7,20 @@
     <string name="btn_login_facebook">페이스북 로그인</string>
     <string name="login_sigup_text">책장의 낙서가 처음이신가요?</string>
     <string name="login_signup_link"><u>회원 가입하기</u></string>
-    <string name="find_password_email">이메일을 입력하세요</string>
+    <string name="find_password_email">이메일주소입력</string>
+    <string name="btn_find_password_cancel">취소</string>
+    <string name="btn_find_password_send">인증번호 전송</string>
+    <string name="edit_find_password_key">인증번호 입력</string>
+    <string name="btn_confrim_key_cancel">취소</string>
+    <string name="btn_change_password">비밀번호 바꾸기</string>
+    <string name="edit_change_password1">비밀번호 입력(영문,숫자,특수문자 8-16자리)</string>
+    <string name="edit_new_password2">비밀번호 재입력</string>
+    <string name="btn_new_password_cancel">취소</string>
+    <string name="btn_new_password_ok">변경 완료</string>
+    <string name="terms_requirement"><u>필수</u></string>
+    <string name="service_terms_agreement">서비스 이용약관 동의</string>
+    <string name="personal_info_terms">개인정보 수집/이용 동의</string>
+    <string name="btn_signup_cancel">취소</string>
+    <string name="btn_signup_next">다음단계로</string>
+    <string name="edit_nick_hint">닉네임 입력(한글,영문,숫자 2-8자리 이내)</string>
 </resources>
