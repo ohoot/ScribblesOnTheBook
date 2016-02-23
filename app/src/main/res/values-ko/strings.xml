@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="find_password"><u>비밀번호 찾기</u></string>
+    <string name="login_id_hint">이메일 주소를 입력하세요</string>
+    <string name="login_hint_password">비밀 번호를 입력하세요</string>
+    <string name="btn_login">로그인</string>
+    <string name="btn_login_facebook">페이스북 로그인</string>
+    <string name="login_sigup_text">책장의 낙서가 처음이신가요?</string>
+    <string name="login_signup_link"><u>회원 가입하기</u></string>
+    <string name="find_password_email">이메일을 입력하세요</string>
+</resources>
