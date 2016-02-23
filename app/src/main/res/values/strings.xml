@@ -27,4 +27,8 @@
     <string name="btn_signup_cancel">Cancel</string>
     <string name="btn_signup_next">Next</string>
     <string name="edit_nick_hint">Nick name what you want</string>
+    <string name="btn_profile_cancel">Cancel</string>
+    <string name="btn_profile_next">Next</string>
+    <string name="btn_filter_cancel">Cancel</string>
+    <string name="btn_filter_ok">Done</string>
 </resources>

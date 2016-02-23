@@ -23,4 +23,8 @@
     <string name="btn_signup_cancel">취소</string>
     <string name="btn_signup_next">다음단계로</string>
     <string name="edit_nick_hint">닉네임 입력(한글,영문,숫자 2-8자리 이내)</string>
+    <string name="btn_profile_cancel">취소</string>
+    <string name="btn_profile_next">다음단계로</string>
+    <string name="btn_filter_cancel">취소</string>
+    <string name="btn_filter_ok">가입완료</string>
 </resources>
