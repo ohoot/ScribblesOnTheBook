@@ -1,4 +1,4 @@
-package com.example.joo.scribblesonthebook;
+package com.example.joo.scribblesonthebook.main;
 
 
 import android.os.Bundle;
