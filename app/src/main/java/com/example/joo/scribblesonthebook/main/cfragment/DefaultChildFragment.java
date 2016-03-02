@@ -13,19 +13,19 @@ import com.example.joo.scribblesonthebook.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ScribbleChildFragment extends Fragment {
+public class DefaultChildFragment extends Fragment {
 
-    public static final String IMAGE_RESOURCE_SCRIBBLE = "resScribble";
+    public static final String IMAGE_RESOURCE_DEFAULT = "resDefault";
 
-    public static ScribbleChildFragment newInstance(int res) {
-        ScribbleChildFragment f = new ScribbleChildFragment();
+    public static DefaultChildFragment newInstance(int res) {
+        DefaultChildFragment f = new DefaultChildFragment();
         Bundle b = new Bundle();
-        b.putInt(IMAGE_RESOURCE_SCRIBBLE, res);
+        b.putInt(IMAGE_RESOURCE_DEFAULT, res);
         f.setArguments(b);
         return f;
     }
 
-    public ScribbleChildFragment() {
+    public DefaultChildFragment() {
         // Required empty public constructor
     }
 
@@ -35,19 +35,17 @@ public class ScribbleChildFragment extends Fragment {
         super.onCreate(savedInstanceState);
         Bundle arg = getArguments();
         if (arg != null) {
-            res = arg.getInt(IMAGE_RESOURCE_SCRIBBLE);
+            res = arg.getInt(IMAGE_RESOURCE_DEFAULT);
         }
     }
 
-    ImageView imageView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_scribble_child, container, false);
-        imageView = (ImageView) view.findViewById(R.id.image_scribble_child);
+        View view = inflater.inflate(R.layout.fragment_default_child, container, false);
+        ImageView imageView = (ImageView) view.findViewById(R.id.image_default_child);
         imageView.setImageResource(res);
         return view;
     }
-
 }

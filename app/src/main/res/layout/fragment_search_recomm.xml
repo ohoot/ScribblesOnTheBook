@@ -1,13 +1,27 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchRecommFragment">
+    tools:context=".main.SearchRecommFragment"
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edit_searching_keyword"
+        android:hint="@string/edit_searching" />
+
+    <android.support.v4.view.ViewPager
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/searching_pager_height"
+        android:id="@+id/searchingRecomm_pager"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/searching_pager_top_margin" />
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
-</FrameLayout>
+        android:layout_height="wrap_content"
+        android:id="@+id/text_recomm"
+        android:layout_marginTop="@dimen/text_recomm_top_margin" />
+</LinearLayout>

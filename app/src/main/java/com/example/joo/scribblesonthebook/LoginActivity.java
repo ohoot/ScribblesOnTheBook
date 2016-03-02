@@ -9,7 +9,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.joo.scribblesonthebook.R;
+import com.example.joo.scribblesonthebook.find_password.FindPasswordActivity;
+import com.example.joo.scribblesonthebook.main.MainActivity;
+import com.example.joo.scribblesonthebook.signup.SignupActivity;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -41,16 +43,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.text_find_password :
-                Toast.makeText(LoginActivity.this, "Find Password Test...", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(LoginActivity.this, FindPassword1Activity.class);
+                Intent intent = new Intent(LoginActivity.this, FindPasswordActivity.class);
                 startActivity(intent);
-
                 break;
             case R.id.text_signup :
-                Toast.makeText(LoginActivity.this, "Signup Test...", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(LoginActivity.this, SignupActivity.class));
                 break;
             case R.id.btn_login :
-                Toast.makeText(LoginActivity.this, "Login Test...", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 break;
             case R.id.btn_login_facebook :
                 Toast.makeText(LoginActivity.this, "Facebook Login Test...", Toast.LENGTH_SHORT).show();

@@ -9,7 +9,7 @@
     <string name="login_signup_link"><u>회원 가입하기</u></string>
     <string name="find_password_email">이메일주소입력</string>
     <string name="btn_find_password_cancel">취소</string>
-    <string name="btn_find_password_send">인증번호 전송</string>
+    <string name="btn_find_password_send">인증번호 보내기</string>
     <string name="edit_find_password_key">인증번호 입력</string>
     <string name="btn_confrim_key_cancel">취소</string>
     <string name="btn_change_password">비밀번호 바꾸기</string>
@@ -27,4 +27,14 @@
     <string name="btn_profile_next">다음단계로</string>
     <string name="btn_filter_cancel">취소</string>
     <string name="btn_filter_ok">가입완료</string>
+    <string name="tab_bookshelf_indicator">책장</string>
+    <string name="tab_scribble_indicator">책장에낙서</string>
+    <string name="tab_searchingRecomm_indicator">검색/추천</string>
+    <string name="book_reading">읽는책</string>
+    <string name="book_done">읽은책</string>
+    <string name="book_will">읽을책</string>
+    <string name="retainedBook_comment">권의 책을 소유하고 있습니다.</string>
+    <string name="text_month">1월</string>
+    <string name="edit_searching">Put a searching keyword</string>
+
 </resources>

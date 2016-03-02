@@ -21,8 +21,6 @@ public class MainActivity extends AppCompatActivity {
 
     public static final int SCRIBBLE_TAB_INDEX = 1;
 
-    Spinner spinner;
-    ArrayAdapter<String> mAdapter;
     FragmentTabHost fragmentTabHost;
 
     @Override
@@ -41,11 +39,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        spinner = (Spinner) findViewById(R.id.spinner);
-        mAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item);
-        mAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(mAdapter);
-
         fragmentTabHost = (FragmentTabHost) findViewById(R.id.tabhost);
         fragmentTabHost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
 
@@ -53,18 +46,11 @@ public class MainActivity extends AppCompatActivity {
         String scribble = getResources().getString(R.string.tab_scribble_indicator);
         String searchingRecomm = getResources().getString(R.string.tab_searchingRecomm_indicator);
 
-        fragmentTabHost.addTab(fragmentTabHost.newTabSpec(TABSPEC_BOOKSHELF).setIndicator(bookshelf), MainDefaultFragment.class, null);
+        fragmentTabHost.addTab(fragmentTabHost.newTabSpec(TABSPEC_BOOKSHELF).setIndicator(bookshelf), BookshelfFragment.class, null);
         fragmentTabHost.addTab(fragmentTabHost.newTabSpec(TABSPEC_SCRIBBLE).setIndicator(scribble), ScribbleFragment.class, null);
         fragmentTabHost.addTab(fragmentTabHost.newTabSpec(TABSPEC_SEARCHING_RECOMM).setIndicator(searchingRecomm), SearchRecommFragment.class, null);
         fragmentTabHost.setCurrentTab(SCRIBBLE_TAB_INDEX);
 
-        initSpinner();
-    }
-
-    private void initSpinner() {
-        mAdapter.add(getResources().getString(R.string.book_reading));
-        mAdapter.add(getResources().getString(R.string.book_done));
-        mAdapter.add(getResources().getString(R.string.book_will));
     }
 
     @Override

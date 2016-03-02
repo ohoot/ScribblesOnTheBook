@@ -31,4 +31,13 @@
     <string name="btn_profile_next">Next</string>
     <string name="btn_filter_cancel">Cancel</string>
     <string name="btn_filter_ok">Done</string>
+    <string name="tab_bookshelf_indicator">Bookshelf</string>
+    <string name="tab_scribble_indicator">Scribble</string>
+    <string name="tab_searchingRecomm_indicator">Searching/Recomm</string>
+    <string name="book_reading">Reading</string>
+    <string name="book_done">Done</string>
+    <string name="book_will">Will</string>
+    <string name="retainedBook_comment">books you have</string>
+    <string name="text_month">January</string>
+    <string name="edit_searching">Put a searching keyword</string>
 </resources>

@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".main.ScribbleFragment"
+    tools:context=".main.DefaultFragment"
     android:orientation="vertical">
 
     <LinearLayout
@@ -27,25 +27,17 @@
             android:layout_weight="1"/>
 
         <Spinner
-            android:id="@+id/spinner_scribble"
+            android:id="@+id/spinner_default"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:spinnerMode="dropdown"/>
 
     </LinearLayout>
 
-    <SeekBar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/seekBar"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/seekBar_top_margin"
-        android:layout_marginLeft="@dimen/seekBar_left_margin"
-        android:layout_marginRight="@dimen/seekBar_right_margin" />
 
     <android.support.v4.view.ViewPager
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/scribble_pager"
-        android:layout_gravity="center_horizontal" />
+        android:id="@+id/default_pager"
+        android:layout_gravity="center" />
 </LinearLayout>
