@@ -32,6 +32,7 @@ public class BookshelfFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        // commit test
         View view = inflater.inflate(R.layout.fragment_bookshelf, container, false);
         monthlyPage = (TextView) view.findViewById(R.id.text_monthly_page);
         viewPager = (ViewPager) view.findViewById(R.id.bookshelf_pager);

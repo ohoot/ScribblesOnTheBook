@@ -1,14 +1,27 @@
 package com.example.joo.scribblesonthebook.data;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.util.Date;
+
 /**
  * Created by Joo on 2016-02-22.
  */
 public class UserInfo {
-    String user_id;
-    String user_password;
+    @SerializedName("user_id")
+    String userId;
+    String userPassword;
     int retainedBooks;
-    String user_nick;
-    String user_email;
-    int user_emotion;
-    String user_picture;
+    @SerializedName("nickname")
+    String userNick;
+    @SerializedName("local_email")
+    String localEmail;
+    @SerializedName("facebook_id")
+    String facebookId;
+    @SerializedName("pop_emotion_id")
+    int userEmotion;
+    @SerializedName("user_photo_url")
+    String userPicture;
+    @SerializedName("login_time")
+    Date loginTime;
 }
