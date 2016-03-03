@@ -1,5 +1,7 @@
 package com.example.joo.scribblesonthebook.data;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
 /**
@@ -8,5 +10,6 @@ import java.util.Date;
 public class BookMark {
     int page;
     int pageEmotion;
+    @SerializedName("bookmark_time")
     Date date;
 }
