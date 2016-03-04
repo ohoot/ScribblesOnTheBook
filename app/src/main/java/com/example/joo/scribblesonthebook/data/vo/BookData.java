@@ -2,6 +2,7 @@ package com.example.joo.scribblesonthebook.data.vo;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**

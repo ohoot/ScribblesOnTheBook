@@ -25,6 +25,5 @@ public class UserInfo {
     String userPicture;
     @SerializedName("login_time")
     Date loginTime;
-    @SerializedName("category_id")
-    ArrayList<Integer> categoryId = new ArrayList<Integer>();
+    ArrayList<Integer> filter = new ArrayList<Integer>();
 }
