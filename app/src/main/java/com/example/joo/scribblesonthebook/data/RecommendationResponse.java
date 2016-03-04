@@ -5,5 +5,5 @@ package com.example.joo.scribblesonthebook.data;
  */
 public class RecommendationResponse {
     RecommendationSuccess success;
-    Error error;
+    com.example.joo.scribblesonthebook.data.vo.Error error;
 }

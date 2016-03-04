@@ -7,6 +7,7 @@ import android.os.Message;
 
 import com.begentgroup.xmlparser.XMLParser;
 import com.example.joo.scribblesonthebook.R;
+import com.example.joo.scribblesonthebook.data.vo.SimpleRequest;
 
 import java.io.File;
 import java.io.IOException;
@@ -193,5 +194,36 @@ public class NetworkManager {
 
     }
 
+    private static final String URL_FORMAT = "https://ec2-52-79-99-227.ap-northeast-2.compute.amazonaws.com/users/facebook/token?access_token=%s";
+
+    public Request facebookLogin (Context context, final OnResultListener<SimpleRequest> listener) throws UnsupportedEncodingException {
+        String url = String.format(URL_FORMAT);
+
+        final CallbackObject callbackObject = new CallbackObject<>();
+
+        Request request = new Request.Builder().url(url)
+                .header("X-Naver-Client-Id", "FRzO_6MMu6zwQYAaXlZr")
+                .header("X-Naver-Client-Secret", "z0iOB55iQk")
+                .tag(context)
+                .build();
+
+        callbackObject.request = request;
+        callbackObject.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                callbackObject.exception = e;
+                Message msg = mHandler.obtainMessage(MESSAGE_FAILURE, callbackObject);
+                mHandler.sendMessage(msg);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+            }
+        });
+
+        return request;
+    }
 
 }

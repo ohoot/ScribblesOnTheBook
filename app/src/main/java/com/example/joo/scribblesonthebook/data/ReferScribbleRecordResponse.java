@@ -5,5 +5,5 @@ package com.example.joo.scribblesonthebook.data;
  */
 public class ReferScribbleRecordResponse {
     ReferScribbleRecordSuccess success;
-    Error error;
+    com.example.joo.scribblesonthebook.data.vo.Error error;
 }
