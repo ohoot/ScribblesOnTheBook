@@ -166,7 +166,6 @@ public class NetworkManager {
 
     }
 
-    private static final String URL_FORMAT = "https://openapi.naver.com/v1/search/movie.xml?target=movie&query=%s&start=%s&display=%s";
 
     public Request testSSL(Context context, final OnResultListener<String> listener) {
         Request request = new Request.Builder().url("https://192.168.210.51:8443/test.html").build();

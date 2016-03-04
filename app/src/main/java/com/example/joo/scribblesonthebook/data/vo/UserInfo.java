@@ -1,7 +1,8 @@
-package com.example.joo.scribblesonthebook.data;
+package com.example.joo.scribblesonthebook.data.vo;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -24,4 +25,6 @@ public class UserInfo {
     String userPicture;
     @SerializedName("login_time")
     Date loginTime;
+    @SerializedName("category_id")
+    ArrayList<Integer> categoryId = new ArrayList<Integer>();
 }

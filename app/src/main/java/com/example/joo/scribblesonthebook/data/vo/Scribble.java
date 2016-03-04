@@ -1,4 +1,4 @@
-package com.example.joo.scribblesonthebook.data;
+package com.example.joo.scribblesonthebook.data.vo;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -13,8 +13,7 @@ public class Scribble {
     @SerializedName("writer_user_id")
     String writerId;
     String isbn;
-    @SerializedName("doodle_page")
-    int bookPage;
+    int page;
     @SerializedName("text_doodle")
     String content;
     @SerializedName("emotion_doodle_id")
@@ -25,4 +24,10 @@ public class Scribble {
     String scribbleImage;
     @SerializedName("doodle_time")
     Date scribbleDate;
+    @SerializedName("user_photo_url")
+    String userPhoto;
+    @SerializedName("nickname")
+    String nickName;
+    @SerializedName("cover_url")
+    String coverUrl;
 }
