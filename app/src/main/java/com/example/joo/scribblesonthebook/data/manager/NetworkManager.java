@@ -7,7 +7,10 @@ import android.os.Message;
 
 import com.begentgroup.xmlparser.XMLParser;
 import com.example.joo.scribblesonthebook.R;
+import com.example.joo.scribblesonthebook.data.ReferScribbleRecordResponse;
+import com.example.joo.scribblesonthebook.data.ReferScribbleRecordSuccess;
 import com.example.joo.scribblesonthebook.data.vo.SimpleRequest;
+import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.IOException;
@@ -80,7 +83,7 @@ public class NetworkManager {
 
         try {
             CertificateFactory cf = CertificateFactory.getInstance("X.509");
-            InputStream caInput = context.getResources().openRawResource(R.raw.ca);
+            InputStream caInput = context.getResources().openRawResource(R.raw.site);
             Certificate ca;
             try {
                 ca = cf.generateCertificate(caInput);
@@ -194,16 +197,14 @@ public class NetworkManager {
 
     }
 
-    private static final String URL_FORMAT = "https://ec2-52-79-99-227.ap-northeast-2.compute.amazonaws.com/users/facebook/token?access_token=%s";
+    private static final String URL_FORMAT = "http://ec2-52-79-99-227.ap-northeast-2.compute.amazonaws.com/books/:isbn/doodles?page=%s&rows=%s";
 
-    public Request facebookLogin (Context context, final OnResultListener<SimpleRequest> listener) throws UnsupportedEncodingException {
-        String url = String.format(URL_FORMAT);
+    public Request getScribbleRecord(Context context, String page, String rows, final OnResultListener<ReferScribbleRecordSuccess> listener) throws UnsupportedEncodingException {
+        String url = String.format(URL_FORMAT, page, rows);
 
-        final CallbackObject callbackObject = new CallbackObject<>();
+        final CallbackObject<ReferScribbleRecordSuccess> callbackObject = new CallbackObject<ReferScribbleRecordSuccess>();
 
         Request request = new Request.Builder().url(url)
-                .header("X-Naver-Client-Id", "FRzO_6MMu6zwQYAaXlZr")
-                .header("X-Naver-Client-Secret", "z0iOB55iQk")
                 .tag(context)
                 .build();
 
@@ -219,7 +220,11 @@ public class NetworkManager {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-
+                Gson gson = new Gson();
+                ReferScribbleRecordResponse rsrr = gson.fromJson(response.body().string(), ReferScribbleRecordResponse.class);
+                callbackObject.result = rsrr.success;
+                Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
+                mHandler.sendMessage(msg);
             }
         });
 

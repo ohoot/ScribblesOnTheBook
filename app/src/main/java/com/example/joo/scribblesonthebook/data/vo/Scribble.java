@@ -9,25 +9,26 @@ import java.util.Date;
  */
 public class Scribble {
     @SerializedName("doodle_id")
-    int scribbleId;
+    String scribbleId;
     @SerializedName("writer_user_id")
     String writerId;
     String isbn;
-    int page;
+    String page;
     @SerializedName("text_doodle")
     String content;
     @SerializedName("emotion_doodle_id")
-    int scribbleEmotion;
+    String scribbleEmotion;
     @SerializedName("heart")
-    int like;
+    String like;
     @SerializedName("picture_doodle_url")
     String scribbleImage;
     @SerializedName("doodle_time")
-    Date scribbleDate;
+    String scribbleDate;
     @SerializedName("user_photo_url")
     String userPhoto;
     @SerializedName("nickname")
     String nickName;
     @SerializedName("cover_url")
     String coverUrl;
+
 }

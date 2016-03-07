@@ -9,9 +9,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.example.joo.scribblesonthebook.R;
+import com.example.joo.scribblesonthebook.data.ReferScribbleRecordSuccess;
+import com.example.joo.scribblesonthebook.data.manager.NetworkManager;
+
+import java.io.UnsupportedEncodingException;
+
+import okhttp3.Request;
 
 /**
  * A simple {@link Fragment} subclass.
