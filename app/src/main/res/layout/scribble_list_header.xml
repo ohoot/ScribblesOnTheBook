@@ -6,7 +6,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/image_scribble_writer"
+        android:id="@+id/image_scribble_user"
         android:src="@drawable/bg_mask_80x80" />
 
     <ImageView

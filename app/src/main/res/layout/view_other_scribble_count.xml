@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:layout_width="@dimen/scribble_count_width"
+        android:layout_height="@dimen/scribble_count_height"
+        android:text="5"
+        android:id="@+id/text_scribble_count"
+        android:background="@drawable/icn_bookmark_circle"
+        android:textSize="@dimen/text_scribble_count_size"
+        android:textColor="#ffc600"
+        android:gravity="center" />
+</LinearLayout>
