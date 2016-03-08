@@ -1,4 +1,4 @@
-package com.example.joo.scribblesonthebook;
+package com.example.joo.scribblesonthebook.writing_scribble;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

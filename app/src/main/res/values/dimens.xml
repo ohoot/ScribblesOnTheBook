@@ -16,4 +16,5 @@
     <dimen name="searching_pager_top_margin">57dp</dimen>
     <dimen name="searching_pager_height">305dp</dimen>
     <dimen name="text_recomm_top_margin">18dp</dimen>
+    <dimen name="scribble_content_height">216dp</dimen>
 </resources>

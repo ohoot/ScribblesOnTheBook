@@ -35,6 +35,7 @@
     <string name="book_will">읽을책</string>
     <string name="retainedBook_comment">권의 책을 소유하고 있습니다.</string>
     <string name="text_month">1월</string>
-    <string name="edit_searching">Put a searching keyword</string>
+    <string name="edit_searching">검색어를 입력해 주세요</string>
+    <string name="scribble_page_hint">페이지를 입력해주세요</string>
 
 </resources>

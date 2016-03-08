@@ -1,5 +1,6 @@
 package com.example.joo.scribblesonthebook.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,8 +12,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TabHost;
+import android.widget.Toast;
 
 import com.example.joo.scribblesonthebook.R;
+import com.example.joo.scribblesonthebook.writing_scribble.WritingScribbleActivity;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TABSPEC_BOOKSHELF = "bookshelf";
@@ -22,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int SCRIBBLE_TAB_INDEX = 1;
 
     FragmentTabHost fragmentTabHost;
+    FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,15 +35,15 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
+                startActivity(new Intent(MainActivity.this, WritingScribbleActivity.class));
             }
         });
-
         fragmentTabHost = (FragmentTabHost) findViewById(R.id.tabhost);
         fragmentTabHost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
 
@@ -51,6 +56,13 @@ public class MainActivity extends AppCompatActivity {
         fragmentTabHost.addTab(fragmentTabHost.newTabSpec(TABSPEC_SEARCHING_RECOMM).setIndicator(searchingRecomm), SearchRecommFragment.class, null);
         fragmentTabHost.setCurrentTab(SCRIBBLE_TAB_INDEX);
 
+        fragmentTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
+            @Override
+            public void onTabChanged(String tabId) {
+                if (fragmentTabHost.getCurrentTab() != SCRIBBLE_TAB_INDEX) fab.setVisibility(View.GONE);
+                else fab.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     @Override
@@ -74,4 +86,6 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }

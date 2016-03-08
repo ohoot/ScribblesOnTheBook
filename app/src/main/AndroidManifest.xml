@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.joo.scribblesonthebook">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".data.manager.MyApplication"
@@ -25,10 +25,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".WritingScribbleActivity" />
+        <activity android:name=".writing_scribble.WritingScribbleActivity" />
         <activity android:name=".DetailBookInfoActivity" />
         <activity android:name=".find_password.FindPasswordActivity" />
-        <activity android:name=".signup.SignupActivity"></activity>
+        <activity android:name=".signup.SignupActivity" />
+        <activity android:name=".list_scribble.ScribbleListActivity"></activity>
     </application>
 
 </manifest>

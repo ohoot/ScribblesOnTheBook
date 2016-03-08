@@ -40,4 +40,5 @@
     <string name="retainedBook_comment">books you have</string>
     <string name="text_month">January</string>
     <string name="edit_searching">Put a searching keyword</string>
+    <string name="scribble_page_hint">page</string>
 </resources>
