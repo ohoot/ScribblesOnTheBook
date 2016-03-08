@@ -9,17 +9,17 @@ import java.util.Date;
  */
 public class Scribble {
     @SerializedName("doodle_id")
-    String scribbleId;
+    int scribbleId;
     @SerializedName("writer_user_id")
     String writerId;
     String isbn;
-    String page;
+    int page;
     @SerializedName("text_doodle")
     String content;
     @SerializedName("emotion_doodle_id")
-    String scribbleEmotion;
+    int scribbleEmotion;
     @SerializedName("heart")
-    String like;
+    int like;
     @SerializedName("picture_doodle_url")
     String scribbleImage;
     @SerializedName("doodle_time")
