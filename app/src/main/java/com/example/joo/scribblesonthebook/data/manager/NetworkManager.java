@@ -197,10 +197,10 @@ public class NetworkManager {
 
     }
 
-    private static final String URL_FORMAT = "http://ec2-52-79-99-227.ap-northeast-2.compute.amazonaws.com/books/:isbn/doodles?page=%s&rows=%s";
+    private static final String URL_FORMAT = "http://ec2-52-79-99-227.ap-northeast-2.compute.amazonaws.com/books/%s/doodles?page=%s&rows=%s";
 
-    public Request getScribbleRecord(Context context, String page, String rows, final OnResultListener<ReferScribbleRecordSuccess> listener) throws UnsupportedEncodingException {
-        String url = String.format(URL_FORMAT, page, rows);
+    public Request getScribbleRecord(Context context, String isbn, String page, String rows, final OnResultListener<ReferScribbleRecordSuccess> listener) throws UnsupportedEncodingException {
+        String url = String.format(URL_FORMAT, isbn, page, rows);
 
         final CallbackObject<ReferScribbleRecordSuccess> callbackObject = new CallbackObject<ReferScribbleRecordSuccess>();
 
@@ -230,4 +230,5 @@ public class NetworkManager {
 
         return request;
     }
+
 }
