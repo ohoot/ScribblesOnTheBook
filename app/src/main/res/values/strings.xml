@@ -41,4 +41,7 @@
     <string name="text_month">January</string>
     <string name="edit_searching">Put a searching keyword</string>
     <string name="scribble_page_hint">page</string>
+    <string name="btn_bookshelf_done">Done</string>
+    <string name="btn_bookshelf_reading">Reading</string>
+    <string name="btn_bookshelf_will">Will</string>
 </resources>

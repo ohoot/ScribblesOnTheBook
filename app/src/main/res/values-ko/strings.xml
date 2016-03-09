@@ -37,5 +37,8 @@
     <string name="text_month">1월</string>
     <string name="edit_searching">검색어를 입력해 주세요</string>
     <string name="scribble_page_hint">페이지를 입력해주세요</string>
+    <string name="btn_bookshelf_done">읽은책</string>
+    <string name="btn_bookshelf_reading">읽는책</string>
+    <string name="btn_bookshelf_will">읽을책</string>
 
 </resources>

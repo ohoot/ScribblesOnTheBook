@@ -11,9 +11,12 @@ import android.widget.ListView;
 import com.example.joo.scribblesonthebook.R;
 import com.example.joo.scribblesonthebook.data.SearchingBookSuccess;
 import com.example.joo.scribblesonthebook.data.manager.NetworkManager;
+import com.example.joo.scribblesonthebook.data.vo.BookData;
 import com.example.joo.scribblesonthebook.main.adapter.SearchingResultAdapter;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.Request;
 
@@ -40,7 +43,8 @@ public class SearchingResultFragment extends Fragment {
             NetworkManager.getInstance().getSearchingResult(getContext(), "앨리스", "" + 1, "" + 30, new NetworkManager.OnResultListener<SearchingBookSuccess>() {
                 @Override
                 public void onSuccess(Request request, SearchingBookSuccess result) {
-
+                    listView.setAdapter(sAdapter);
+                    sAdapter.addAll(result.searchList);
                 }
 
                 @Override
