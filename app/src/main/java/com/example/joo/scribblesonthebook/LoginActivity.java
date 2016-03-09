@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.joo.scribblesonthebook.find_password.FindPasswordActivity;
+import com.example.joo.scribblesonthebook.list_scribble.ScribbleListActivity;
 import com.example.joo.scribblesonthebook.main.MainActivity;
 import com.example.joo.scribblesonthebook.signup.SignupActivity;
 
@@ -53,7 +54,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 break;
             case R.id.btn_login_facebook :
-                Toast.makeText(LoginActivity.this, "Facebook Login Test...", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(LoginActivity.this, ScribbleListActivity.class));
                 break;
         }
     }

@@ -53,7 +53,8 @@
             android:text="New Text"
             android:id="@+id/text_scribble_bookmark"
             android:background="@drawable/icn_bookmark_enjoy"
-            android:layout_marginRight="@dimen/scribble_bookmark_margin_right" />
+            android:layout_marginRight="@dimen/scribble_bookmark_margin_right"
+            android:gravity="center" />
 
     </LinearLayout>
 

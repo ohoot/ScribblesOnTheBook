@@ -10,8 +10,8 @@ import java.util.Date;
 public class Scribble {
     @SerializedName("doodle_id")
     int scribbleId;
-    @SerializedName("writer_user_id")
-    String writerId;
+    @SerializedName("write_user_id")
+    int writerId;
     String isbn;
     int page;
     @SerializedName("text_doodle")
@@ -39,11 +39,11 @@ public class Scribble {
         this.scribbleId = scribbleId;
     }
 
-    public String getWriterId() {
+    public int getWriterId() {
         return writerId;
     }
 
-    public void setWriterId(String writerId) {
+    public void setWriterId(int writerId) {
         this.writerId = writerId;
     }
 

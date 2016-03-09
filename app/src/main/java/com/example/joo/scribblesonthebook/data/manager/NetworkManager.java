@@ -5,11 +5,11 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 
-import com.begentgroup.xmlparser.XMLParser;
 import com.example.joo.scribblesonthebook.R;
 import com.example.joo.scribblesonthebook.data.ReferScribbleRecordResponse;
 import com.example.joo.scribblesonthebook.data.ReferScribbleRecordSuccess;
-import com.example.joo.scribblesonthebook.data.vo.SimpleRequest;
+import com.example.joo.scribblesonthebook.data.SearchingBookResponse;
+import com.example.joo.scribblesonthebook.data.SearchingBookSuccess;
 import com.google.gson.Gson;
 
 import java.io.File;
@@ -18,7 +18,6 @@ import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.CookieManager;
 import java.net.CookiePolicy;
-import java.net.URLEncoder;
 import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
@@ -197,10 +196,10 @@ public class NetworkManager {
 
     }
 
-    private static final String URL_FORMAT = "http://ec2-52-79-99-227.ap-northeast-2.compute.amazonaws.com/books/%s/doodles?page=%s&rows=%s";
+    private static final String SCRIBBLE_LIST_URL_FORMAT = "http://ec2-52-79-99-227.ap-northeast-2.compute.amazonaws.com/books/%s/doodles?page=%s&rows=%s";
 
-    public Request getScribbleRecord(Context context, String isbn, String page, String rows, final OnResultListener<ReferScribbleRecordSuccess> listener) throws UnsupportedEncodingException {
-        String url = String.format(URL_FORMAT, isbn, page, rows);
+    public Request getScribbleList(Context context, String isbn, String page, String rows, final OnResultListener<ReferScribbleRecordSuccess> listener) throws UnsupportedEncodingException {
+        String url = String.format(SCRIBBLE_LIST_URL_FORMAT, isbn, page, rows);
 
         final CallbackObject<ReferScribbleRecordSuccess> callbackObject = new CallbackObject<ReferScribbleRecordSuccess>();
 
@@ -228,6 +227,39 @@ public class NetworkManager {
             }
         });
 
+        return request;
+    }
+
+    private static final String SEARCHING_RESULT_URL_FORMAT = "http://ec2-52-79-99-227.ap-northeast-2.compute.amazonaws.com/books?keyward=%s&page=%s&rows=%s";
+
+    public Request getSearchingResult(Context context, String keyword, String page,String rows, final OnResultListener<SearchingBookSuccess> listener) throws UnsupportedEncodingException {
+        String url = String.format(SEARCHING_RESULT_URL_FORMAT, keyword, page, rows);
+
+        final CallbackObject<SearchingBookSuccess> callbackObject = new CallbackObject<SearchingBookSuccess>();
+
+        Request request = new Request.Builder().url(url)
+                .tag(context)
+                .build();
+
+        callbackObject.request = request;
+        callbackObject.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                callbackObject.exception = e;
+                Message msg = mHandler.obtainMessage(MESSAGE_FAILURE, callbackObject);
+                mHandler.sendMessage(msg);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Gson gson = new Gson();
+                SearchingBookResponse sbr = gson.fromJson(response.body().string(), SearchingBookResponse.class);
+                callbackObject.result = sbr.success;
+                Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
+                mHandler.sendMessage(msg);
+            }
+        });
         return request;
     }
 

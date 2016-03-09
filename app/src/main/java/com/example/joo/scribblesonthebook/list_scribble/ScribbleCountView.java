@@ -21,7 +21,7 @@ public class ScribbleCountView extends FrameLayout{
         countView = (TextView) findViewById(R.id.text_scribble_count);
     }
 
-    public void setCountView() {
-
+    public void setCountView(int size) {
+        countView.setText(size + "");
     }
 }

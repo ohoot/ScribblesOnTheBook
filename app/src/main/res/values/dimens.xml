@@ -25,4 +25,8 @@
     <dimen name="scribble_count_width">12dp</dimen>
     <dimen name="scribble_count_height">12dp</dimen>
     <dimen name="text_scribble_count_size">11dp</dimen>
+    <dimen name="image_searching_result_width">50dp</dimen>
+    <dimen name="image_searching_result_height">70dp</dimen>
+    <dimen name="searching_text_left_margin">10dp</dimen>
+    <dimen name="searching_triangle_right_margin">16dp</dimen>
 </resources>

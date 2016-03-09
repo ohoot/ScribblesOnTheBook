@@ -4,6 +4,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 
+import com.example.joo.scribblesonthebook.data.ReferScribbleRecordSuccess;
+import com.example.joo.scribblesonthebook.data.vo.Scribble;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,22 +45,44 @@ public class ScribbleListAdapter extends BaseExpandableListAdapter {
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         switch (getGroupType(groupPosition)) {
             case GROUP_TYPE_MY :
-                return null;
-            case GROUP_TYPE_OTHER :
-                if (isExpanded) {
-
+                ScribbleView sView;
+                if (convertView == null || !(convertView instanceof ScribbleView)) {
+                    sView = new ScribbleView(parent.getContext());
                 } else {
-
+                    sView = (ScribbleView) convertView;
                 }
-                return null;
+                sView.setScribbleView(items.get(groupPosition));
+                return sView;
+            case GROUP_TYPE_OTHER :
+                ScribbleCountView cView;
+                if (convertView == null || !(convertView instanceof ScribbleCountView)) {
+                    cView = new ScribbleCountView(parent.getContext());
+                } else {
+                    cView = (ScribbleCountView) convertView;
+                }
+
+                if (isExpanded) {
+                    ScribbleEmptyView eView = new ScribbleEmptyView(parent.getContext());
+                    return eView;
+                } else {
+                    cView.setCountView(items.get(groupPosition).otherList.size());
+                    return cView;
+                }
+            default: return null;
         }
-        return null;
     }
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         // childview....
-        return null;
+        ScribbleView view;
+        if (convertView == null) {
+            view = new ScribbleView(parent.getContext());
+        } else {
+            view = (ScribbleView) convertView;
+        }
+        view.setScribbleViewChild(items.get(groupPosition).otherList.get(childPosition));
+        return view;
     }
 
     @Override
@@ -90,4 +115,8 @@ public class ScribbleListAdapter extends BaseExpandableListAdapter {
         return true;
     }
 
+    public void addAll(List<ScribbleGroup> result) {
+        this.items.addAll(result);
+        notifyDataSetChanged();
+    }
 }
