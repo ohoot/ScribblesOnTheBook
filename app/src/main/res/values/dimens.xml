@@ -50,4 +50,17 @@
     <dimen name="menu_alarm_setting_height">30dp</dimen>
     <dimen name="text_menu_alarm_setting_height">55dp</dimen>
     <dimen name="menu_notice_height">55dp</dimen>
+    <dimen name="image_login_logo_width">94dp</dimen>
+    <dimen name="image_login_logo_height">55dp</dimen>
+    <dimen name="login_logo_top_margin">66dp</dimen>
+    <dimen name="text_login_id_size">12dp</dimen>
+    <dimen name="text_login_password_size">12dp</dimen>
+    <dimen name="edit_login_id_margin_top">88dp</dimen>
+    <dimen name="edit_login_id_margin_bottom">18dp</dimen>
+    <dimen name="btn_login_margin_top">31dp</dimen>
+    <dimen name="btn_login_height">45dp</dimen>
+    <dimen name="btn_login_margin_bottom">7dp</dimen>
+    <dimen name="login_find_password_height">11dp</dimen>
+    <dimen name="btn_facebook_login_margin_top">25dp</dimen>
+    <dimen name="text_signup_margin_bottom">16dp</dimen>
 </resources>

@@ -122,5 +122,9 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.OnMe
         return super.onOptionsItemSelected(item);
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 }

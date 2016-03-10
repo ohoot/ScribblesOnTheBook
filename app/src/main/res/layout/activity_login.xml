@@ -8,32 +8,29 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+    android:background="#110e34">
 
     <ImageView
         android:id="@+id/image_logo"
-        android:layout_width="97dp"
-        android:layout_height="132dp"
+        android:layout_width="@dimen/image_login_logo_width"
+        android:layout_height="@dimen/image_login_logo_height"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/doodle_logo_tmp" />
+        android:src="@drawable/icn_bookmark"
+        android:layout_marginTop="@dimen/login_logo_top_margin" />
 
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
         <EditText
             android:id="@+id/edit_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:hint="@string/login_id_hint" />
-
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+            android:layout_marginTop="@dimen/edit_login_id_margin_top"
+            android:hint="@string/login_id_hint"
+            android:backgroundTint="#ffc600"
+            android:textColor="#ffffff"
+            android:textColorHint="#ffffff"
+            android:textSize="@dimen/text_login_id_size"
+            android:layout_marginBottom="@dimen/edit_login_id_margin_bottom" />
 
         <EditText
             android:id="@+id/edit_password"
@@ -41,20 +38,25 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPassword"
-            android:hint="@string/login_hint_password" />
-
-    </android.support.design.widget.TextInputLayout>
+            android:hint="@string/login_hint_password"
+            android:backgroundTint="#ffc600"
+            android:textColor="#ffffff"
+            android:textColorHint="#ffffff"
+            android:textSize="@dimen/text_login_password_size" />
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/btn_login_height"
         android:text="@string/btn_login"
-        android:id="@+id/btn_login" />
+        android:id="@+id/btn_login"
+        android:background="#ffc600"
+        android:layout_marginTop="@dimen/btn_login_margin_top"
+        android:layout_marginBottom="@dimen/btn_login_margin_bottom" />
 
     <TextView
         android:id="@+id/text_find_password"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/login_find_password_height"
         android:layout_gravity="right"
         android:text="@string/find_password"
         android:clickable="true"
@@ -65,29 +67,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/btn_login_facebook"
-        android:id="@+id/btn_login_facebook" />
+        android:id="@+id/btn_login_facebook"
+        android:background="#3a5795"
+        android:layout_marginTop="@dimen/btn_facebook_login_margin_top" />
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/text_signup_margin_bottom">
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="12dp"
             android:text="@string/login_sigup_text"
             android:id="@+id/textView2"
-            android:layout_gravity="bottom|center_horizontal" />
+            android:layout_gravity="bottom|center_horizontal"
+            android:textColor="#ffffff"
+            />
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="12dp"
             android:text="@string/login_signup_link"
             android:id="@+id/text_signup"
             android:layout_gravity="bottom"
             android:clickable="true"
-            android:focusable="true" />
+            android:focusable="true"
+            android:textColor="#ffffff"
+            />
     </LinearLayout>
 
 </LinearLayout>
