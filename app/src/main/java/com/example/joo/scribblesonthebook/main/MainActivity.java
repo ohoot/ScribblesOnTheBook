@@ -4,13 +4,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTabHost;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.Spinner;
 import android.widget.TabHost;
 import android.widget.Toast;
@@ -18,7 +24,7 @@ import android.widget.Toast;
 import com.example.joo.scribblesonthebook.R;
 import com.example.joo.scribblesonthebook.writing_scribble.WritingScribbleActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MenuFragment.OnMenuItemSeletedListener {
     public static final String TABSPEC_BOOKSHELF = "bookshelf";
     public static final String TABSPEC_SCRIBBLE = "scribble";
     public static final String TABSPEC_SEARCHING_RECOMM = "searchingRecomm";
@@ -27,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     FragmentTabHost fragmentTabHost;
     FloatingActionButton fab;
-
+    DrawerLayout mDrawer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, WritingScribbleActivity.class));
             }
         });
+
+        mDrawer = (DrawerLayout)findViewById(R.id.drawer_layout);
+
         fragmentTabHost = (FragmentTabHost) findViewById(R.id.tabhost);
         fragmentTabHost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
 
@@ -59,10 +68,32 @@ public class MainActivity extends AppCompatActivity {
         fragmentTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
             public void onTabChanged(String tabId) {
-                if (fragmentTabHost.getCurrentTab() != SCRIBBLE_TAB_INDEX) fab.setVisibility(View.GONE);
+                if (fragmentTabHost.getCurrentTab() != SCRIBBLE_TAB_INDEX)
+                    fab.setVisibility(View.GONE);
                 else fab.setVisibility(View.VISIBLE);
             }
         });
+
+        if (savedInstanceState == null) {
+            Fragment fragment = new MenuFragment();
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.add(R.id.menu_container, fragment);
+            ft.commit();
+        }
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeAsUpIndicator(R.drawable.btn_menu_nor);
+    }
+
+    @Override
+    public void onMenuItemSelected(int menuId) {
+        switch (menuId) {
+            case MenuFragment.MENU_ID_ACCOUNT :
+                Toast.makeText(this, "Test..", Toast.LENGTH_SHORT).show();
+                break;
+        }
+        mDrawer.closeDrawers();
     }
 
     @Override
@@ -79,6 +110,10 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        if (id == android.R.id.home) {
+            mDrawer.openDrawer(GravityCompat.START);
+            return true;
+        }
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;

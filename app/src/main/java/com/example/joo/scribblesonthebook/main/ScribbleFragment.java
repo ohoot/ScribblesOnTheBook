@@ -1,6 +1,7 @@
 package com.example.joo.scribblesonthebook.main;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -8,9 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.example.joo.scribblesonthebook.R;
+import com.example.joo.scribblesonthebook.list_scribble.ScribbleListActivity;
 import com.example.joo.scribblesonthebook.main.adapter.ScribblePagerAdapter;
 
 /**
@@ -24,6 +27,8 @@ public class ScribbleFragment extends Fragment {
     Spinner spinner;
     ViewPager viewPager;
     ArrayAdapter<String> mApdater;
+    ImageView arrowView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -35,7 +40,13 @@ public class ScribbleFragment extends Fragment {
         spinner.setAdapter(mApdater);
         viewPager = (ViewPager) view.findViewById(R.id.scribble_pager);
         viewPager.setAdapter(new ScribblePagerAdapter(getChildFragmentManager()));
-
+        arrowView = (ImageView) view.findViewById(R.id.image_swaping_arrow);
+        arrowView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), ScribbleListActivity.class));
+            }
+        });
         initSpinner();
         return view;
     }

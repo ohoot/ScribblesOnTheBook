@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/edit_searching_keyword"
         android:hint="@string/edit_searching"
+        android:singleLine="true"
         android:imeOptions="actionGo"/>
 
     <FrameLayout

@@ -54,7 +54,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 break;
             case R.id.btn_login_facebook :
-                startActivity(new Intent(LoginActivity.this, ScribbleListActivity.class));
                 break;
         }
     }

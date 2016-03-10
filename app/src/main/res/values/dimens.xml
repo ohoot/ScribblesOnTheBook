@@ -29,4 +29,25 @@
     <dimen name="image_searching_result_height">70dp</dimen>
     <dimen name="searching_text_left_margin">10dp</dimen>
     <dimen name="searching_triangle_right_margin">16dp</dimen>
+    <dimen name="scribble_pager_height">350dp</dimen>
+    <dimen name="swaping_arrow_top_margin">15dp</dimen>
+    <dimen name="menu_image_height">184dp</dimen>
+    <dimen name="image_menu_height">100dp</dimen>
+    <dimen name="image_menu_width">100dp</dimen>
+    <dimen name="image_menu_margin_top">20dp</dimen>
+    <dimen name="image_menu_margin_bottom">14dp</dimen>
+    <dimen name="text_menu_nick_height">15dp</dimen>
+    <dimen name="text_menu_nick_size">14dp</dimen>
+    <dimen name="menu_nick_margin_bottom">35dp</dimen>
+    <dimen name="text_menu_info_height">30dp</dimen>
+    <dimen name="text_menu_account_height">55dp</dimen>
+    <dimen name="menu_change_password_height">55dp</dimen>
+    <dimen name="text_menu_logout_height">55dp</dimen>
+    <dimen name="text_menu_filter_height">30dp</dimen>
+    <dimen name="text_filter_setting_height">55dp</dimen>
+    <dimen name="text_menu_alarm_height">30dp</dimen>
+    <dimen name="image_menu_alarm_height">55dp</dimen>
+    <dimen name="menu_alarm_setting_height">30dp</dimen>
+    <dimen name="text_menu_alarm_setting_height">55dp</dimen>
+    <dimen name="menu_notice_height">55dp</dimen>
 </resources>

@@ -26,7 +26,7 @@ public class SearchingResultView extends FrameLayout {
         inflate(getContext(), R.layout.view_searching_result, this);
         coverView = (ImageView) findViewById(R.id.image_searching_result);
         triangleView = (ImageView) findViewById(R.id.image_searching_triangle);
-        titleView.setOnClickListener(new OnClickListener() {
+        triangleView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getContext(), "Test...", Toast.LENGTH_SHORT).show();
@@ -35,7 +35,6 @@ public class SearchingResultView extends FrameLayout {
         titleView = (TextView) findViewById(R.id.text_searching_title);
         authorView = (TextView) findViewById(R.id.text_searching_author);
     }
-
 
     public void setSearchingResultView(BookData bookData) {
         titleView.setText(bookData.getTitle());

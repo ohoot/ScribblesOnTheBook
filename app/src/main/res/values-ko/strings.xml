@@ -40,5 +40,15 @@
     <string name="btn_bookshelf_done">읽은책</string>
     <string name="btn_bookshelf_reading">읽는책</string>
     <string name="btn_bookshelf_will">읽을책</string>
+    <string name="text_menu_info">정보</string>
+    <string name="text_menu_account">계정</string>
+    <string name="text_menu_change_password">비밀번호 바꾸기</string>
+    <string name="text_menu_logout">로그아웃</string>
+    <string name="text_menu_filter">필터</string>
+    <string name="text_menu_filter_setting">필터설정</string>
+    <string name="text_menu_alarm_setting">알림설정</string>
+    <string name="text_menu_alarm">알림</string>
+    <string name="text_menu_service"><![CDATA[서비스 & 문의]]></string>
+    <string name="text_menu_notice">공지사항</string>
 
 </resources>

@@ -44,4 +44,14 @@
     <string name="btn_bookshelf_done">Done</string>
     <string name="btn_bookshelf_reading">Reading</string>
     <string name="btn_bookshelf_will">Will</string>
+    <string name="text_menu_info">Information</string>
+    <string name="text_menu_account">Account</string>
+    <string name="text_menu_change_password">Change Password</string>
+    <string name="text_menu_logout">Logout</string>
+    <string name="text_menu_filter">Filter</string>
+    <string name="text_menu_filter_setting">Filter Setting</string>
+    <string name="text_menu_alarm_setting">Alarm Setting</string>
+    <string name="text_menu_alarm">Alarm</string>
+    <string name="text_menu_service"><![CDATA[Service & Question]]></string>
+    <string name="text_menu_notice">Notice</string>
 </resources>
