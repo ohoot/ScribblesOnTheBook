@@ -63,4 +63,6 @@
     <dimen name="login_find_password_height">11dp</dimen>
     <dimen name="btn_facebook_login_margin_top">25dp</dimen>
     <dimen name="text_signup_margin_bottom">16dp</dimen>
+    <dimen name="text_login_signup_size">12dp</dimen>
+    <dimen name="text_find_password">11dp</dimen>
 </resources>

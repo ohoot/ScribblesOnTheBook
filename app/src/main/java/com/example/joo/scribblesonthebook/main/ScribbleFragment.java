@@ -13,8 +13,15 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.example.joo.scribblesonthebook.R;
+import com.example.joo.scribblesonthebook.data.BookListSuccess;
+import com.example.joo.scribblesonthebook.data.manager.NetworkManager;
+import com.example.joo.scribblesonthebook.data.vo.BookData;
 import com.example.joo.scribblesonthebook.list_scribble.ScribbleListActivity;
 import com.example.joo.scribblesonthebook.main.adapter.ScribblePagerAdapter;
+
+import java.io.UnsupportedEncodingException;
+
+import okhttp3.Request;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,7 +35,7 @@ public class ScribbleFragment extends Fragment {
     ViewPager viewPager;
     ArrayAdapter<String> mApdater;
     ImageView arrowView;
-
+    ScribblePagerAdapter pAdapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -39,7 +46,8 @@ public class ScribbleFragment extends Fragment {
         mApdater.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(mApdater);
         viewPager = (ViewPager) view.findViewById(R.id.scribble_pager);
-        viewPager.setAdapter(new ScribblePagerAdapter(getChildFragmentManager()));
+        pAdapter = new ScribblePagerAdapter(getChildFragmentManager());
+        viewPager.setAdapter(pAdapter);
         arrowView = (ImageView) view.findViewById(R.id.image_swaping_arrow);
         arrowView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +56,22 @@ public class ScribbleFragment extends Fragment {
             }
         });
         initSpinner();
+
+        try {
+            NetworkManager.getInstance().getBookList(getContext(), "" + 0, "" + 4, new NetworkManager.OnResultListener<BookListSuccess>() {
+                @Override
+                public void onSuccess(Request request, BookListSuccess result) {
+                    pAdapter.addAll(result.tenseList);
+                }
+
+                @Override
+                public void onFailure(Request request, int code, Throwable cause) {
+
+                }
+            });
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         return view;
     }
 

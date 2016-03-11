@@ -6,6 +6,8 @@ import android.os.Looper;
 import android.os.Message;
 
 import com.example.joo.scribblesonthebook.R;
+import com.example.joo.scribblesonthebook.data.BookListResponse;
+import com.example.joo.scribblesonthebook.data.BookListSuccess;
 import com.example.joo.scribblesonthebook.data.ReferScribbleRecordResponse;
 import com.example.joo.scribblesonthebook.data.ReferScribbleRecordSuccess;
 import com.example.joo.scribblesonthebook.data.SearchingBookResponse;
@@ -256,6 +258,40 @@ public class NetworkManager {
                 Gson gson = new Gson();
                 SearchingBookResponse sbr = gson.fromJson(response.body().string(), SearchingBookResponse.class);
                 callbackObject.result = sbr.success;
+                Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
+                mHandler.sendMessage(msg);
+            }
+        });
+        return request;
+    }
+
+    private static final String BOOKLIST_URL_FORMAT = "http://ec2-52-79-99-227.ap-northeast-2.compute.amazonaws.com/bookcases/me?tense=%s&pageNum=%s";
+
+    public Request getBookList(Context context, String tense, String page, final OnResultListener<BookListSuccess> listener) throws UnsupportedEncodingException {
+        String url = String.format(BOOKLIST_URL_FORMAT, tense, page);
+
+        final CallbackObject<BookListSuccess> callbackObject = new CallbackObject<BookListSuccess>();
+
+        Request request = new Request.Builder().url(url)
+                .tag(context)
+                .build();
+
+        callbackObject.request = request;
+
+        callbackObject.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                callbackObject.exception = e;
+                Message msg = mHandler.obtainMessage(MESSAGE_FAILURE, callbackObject);
+                mHandler.sendMessage(msg);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Gson gson = new Gson();
+                BookListResponse br = gson.fromJson(response.body().string(), BookListResponse.class);
+                callbackObject.result = br.success;
                 Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
                 mHandler.sendMessage(msg);
             }

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.example.joo.scribblesonthebook.R;
 
 /**
@@ -15,12 +16,12 @@ import com.example.joo.scribblesonthebook.R;
  */
 public class ScribbleChildFragment extends Fragment {
 
-    public static final String IMAGE_RESOURCE_SCRIBBLE = "resScribble";
+    public static final String COVER_URL = "coverUrl";
 
-    public static ScribbleChildFragment newInstance(int res) {
+    public static ScribbleChildFragment newInstance(String coverUrl) {
         ScribbleChildFragment f = new ScribbleChildFragment();
         Bundle b = new Bundle();
-        b.putInt(IMAGE_RESOURCE_SCRIBBLE, res);
+        b.putString(COVER_URL, coverUrl);
         f.setArguments(b);
         return f;
     }
@@ -29,13 +30,13 @@ public class ScribbleChildFragment extends Fragment {
         // Required empty public constructor
     }
 
-    int res;
+    String coverUrl;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle arg = getArguments();
         if (arg != null) {
-            res = arg.getInt(IMAGE_RESOURCE_SCRIBBLE);
+            coverUrl = arg.getString(COVER_URL);
         }
     }
 
@@ -46,7 +47,8 @@ public class ScribbleChildFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_scribble_child, container, false);
         imageView = (ImageView) view.findViewById(R.id.image_scribble_child);
-        imageView.setImageResource(res);
+        Glide.with(getContext()).load(coverUrl).into(imageView);
+
         return view;
     }
 

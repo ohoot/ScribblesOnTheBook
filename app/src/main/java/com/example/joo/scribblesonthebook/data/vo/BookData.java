@@ -24,8 +24,8 @@ public class BookData {
     String coverImage;
     @SerializedName("tense")
     int bookCondition;
-    @SerializedName("pageNum")
-    int currentPage;
+    @SerializedName("cur_page")
+    int pageNum;
     @SerializedName("finish_page")
     int finishPage;
     @SerializedName("start_page")
@@ -115,11 +115,11 @@ public class BookData {
     }
 
     public int getCurrentPage() {
-        return currentPage;
+        return pageNum;
     }
 
     public void setCurrentPage(int currentPage) {
-        this.currentPage = currentPage;
+        this.pageNum = currentPage;
     }
 
     public int getFinishPage() {
