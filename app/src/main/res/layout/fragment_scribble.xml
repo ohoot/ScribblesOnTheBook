@@ -34,26 +34,34 @@
 
     </LinearLayout>
 
-    <SeekBar
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/seekBar"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/seekBar_top_margin"
-        android:layout_marginLeft="@dimen/seekBar_left_margin"
-        android:layout_marginRight="@dimen/seekBar_right_margin" />
+        android:layout_height="match_parent"
+        android:background="#ede3cb">
 
-    <android.support.v4.view.ViewPager
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/scribble_pager_height"
-        android:id="@+id/scribble_pager"
-        android:layout_gravity="center_horizontal" />
+        <SeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/seekBar"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/seekBar_top_margin"
+            android:layout_marginLeft="@dimen/seekBar_left_margin"
+            android:layout_marginRight="@dimen/seekBar_right_margin" />
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/image_swaping_arrow"
-        android:layout_gravity="center_horizontal"
-        android:src="@drawable/icn_swaping_arrow"
-        android:layout_marginTop="@dimen/swaping_arrow_top_margin" />
+        <android.support.v4.view.ViewPager
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/scribble_pager_height"
+            android:id="@+id/scribble_pager"
+            android:layout_gravity="center_horizontal" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/image_swaping_arrow"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/icn_swaping_arrow"
+            android:layout_marginTop="@dimen/swaping_arrow_top_margin" />
+    </LinearLayout>
+
 </LinearLayout>

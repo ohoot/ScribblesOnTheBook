@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Spinner;
 import android.widget.TabHost;
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.OnMe
     public static final int SCRIBBLE_TAB_INDEX = 1;
 
     FragmentTabHost fragmentTabHost;
-    FloatingActionButton fab;
+    Button fab;
     DrawerLayout mDrawer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.OnMe
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (Button) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -50,5 +50,8 @@
     <string name="text_menu_alarm">알림</string>
     <string name="text_menu_service"><![CDATA[서비스 & 문의]]></string>
     <string name="text_menu_notice">공지사항</string>
+    <string name="terms_hint_email">이메일주소입력</string>
+    <string name="terms_hint_password1">비밀번호입력(영문,숫자,특수문자8-16자리)</string>
+    <string name="terms_hint_password2">비밀번호 재입력</string>
 
 </resources>

@@ -54,4 +54,7 @@
     <string name="text_menu_alarm">Alarm</string>
     <string name="text_menu_service"><![CDATA[Service & Question]]></string>
     <string name="text_menu_notice">Notice</string>
+    <string name="terms_hint_email">Email</string>
+    <string name="terms_hint_password1">Password</string>
+    <string name="terms_hint_password2">Password again</string>
 </resources>

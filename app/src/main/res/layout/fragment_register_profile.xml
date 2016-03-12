@@ -2,14 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#ede3cb">
 
-    <ImageView
-        android:layout_width="107dp"
-        android:layout_height="145dp"
-        android:id="@+id/imageView"
-        android:layout_gravity="center_horizontal"
-        android:src="@drawable/doodle_logo_tmp" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView5"
+            android:src="@drawable/bg_mask_200x200"
+            android:layout_gravity="center" />
+
+        <ImageView
+            android:layout_width="107dp"
+            android:layout_height="145dp"
+            android:id="@+id/imageView"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/bg_profile_default" />
+    </FrameLayout>
 
     <EditText
         android:layout_width="match_parent"
@@ -17,10 +30,22 @@
         android:id="@+id/edit_nick"
         android:hint="@string/edit_nick_hint" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_check_same_nick" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:background="#110e34"
+        >
 
         <Button
             android:layout_width="wrap_content"
@@ -28,7 +53,10 @@
             android:text="@string/btn_profile_cancel"
             android:id="@+id/btn_profile_cancel"
             android:layout_gravity="bottom"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="#110e34"
+            android:textColor="#ffffff"
+            />
 
         <Button
             android:layout_width="wrap_content"
@@ -36,6 +64,9 @@
             android:text="@string/btn_profile_next"
             android:id="@+id/btn_profile_next"
             android:layout_gravity="bottom"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:background="#110e34"
+            android:textColor="#767676"
+            />
     </LinearLayout>
 </LinearLayout>
