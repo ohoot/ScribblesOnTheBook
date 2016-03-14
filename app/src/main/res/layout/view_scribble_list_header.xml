@@ -13,5 +13,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/image_feeling"
-        android:src="@drawable/btn_doodle_textfeild" />
+        android:src="@drawable/btn_doodle_textfeild"
+        android:background="@drawable/btn_doodle_textfeild" />
 </LinearLayout>

@@ -22,6 +22,7 @@ import android.widget.Spinner;
 import android.widget.TabHost;
 import android.widget.Toast;
 
+import com.example.joo.scribblesonthebook.ChangePasswordActivity;
 import com.example.joo.scribblesonthebook.R;
 import com.example.joo.scribblesonthebook.writing_scribble.WritingScribbleActivity;
 
@@ -66,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.OnMe
         fragmentTabHost.addTab(fragmentTabHost.newTabSpec(TABSPEC_SEARCHING_RECOMM).setIndicator(searchingRecomm), SearchRecommFragment.class, null);
         fragmentTabHost.setCurrentTab(SCRIBBLE_TAB_INDEX);
 
+
         fragmentTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
             public void onTabChanged(String tabId) {
@@ -85,14 +87,23 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.OnMe
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.btn_menu_nor);
+        actionBar.setTitle("");
+        actionBar.setLogo(R.drawable.icn_main_bookmark);
     }
 
     @Override
     public void onMenuItemSelected(int menuId) {
         switch (menuId) {
-            case MenuFragment.MENU_ID_ACCOUNT :
-                Toast.makeText(this, "Test..", Toast.LENGTH_SHORT).show();
+            case MenuFragment.MENU_ID_CHANGE_PASSWORD :
+                startActivity(new Intent(MainActivity.this, ChangePasswordActivity.class));
                 break;
+            case MenuFragment.MENU_ID_LOGOUT :
+                Toast.makeText(this, "Logout...", Toast.LENGTH_SHORT).show();
+                break;
+            case MenuFragment.MENU_ID_FILTER_SETTING :
+                Toast.makeText(this, "Filter...", Toast.LENGTH_SHORT).show();
+                break;
+
         }
         mDrawer.closeDrawers();
     }

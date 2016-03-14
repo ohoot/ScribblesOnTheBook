@@ -37,9 +37,9 @@
             android:background="@drawable/btn_floating"/>
     </android.support.design.widget.CoordinatorLayout>
 
-    <FrameLayout
+    <android.support.design.widget.NavigationView
         android:id="@+id/menu_container"
-        android:layout_width="200dp"
+        android:layout_width="@dimen/menu_width"
         android:layout_height="match_parent"
         android:layout_gravity="left|start"
         />

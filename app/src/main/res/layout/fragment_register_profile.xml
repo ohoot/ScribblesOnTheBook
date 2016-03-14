@@ -7,33 +7,44 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/image_profile_margin_top"
+        android:layout_marginBottom="@dimen/image_profile_margin_bottom">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/imageView"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/bg_profile_default" />
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:id="@+id/imageView5"
             android:src="@drawable/bg_mask_200x200"
             android:layout_gravity="center" />
 
-        <ImageView
-            android:layout_width="107dp"
-            android:layout_height="145dp"
-            android:id="@+id/imageView"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/bg_profile_default" />
     </FrameLayout>
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/edit_nick_height"
         android:id="@+id/edit_nick"
-        android:hint="@string/edit_nick_hint" />
+        android:hint="@string/edit_nick_hint"
+        android:layout_marginLeft="@dimen/edit_nick_margin_left"
+        android:layout_marginRight="@dimen/edit_nick_margin_right"
+        android:textSize="@dimen/edit_nick_size"
+        android:textColor="#110e34" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/text_check_same_nick" />
+        android:id="@+id/text_check_same_nick"
+        android:layout_marginLeft="@dimen/text_same_nick_margin_left"
+        android:layout_marginRight="@dimen/text_same_nick_margin_right"
+        android:textColor="#ff0000"
+        android:textSize="@dimen/text_same_nick_size" />
 
     <TextView
         android:layout_width="wrap_content"

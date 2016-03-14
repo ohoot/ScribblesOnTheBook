@@ -25,7 +25,9 @@ public class MenuFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public static final int MENU_ID_ACCOUNT = 1;
+    public static final int MENU_ID_CHANGE_PASSWORD = 1;
+    public static final int MENU_ID_LOGOUT = 2;
+    public static final int MENU_ID_FILTER_SETTING = 3;
 
     public interface OnMenuItemSeletedListener {
         public void onMenuItemSelected(int menuId);
@@ -57,11 +59,23 @@ public class MenuFragment extends Fragment {
         changePasswordView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), ChangePasswordActivity.class));
+                selectMenu(MENU_ID_CHANGE_PASSWORD);
             }
         });
         logoutView = (TextView) view.findViewById(R.id.text_menu_logout);
+        logoutView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectMenu(MENU_ID_LOGOUT);
+            }
+        });
         filterSettingView = (TextView) view.findViewById(R.id.text_menu_filter_setting);
+        filterSettingView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectMenu((MENU_ID_FILTER_SETTING));
+            }
+        });
         return view;
     }
 }

@@ -71,18 +71,18 @@
     </LinearLayout>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/menu_change_password_height"
         android:text="@string/text_menu_change_password"
         android:id="@+id/text_menu_change_password"
-        android:gravity="center" />
+        android:gravity="center_vertical" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/text_menu_logout_height"
         android:text="@string/text_menu_logout"
         android:id="@+id/text_menu_logout"
-        android:gravity="center" />
+        android:gravity="center_vertical" />
 
     <TextView
         android:layout_width="match_parent"
