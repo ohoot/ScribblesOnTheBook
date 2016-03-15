@@ -8,9 +8,13 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.joo.scribblesonthebook.R;
 import com.example.joo.scribblesonthebook.data.BookListSuccess;
@@ -18,6 +22,7 @@ import com.example.joo.scribblesonthebook.data.manager.NetworkManager;
 import com.example.joo.scribblesonthebook.data.vo.BookData;
 import com.example.joo.scribblesonthebook.list_scribble.ScribbleListActivity;
 import com.example.joo.scribblesonthebook.main.adapter.ScribblePagerAdapter;
+import com.example.joo.scribblesonthebook.main.cfragment.ScribbleChildFragment;
 
 import java.io.UnsupportedEncodingException;
 
@@ -28,6 +33,8 @@ import okhttp3.Request;
  */
 public class ScribbleFragment extends Fragment {
 
+    public static final int START_SPINNER_INDEX = 0;
+
     public ScribbleFragment() {
         // Required empty public constructor
     }
@@ -36,6 +43,9 @@ public class ScribbleFragment extends Fragment {
     ArrayAdapter<String> mApdater;
     ImageView arrowView;
     ScribblePagerAdapter pAdapter;
+    TextView totalBookView;
+    SeekBar seekBar;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -55,13 +65,40 @@ public class ScribbleFragment extends Fragment {
                 startActivity(new Intent(getActivity(), ScribbleListActivity.class));
             }
         });
+        totalBookView = (TextView) view.findViewById(R.id.text_total_books);
+        seekBar = (SeekBar) view.findViewById(R.id.seekBar);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                callBookList(spinner.getSelectedItemPosition());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        callBookList(START_SPINNER_INDEX);
         initSpinner();
 
+        return view;
+    }
+
+    private void callBookList(int position) {
         try {
-            NetworkManager.getInstance().getBookList(getContext(), "" + 0, "" + 4, new NetworkManager.OnResultListener<BookListSuccess>() {
+            NetworkManager.getInstance().getBookList(getContext(), "" + position, "" + 4, new NetworkManager.OnResultListener<BookListSuccess>() {
                 @Override
-                public void onSuccess(Request request, BookListSuccess result) {
+                public void onSuccess(Request request, final BookListSuccess result) {
+                    pAdapter.clearAll();
                     pAdapter.addAll(result.tenseList);
+                    viewPager.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                        @Override
+                        public void onFocusChange(View v, boolean hasFocus) {
+                            seekBar.setMax(result.tenseList.get(viewPager.getCurrentItem()).getTotalPage());
+                        }
+                    });
+                    setScribblePage(result);
                 }
 
                 @Override
@@ -72,7 +109,17 @@ public class ScribbleFragment extends Fragment {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        return view;
+    }
+
+    private void setScribblePage(final BookListSuccess result) {
+        totalBookView.setText(result.tenseList.size() + "");
+        viewPager.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                seekBar.setMax(result.tenseList.get(viewPager.getCurrentItem()).getTotalPage());
+            }
+        });
+
     }
 
     private void initSpinner() {

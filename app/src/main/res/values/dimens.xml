@@ -107,4 +107,8 @@
     <dimen name="edit_change_password_padding_right">16dp</dimen>
     <dimen name="edit_change_password_height">45dp</dimen>
     <dimen name="edit_change_password_size">12dp</dimen>
+    <dimen name="edit_login_email_height">30dp</dimen>
+    <dimen name="edit_login_password_height">30dp</dimen>
+    <dimen name="edit_login_email_margin_bottom">18dp</dimen>
+    <dimen name="edit_login_password_margin_bottom">31dp</dimen>
 </resources>

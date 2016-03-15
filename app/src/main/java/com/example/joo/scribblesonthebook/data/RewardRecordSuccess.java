@@ -14,6 +14,7 @@ public class RewardRecordSuccess {
     public int rows;
     @SerializedName("user_id")
     public String userId;
+    @SerializedName("searchList")
     public ArrayList<Reward> rewardList = new ArrayList<Reward>();
 
 }

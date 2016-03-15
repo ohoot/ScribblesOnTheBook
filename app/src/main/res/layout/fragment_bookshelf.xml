@@ -26,10 +26,24 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/text_month_value"
+            android:text="1"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="@string/text_month"
             android:id="@+id/text_month"
             android:textColor="#ffffff" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/month_arrow"
+            android:src="@drawable/btn_month_arrow"
+            android:layout_gravity="center_vertical" />
 
     </LinearLayout>
 

@@ -14,16 +14,9 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:id="@+id/imageView"
+            android:id="@+id/image_user_profile"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/bg_profile_default" />
-
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:id="@+id/imageView5"
-            android:src="@drawable/bg_mask_200x200"
-            android:layout_gravity="center" />
 
     </FrameLayout>
 

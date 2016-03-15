@@ -14,7 +14,7 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        Fragment fragment = new UserInfoTermsFragment();
+        Fragment fragment = new SignupUserFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.add(R.id.signup_container, fragment);
         ft.addToBackStack("registerUserInfo");

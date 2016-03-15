@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class BookListSuccess {
     public String message;
     public int pageNum;
+    public int totalBooks;
     @SerializedName("user_id")
     public String userId;
     public ArrayList<BookData> tenseList = new ArrayList<BookData>();

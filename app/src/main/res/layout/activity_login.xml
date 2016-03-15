@@ -22,19 +22,20 @@
         <EditText
             android:id="@+id/edit_id"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/edit_login_email_height"
             android:layout_marginTop="@dimen/edit_login_id_margin_top"
             android:hint="@string/login_id_hint"
             android:backgroundTint="#ffc600"
             android:textColor="#ffffff"
             android:textColorHint="#ffffff"
             android:textSize="@dimen/text_login_id_size"
-            android:background="@drawable/edit_underline_yellow" />
+            android:background="@drawable/edit_underline_yellow"
+            android:layout_marginBottom="@dimen/edit_login_email_margin_bottom" />
 
         <EditText
             android:id="@+id/edit_password"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/edit_login_password_height"
             android:ems="10"
             android:inputType="textPassword"
             android:hint="@string/login_hint_password"
@@ -42,7 +43,8 @@
             android:textColor="#ffffff"
             android:textColorHint="#ffffff"
             android:textSize="@dimen/text_login_password_size"
-            android:background="@drawable/edit_underline_yellow" />
+            android:background="@drawable/edit_underline_yellow"
+            android:layout_marginBottom="@dimen/edit_login_password_margin_bottom" />
 
     <Button
         android:layout_width="match_parent"

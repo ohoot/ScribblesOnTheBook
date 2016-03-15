@@ -40,4 +40,9 @@ public class ScribblePagerAdapter extends FragmentStatePagerAdapter {
         items.addAll(tenseList);
         notifyDataSetChanged();
     }
+
+    public void clearAll() {
+        items.clear();
+        notifyDataSetChanged();
+    }
 }
