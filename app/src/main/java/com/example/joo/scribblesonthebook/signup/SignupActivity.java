@@ -8,6 +8,7 @@ import android.os.Bundle;
 import com.example.joo.scribblesonthebook.R;
 
 public class SignupActivity extends AppCompatActivity {
+    public static final String REGISTER_USER_BACKSTACK = "registerUserInfo";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +18,7 @@ public class SignupActivity extends AppCompatActivity {
         Fragment fragment = new SignupUserFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.add(R.id.signup_container, fragment);
-        ft.addToBackStack("registerUserInfo");
+        ft.addToBackStack(REGISTER_USER_BACKSTACK);
         ft.commit();
     }
 }

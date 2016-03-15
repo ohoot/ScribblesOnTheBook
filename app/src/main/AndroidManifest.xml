@@ -3,6 +3,7 @@
     package="com.example.joo.scribblesonthebook">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:name=".data.manager.MyApplication"

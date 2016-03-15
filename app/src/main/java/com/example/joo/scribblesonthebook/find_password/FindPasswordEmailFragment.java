@@ -60,6 +60,4 @@ public class FindPasswordEmailFragment extends Fragment {
         });
         return view;
     }
-
-
 }

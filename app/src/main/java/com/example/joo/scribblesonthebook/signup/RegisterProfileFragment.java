@@ -1,7 +1,12 @@
 package com.example.joo.scribblesonthebook.signup;
 
 
+import android.app.Activity;
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -12,7 +17,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.joo.scribblesonthebook.R;
+
+import java.io.File;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,8 +32,9 @@ public class RegisterProfileFragment extends Fragment {
     public static final String PASSWORD2_KEY_VALUE = "password2";
     public static final String FILTER_BACKSTACK = "filter";
 
-    ImageView profileView;
+    ImageView photoView;
     EditText nickView;
+    Uri mFileUri;
 
     public RegisterProfileFragment() {
         // Required empty public constructor
@@ -50,11 +59,11 @@ public class RegisterProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_register_profile, container, false);
-        profileView = (ImageView) view.findViewById(R.id.image_user_profile);
-        profileView.setOnClickListener(new View.OnClickListener() {
+        photoView = (ImageView) view.findViewById(R.id.image_user_profile);
+        photoView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                callGallery();
             }
         });
         nickView = (EditText) view.findViewById(R.id.edit_nick);
@@ -81,4 +90,49 @@ public class RegisterProfileFragment extends Fragment {
         return view;
     }
 
+    public static final int RC_GALLERY = 1;
+    public static final String DIR_PATH = "myfile";
+    public static final String INTENT_TYPE = "image/*";
+
+    private void callGallery() {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        intent.setType(INTENT_TYPE);
+
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, getFileUri());
+        startActivityForResult(intent, RC_GALLERY);
+    }
+
+    private Uri getFileUri() {
+        File dir = getActivity().getExternalFilesDir(DIR_PATH);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+        File file = new File(dir, "my_image_" + System.currentTimeMillis() + ".jpeg");
+        mFileUri = Uri.fromFile(file);
+        return mFileUri;
+    }
+
+    public static final String SELECTED_FILE = "selected_file";
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelable(SELECTED_FILE, mFileUri);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RC_GALLERY) {
+            if (resultCode == Activity.RESULT_OK) {
+                Uri uri = data.getData();
+                Cursor c = getActivity().getContentResolver().query(uri, new String[]{MediaStore.Images.Media.DATA}, null, null, null);
+                if (c.moveToNext()) {
+                    String path = c.getString(c.getColumnIndex(MediaStore.Images.Media.DATA));
+                    Uri fileUri = Uri.fromFile(new File(path));
+                    Glide.with(getContext()).load(fileUri).into(photoView);
+                }
+            }
+        }
+    }
 }
