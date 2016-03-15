@@ -16,6 +16,7 @@ import com.example.joo.scribblesonthebook.R;
  */
 public class FindPasswordKeyFragment extends Fragment {
 
+    public static final String CHANGE_PASSWORD_BACKSTACK = "changePwd";
 
     public FindPasswordKeyFragment() {
         // Required empty public constructor
@@ -42,7 +43,7 @@ public class FindPasswordKeyFragment extends Fragment {
                 Fragment fragment = new ChangePasswordFragment();
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.find_password_container, fragment);
-                ft.addToBackStack("changePwd");
+                ft.addToBackStack(CHANGE_PASSWORD_BACKSTACK);
                 ft.commit();
             }
         });

@@ -29,7 +29,7 @@
             android:textColor="#ffffff"
             android:textColorHint="#ffffff"
             android:textSize="@dimen/text_login_id_size"
-            android:background="@drawable/edit_underline_yellow"
+            android:background="@drawable/bg_line_yellow"
             android:layout_marginBottom="@dimen/edit_login_email_margin_bottom" />
 
         <EditText
@@ -43,7 +43,7 @@
             android:textColor="#ffffff"
             android:textColorHint="#ffffff"
             android:textSize="@dimen/text_login_password_size"
-            android:background="@drawable/edit_underline_yellow"
+            android:background="@drawable/bg_line_yellow"
             android:layout_marginBottom="@dimen/edit_login_password_margin_bottom" />
 
     <Button

@@ -24,6 +24,7 @@ import okhttp3.Request;
  */
 public class FindPasswordEmailFragment extends Fragment {
 
+    public static final String KEY_BACKSTACK = "key";
 
     public FindPasswordEmailFragment() {
         // Required empty public constructor
@@ -53,11 +54,12 @@ public class FindPasswordEmailFragment extends Fragment {
                 Fragment fragment = new FindPasswordKeyFragment();
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.find_password_container, fragment);
-                ft.addToBackStack("key");
+                ft.addToBackStack(KEY_BACKSTACK);
                 ft.commit();
             }
         });
         return view;
     }
+
 
 }
