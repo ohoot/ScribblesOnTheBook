@@ -1,0 +1,29 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_bookplus_dim"
+    tools:context="com.example.joo.scribblesonthebook.main.cfragment.AddBookFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:layout_width="@dimen/image_addbook_width"
+            android:layout_height="@dimen/image_addbook_height"
+            android:id="@+id/image_addbook_searching"
+            android:src="@drawable/icn_default_search_nor"
+            android:layout_marginRight="@dimen/addbook_searching_margin_right" />
+
+        <ImageView
+            android:layout_width="@dimen/image_addbook_width"
+            android:layout_height="@dimen/image_addbook_width"
+            android:id="@+id/image_addbook_barcode"
+            android:src="@drawable/icn_default_barcode_nor" />
+    </LinearLayout>
+</FrameLayout>

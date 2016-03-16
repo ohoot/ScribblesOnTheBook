@@ -90,8 +90,7 @@ public class ScribbleFragment extends Fragment {
             NetworkManager.getInstance().getBookList(getContext(), "" + position, "" + 1, new NetworkManager.OnResultListener<BookListSuccess>() {
                 @Override
                 public void onSuccess(Request request, final BookListSuccess result) {
-                    Toast.makeText(getContext(), result.message.toString(), Toast.LENGTH_SHORT).show();
-                    /*if (result.tenseList.size() == 0) {
+                    if (result.tenseList.size() == 0) {
                         dApater = new DefaultPagerAdapter(getChildFragmentManager());
                         viewPager.setAdapter(dApater);
                     } else {
@@ -100,7 +99,7 @@ public class ScribbleFragment extends Fragment {
                         sAdapter.addAll(result.tenseList);
 
                     }
-                    setScribblePage(result);*/
+                    setScribblePage(result);
                 }
 
                 @Override

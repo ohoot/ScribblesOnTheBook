@@ -3,10 +3,12 @@ package com.example.joo.scribblesonthebook.main.cfragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.joo.scribblesonthebook.R;
 
@@ -38,14 +40,28 @@ public class DefaultChildFragment extends Fragment {
             res = arg.getInt(IMAGE_RESOURCE_DEFAULT);
         }
     }
+    ImageView defaultImageView;
+
+    public static final String ADDBOOK_BACKSTACK = "addbook";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_default_child, container, false);
-        ImageView imageView = (ImageView) view.findViewById(R.id.image_default_child);
-        imageView.setImageResource(res);
+        defaultImageView = (ImageView) view.findViewById(R.id.image_default_child);
+        defaultImageView.setImageResource(res);
+        defaultImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new AddBookFragment();
+                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                ft.add(R.id.addbook_view_container, fragment);
+                ft.addToBackStack(ADDBOOK_BACKSTACK);
+                ft.commit();
+            }
+        });
         return view;
     }
+
 }

@@ -36,7 +36,7 @@
     <dimen name="image_menu_width">100dp</dimen>
     <dimen name="image_menu_margin_top">20dp</dimen>
     <dimen name="image_menu_margin_bottom">14dp</dimen>
-    <dimen name="text_menu_nick_height">15dp</dimen>
+    <dimen name="text_menu_nick_height">20dp</dimen>
     <dimen name="text_menu_nick_size">14dp</dimen>
     <dimen name="menu_nick_margin_bottom">35dp</dimen>
     <dimen name="text_menu_info_height">30dp</dimen>
@@ -111,4 +111,7 @@
     <dimen name="edit_login_password_height">30dp</dimen>
     <dimen name="edit_login_email_margin_bottom">18dp</dimen>
     <dimen name="edit_login_password_margin_bottom">31dp</dimen>
+    <dimen name="addbook_searching_margin_right">40dp</dimen>
+    <dimen name="image_addbook_width">59dp</dimen>
+    <dimen name="image_addbook_height">59dp</dimen>
 </resources>

@@ -7,9 +7,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.joo.scribblesonthebook.R;
@@ -17,6 +15,7 @@ import com.example.joo.scribblesonthebook.data.BookListSuccess;
 import com.example.joo.scribblesonthebook.data.MonthlyReadingSuccess;
 import com.example.joo.scribblesonthebook.data.manager.NetworkManager;
 import com.example.joo.scribblesonthebook.main.adapter.BookshelfPagerAdapter;
+import com.example.joo.scribblesonthebook.main.adapter.DefaultPagerAdapter;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Calendar;
@@ -31,7 +30,8 @@ public class BookshelfFragment extends Fragment {
     TextView monthlyPage, monthValueView;
     ViewPager viewPager;
     ImageView monthlyPageText;
-    BookshelfPagerAdapter mAdapter;
+    BookshelfPagerAdapter bAdapter;
+    DefaultPagerAdapter dApater;
 
     public BookshelfFragment() {
         // Required empty public constructor
@@ -45,8 +45,8 @@ public class BookshelfFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_bookshelf, container, false);
         monthlyPage = (TextView) view.findViewById(R.id.text_monthly_page);
         viewPager = (ViewPager) view.findViewById(R.id.bookshelf_pager);
-        mAdapter = new BookshelfPagerAdapter(getChildFragmentManager());
-        viewPager.setAdapter(mAdapter);
+        //bAdapter = new BookshelfPagerAdapter(getChildFragmentManager());
+        //viewPager.setAdapter(bAdapter);
         monthlyPageText = (ImageView) view.findViewById(R.id.image_monthly_page);
         monthValueView = (TextView) view.findViewById(R.id.text_month_value);
 
@@ -68,10 +68,17 @@ public class BookshelfFragment extends Fragment {
         }
 
         try {
-            NetworkManager.getInstance().getBookList(getContext(), 0 + "", 4 + "", new NetworkManager.OnResultListener<BookListSuccess>() {
+            NetworkManager.getInstance().getBookList(getContext(), 0 + "", 1 + "", new NetworkManager.OnResultListener<BookListSuccess>() {
                 @Override
                 public void onSuccess(Request request, BookListSuccess result) {
-                    mAdapter.addAll(result.tenseList);
+                    if (result.tenseList.size() == 0) {
+                        dApater = new DefaultPagerAdapter(getChildFragmentManager());
+                        viewPager.setAdapter(dApater);
+                    } else {
+                        bAdapter = new BookshelfPagerAdapter(getChildFragmentManager());
+                        viewPager.setAdapter(bAdapter);
+                        bAdapter.addAll(result.tenseList);
+                    }
                 }
 
                 @Override
