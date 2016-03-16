@@ -1,6 +1,7 @@
 package com.example.joo.scribblesonthebook.data.manager;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -52,6 +53,8 @@ import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.FormBody;
 import okhttp3.JavaNetCookieJar;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -141,6 +144,7 @@ public class NetworkManager {
     public void cancelAll() {
         mClient.dispatcher().cancelAll();
     }
+
 
     public interface OnResultListener<T> {
         public void onSuccess(Request request, T result);
@@ -385,18 +389,27 @@ public class NetworkManager {
 
     private static final String SIGNUP_USER_URL_FORMAT = "https://ec2-52-79-99-227.ap-northeast-2.compute.amazonaws.com/users";
 
-    public Request signupUser(Context context, String email, String password1, String password2, String nick, String userPhoto, final OnResultListener<Success> listener) throws UnsupportedEncodingException {
+    public Request signupUser(Context context, String email, String password1, String password2, String nick, File path, final OnResultListener<Success> listener) throws UnsupportedEncodingException {
 
         final CallbackObject<Success> callbackObject = new CallbackObject<Success>();
 
-        RequestBody requestBody = new FormBody.Builder()
+        RequestBody requestBody;
+        if (path != null) {
+            MultipartBody.Builder builder = new MultipartBody.Builder();
+            builder.addFormDataPart("local_email", email)
+                    .addFormDataPart("local_pw", password1)
+                    .addFormDataPart("local_re_pw", password2)
+                    .addFormDataPart("nickname", nick)
+                    .addFormDataPart("user_photo_url", path.getName(), RequestBody.create(MediaType.parse("image/jpeg"), path));
+            requestBody = builder.build();
+        } else {
+            requestBody = new FormBody.Builder()
                 .add("local_email", email)
                 .add("local_pw", password1)
                 .add("local_re_pw", password2)
                 .add("nickname", nick)
-                .add("user_photo_url", userPhoto)
                 .build();
-
+        }
         Request request = new Request.Builder().url(SIGNUP_USER_URL_FORMAT)
                 .post(requestBody)
                 .tag(context)
@@ -435,6 +448,14 @@ public class NetworkManager {
                 .add("local_email", email)
                 .add("local_pw", password)
                 .build();
+
+        /*MultipartBody.Builder builder = new MultipartBody.Builder();
+        builder.addFormDataPart("local_email", email)
+                .addFormDataPart("local_pw", password);
+        if (path != null) {
+            builder.addFormDataPart("profile_image", path.getName(), RequestBody.create(MediaType.parse("image/jpeg"), path));
+        }
+        RequestBody requestBody = builder.build();*/
 
         Request request = new Request.Builder().url(LOGIN_USER_URL_FORMAT)
                 .post(requestBody)

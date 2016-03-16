@@ -19,10 +19,9 @@ import android.widget.Toast;
 import com.example.joo.scribblesonthebook.R;
 import com.example.joo.scribblesonthebook.data.BookListSuccess;
 import com.example.joo.scribblesonthebook.data.manager.NetworkManager;
-import com.example.joo.scribblesonthebook.data.vo.BookData;
 import com.example.joo.scribblesonthebook.list_scribble.ScribbleListActivity;
+import com.example.joo.scribblesonthebook.main.adapter.DefaultPagerAdapter;
 import com.example.joo.scribblesonthebook.main.adapter.ScribblePagerAdapter;
-import com.example.joo.scribblesonthebook.main.cfragment.ScribbleChildFragment;
 
 import java.io.UnsupportedEncodingException;
 
@@ -42,7 +41,8 @@ public class ScribbleFragment extends Fragment {
     ViewPager viewPager;
     ArrayAdapter<String> mApdater;
     ImageView arrowView;
-    ScribblePagerAdapter pAdapter;
+    ScribblePagerAdapter sAdapter;
+    DefaultPagerAdapter dApater;
     TextView totalBookView;
     SeekBar seekBar;
 
@@ -56,8 +56,8 @@ public class ScribbleFragment extends Fragment {
         mApdater.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(mApdater);
         viewPager = (ViewPager) view.findViewById(R.id.scribble_pager);
-        pAdapter = new ScribblePagerAdapter(getChildFragmentManager());
-        viewPager.setAdapter(pAdapter);
+        //sAdapter = new ScribblePagerAdapter(getChildFragmentManager());
+        //viewPager.setAdapter(sAdapter);
         arrowView = (ImageView) view.findViewById(R.id.image_swaping_arrow);
         arrowView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,23 +87,25 @@ public class ScribbleFragment extends Fragment {
 
     private void callBookList(int position) {
         try {
-            NetworkManager.getInstance().getBookList(getContext(), "" + position, "" + 4, new NetworkManager.OnResultListener<BookListSuccess>() {
+            NetworkManager.getInstance().getBookList(getContext(), "" + position, "" + 1, new NetworkManager.OnResultListener<BookListSuccess>() {
                 @Override
                 public void onSuccess(Request request, final BookListSuccess result) {
-                    pAdapter.clearAll();
-                    pAdapter.addAll(result.tenseList);
-                    viewPager.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                        @Override
-                        public void onFocusChange(View v, boolean hasFocus) {
-                            seekBar.setMax(result.tenseList.get(viewPager.getCurrentItem()).getTotalPage());
-                        }
-                    });
-                    setScribblePage(result);
+                    Toast.makeText(getContext(), result.message.toString(), Toast.LENGTH_SHORT).show();
+                    /*if (result.tenseList.size() == 0) {
+                        dApater = new DefaultPagerAdapter(getChildFragmentManager());
+                        viewPager.setAdapter(dApater);
+                    } else {
+                        sAdapter = new ScribblePagerAdapter(getChildFragmentManager());
+                        sAdapter.clearAll();
+                        sAdapter.addAll(result.tenseList);
+
+                    }
+                    setScribblePage(result);*/
                 }
 
                 @Override
                 public void onFailure(Request request, int code, Throwable cause) {
-
+                    Toast.makeText(getContext(), "낙서 Failure", Toast.LENGTH_SHORT).show();
                 }
             });
         } catch (UnsupportedEncodingException e) {
@@ -113,12 +115,6 @@ public class ScribbleFragment extends Fragment {
 
     private void setScribblePage(final BookListSuccess result) {
         totalBookView.setText(result.tenseList.size() + "");
-        viewPager.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                seekBar.setMax(result.tenseList.get(viewPager.getCurrentItem()).getTotalPage());
-            }
-        });
 
     }
 

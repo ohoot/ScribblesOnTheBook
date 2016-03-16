@@ -2,68 +2,71 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#ede3cb">
+    android:background="#ede3cb"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_marginLeft="@dimen/terms_content_margin_left"
-        android:layout_marginRight="@dimen/terms_content_margin_right">
+        android:layout_marginRight="@dimen/terms_content_margin_right"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="@dimen/edit_signup_height"
-            android:background="#ffffff"
             android:layout_marginTop="@dimen/terms_edit_margin_top"
+            android:background="#ffffff"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
             android:paddingLeft="@dimen/edit_signup_padding_left"
-            android:paddingRight="@dimen/edit_signup_padding_right"
-            android:gravity="center_vertical">
+            android:paddingRight="@dimen/edit_signup_padding_right">
 
             <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:id="@+id/edit_terms_email"
-                android:hint="@string/terms_hint_email"
-                android:textSize="@dimen/edit_signup_email_size"
-                android:textColor="#110e34" />
-
-            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="@string/terms_hint_email"
+                android:inputType="textEmailAddress"
+                android:textColor="#110e34"
+                android:textSize="@dimen/edit_signup_email_size" />
+
+            <EditText
                 android:id="@+id/edit_terms_password1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:hint="@string/terms_hint_password1"
                 android:textColor="#110e34"
+                android:inputType="textPassword"
                 android:textSize="@dimen/edit_signup_password1_size" />
 
             <EditText
+                android:id="@+id/edit_terms_password2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/edit_terms_password2"
+                android:inputType="textPassword"
                 android:hint="@string/terms_hint_password2"
-                android:textSize="@dimen/edit_signup_password2_size"
-                android:textColor="#110e34" />
+                android:textColor="#110e34"
+                android:textSize="@dimen/edit_signup_password2_size" />
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="@dimen/terms_block_height"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <CheckBox
+                    android:id="@+id/checkBox_service_terms"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/service_terms_agreement"
-                    android:id="@+id/checkBox_service_terms"
-                    android:checked="false" />
+                    android:checked="false"
+                    android:text="@string/service_terms_agreement" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -71,48 +74,48 @@
                     android:layout_weight="1" />
 
                 <TextView
+                    android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/terms_requirement"
-                    android:id="@+id/textView" />
+                    android:text="@string/terms_requirement" />
 
             </LinearLayout>
 
             <ScrollView
+                android:id="@+id/scrollView"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:id="@+id/scrollView"
                 android:background="#ffffff">
 
                 <TextView
+                    android:id="@+id/text_service_terms"
                     android:layout_width="match_parent"
                     android:layout_height="10dp"
-                    android:text="@string/text_service_terms"
-                    android:id="@+id/text_service_terms"
-                    android:textColor="#414141"
-                    android:textSize="@dimen/text_terms_size"
                     android:paddingLeft="@dimen/text_terms_padding_left"
-                    android:paddingTop="@dimen/text_terms_padding_top" />
+                    android:paddingTop="@dimen/text_terms_padding_top"
+                    android:text="@string/text_service_terms"
+                    android:textColor="#414141"
+                    android:textSize="@dimen/text_terms_size" />
             </ScrollView>
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="@dimen/terms_block_height"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <CheckBox
+                    android:id="@+id/checkBox_personal_terms"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/personal_info_terms"
-                    android:id="@+id/checkBox_personal_terms"
-                    android:checked="false" />
+                    android:checked="false"
+                    android:text="@string/personal_info_terms" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -120,27 +123,27 @@
                     android:layout_weight="1" />
 
                 <TextView
+                    android:id="@+id/textView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/terms_requirement"
-                    android:id="@+id/textView4" />
+                    android:text="@string/terms_requirement" />
             </LinearLayout>
 
             <ScrollView
+                android:id="@+id/scrollView2"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:id="@+id/scrollView2"
                 android:background="#ffffff">
 
                 <TextView
+                    android:id="@+id/text_personal_terms"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/text_personal_terms"
-                    android:id="@+id/text_personal_terms"
-                    android:textSize="@dimen/text_terms_size"
-                    android:textColor="#414141"
                     android:paddingLeft="@dimen/text_terms_padding_left"
-                    android:paddingTop="@dimen/text_terms_padding_top" />
+                    android:paddingTop="@dimen/text_terms_padding_top"
+                    android:text="@string/text_personal_terms"
+                    android:textColor="#414141"
+                    android:textSize="@dimen/text_terms_size" />
             </ScrollView>
         </LinearLayout>
 
@@ -152,33 +155,30 @@
         android:layout_weight="1" />
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#110e34"
-        >
+        android:orientation="horizontal">
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/btn_signup_cancel"
             android:id="@+id/btn_signup_cancel"
-            android:layout_gravity="bottom"
-            android:layout_weight="1"
-            android:background="#110e34"
-            android:textColor="#ffffff"
-            />
-
-        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/btn_signup_next"
-            android:id="@+id/btn_signup_next"
             android:layout_gravity="bottom"
             android:layout_weight="1"
             android:background="#110e34"
-            android:textColor="#767676"
-            />
+            android:text="@string/btn_signup_cancel"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/btn_signup_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:background="#110e34"
+            android:text="@string/btn_signup_next"
+            android:textColor="#767676" />
     </LinearLayout>
 
 </LinearLayout>

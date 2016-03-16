@@ -8,11 +8,20 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.joo.scribblesonthebook.ChangePasswordActivity;
 import com.example.joo.scribblesonthebook.R;
+import com.example.joo.scribblesonthebook.data.ReferPersonalSuccess;
+import com.example.joo.scribblesonthebook.data.manager.NetworkManager;
+
+import java.io.UnsupportedEncodingException;
+
+import okhttp3.Request;
 
 
 /**
@@ -39,7 +48,7 @@ public class MenuFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof OnMenuItemSeletedListener) {
-            mCallback = (OnMenuItemSeletedListener)context;
+            mCallback = (OnMenuItemSeletedListener) context;
         }
     }
 
@@ -49,12 +58,18 @@ public class MenuFragment extends Fragment {
         }
     }
 
-    TextView changePasswordView, logoutView, filterSettingView;
+    ImageView photoView;
+    TextView changePasswordView, logoutView, filterSettingView, nickView, emailView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
+        nickView = (TextView) view.findViewById(R.id.text_menu_userid);
+        photoView = (ImageView) view.findViewById(R.id.image_menu_photo);
+        emailView = (TextView) view.findViewById(R.id.text_menu_email);
+
         changePasswordView = (TextView) view.findViewById(R.id.text_menu_change_password);
         changePasswordView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +91,29 @@ public class MenuFragment extends Fragment {
                 selectMenu((MENU_ID_FILTER_SETTING));
             }
         });
+
+        try {
+            NetworkManager.getInstance().getMenuInfo(getContext(), new NetworkManager.OnResultListener<ReferPersonalSuccess>() {
+                @Override
+                public void onSuccess(Request request, ReferPersonalSuccess result) {
+                    setMenuInfo(result);
+                }
+
+                @Override
+                public void onFailure(Request request, int code, Throwable cause) {
+
+                }
+            });
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
         return view;
+    }
+
+    private void setMenuInfo(ReferPersonalSuccess result) {
+        Glide.with(getContext()).load(result.me.getUserPicture()).into(photoView);
+        nickView.setText(result.me.getUserNick());
+        emailView.setText(result.me.getLocalEmail());
     }
 }

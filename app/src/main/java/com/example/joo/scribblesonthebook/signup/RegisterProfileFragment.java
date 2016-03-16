@@ -19,8 +19,13 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.joo.scribblesonthebook.R;
+import com.example.joo.scribblesonthebook.data.manager.NetworkManager;
+import com.example.joo.scribblesonthebook.data.vo.Success;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
+
+import okhttp3.Request;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -80,11 +85,31 @@ public class RegisterProfileFragment extends Fragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = new FilterFragment();
-                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.signup_container, fragment);
-                ft.addToBackStack(FILTER_BACKSTACK);
-                ft.commit();
+                File file = null;
+                if (mFileUri != null) {
+                    file = new File(mFileUri.getPath());
+                }
+                try {
+                    NetworkManager.getInstance().signupUser(getContext(), email, password1, password2, nickView.getText().toString(), file , new NetworkManager.OnResultListener<Success>() {
+                        @Override
+                        public void onSuccess(Request request, Success result) {
+                            Fragment fragment = new FilterFragment();
+                            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                            ft.replace(R.id.signup_container, fragment);
+                            ft.addToBackStack(FILTER_BACKSTACK);
+                            ft.commit();
+                        }
+
+                        @Override
+                        public void onFailure(Request request, int code, Throwable cause) {
+                            Toast.makeText(getContext(), "Failure", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+
+
             }
         });
         return view;
@@ -129,10 +154,12 @@ public class RegisterProfileFragment extends Fragment {
                 Cursor c = getActivity().getContentResolver().query(uri, new String[]{MediaStore.Images.Media.DATA}, null, null, null);
                 if (c.moveToNext()) {
                     String path = c.getString(c.getColumnIndex(MediaStore.Images.Media.DATA));
-                    Uri fileUri = Uri.fromFile(new File(path));
-                    Glide.with(getContext()).load(fileUri).into(photoView);
+                    mFileUri = Uri.fromFile(new File(path));
+                    Glide.with(getContext()).load(mFileUri).into(photoView);
                 }
             }
         }
     }
+
+
 }

@@ -21,7 +21,7 @@
             <ImageView
                 android:layout_width="@dimen/image_menu_width"
                 android:layout_height="@dimen/image_menu_height"
-                android:id="@+id/imageView4"
+                android:id="@+id/image_menu_photo"
                 android:src="@drawable/bg_mask_200x200"
                 android:layout_marginTop="@dimen/image_menu_margin_top"
                 android:layout_marginBottom="@dimen/image_menu_margin_bottom" />

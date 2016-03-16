@@ -57,10 +57,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 startActivity(new Intent(LoginActivity.this, SignupActivity.class));
                 break;
             case R.id.btn_login :
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                finish();
-
-                /*try {
+                try {
                     NetworkManager.getInstance().userLogin(LoginActivity.this, editId.getText().toString(), editPassword.getText().toString(), new NetworkManager.OnResultListener<Success>() {
                         @Override
                         public void onSuccess(Request request, Success result) {
@@ -75,7 +72,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     });
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
-                }*/
+                }
                 break;
             case R.id.btn_login_facebook :
                 break;
