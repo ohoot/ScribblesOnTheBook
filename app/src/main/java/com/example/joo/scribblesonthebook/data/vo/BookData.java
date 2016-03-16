@@ -2,13 +2,14 @@ package com.example.joo.scribblesonthebook.data.vo;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Joo on 2016-02-22.
  */
-public class BookData {
+public class BookData implements RecommData, Serializable{
     String title;
     String author;
     String publisher;

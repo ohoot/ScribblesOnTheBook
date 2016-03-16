@@ -22,6 +22,9 @@ import com.example.joo.scribblesonthebook.main.adapter.SearchingRecommAdapter;
  */
 public class SearchRecommFragment extends Fragment {
 
+    public static final String RECOMM_LIST_BACKSTACK = "recommList";
+    public static final String SEARCHING_RESULT_BACKSTACK = "searchingResult";
+    public static final String SEARCHING_KEYWORD = "searchingKey";
 
     public SearchRecommFragment() {
         // Required empty public constructor
@@ -37,17 +40,22 @@ public class SearchRecommFragment extends Fragment {
         Fragment fragment = new RecommListFragment();
         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         ft.add(R.id.searching_recomm_container, fragment);
-        ft.addToBackStack("recommList");
+        ft.addToBackStack(RECOMM_LIST_BACKSTACK);
         ft.commit();
+
         keywordView = (EditText) view.findViewById(R.id.edit_searching_keyword);
         keywordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_GO) {
                     Fragment f = new SearchingResultFragment();
+                    Bundle b = new Bundle();
+                    b.putString(SEARCHING_KEYWORD, keywordView.getText().toString());
+                    f.setArguments(b);
+
                     FragmentTransaction fts = getActivity().getSupportFragmentManager().beginTransaction();
                     fts.replace(R.id.searching_recomm_container, f);
-                    fts.addToBackStack("searchingResult");
+                    fts.addToBackStack(SEARCHING_RESULT_BACKSTACK);
                     fts.commit();
                 }
                 return true;

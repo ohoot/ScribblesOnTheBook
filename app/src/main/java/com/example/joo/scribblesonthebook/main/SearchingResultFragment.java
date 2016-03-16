@@ -29,8 +29,19 @@ public class SearchingResultFragment extends Fragment {
         // Required empty public constructor
     }
 
+    String searchingKeyword;
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Bundle b = getArguments();
+        if (b != null) {
+            searchingKeyword = b.getString(SearchRecommFragment.SEARCHING_KEYWORD);
+        }
+    }
+
     ListView listView;
     SearchingResultAdapter sAdapter;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -40,7 +51,7 @@ public class SearchingResultFragment extends Fragment {
         sAdapter = new SearchingResultAdapter();
 
         try {
-            NetworkManager.getInstance().getSearchingResult(getContext(), "앨리스", "" + 1, "" + 30, new NetworkManager.OnResultListener<SearchingBookSuccess>() {
+            NetworkManager.getInstance().getSearchingResult(getContext(), searchingKeyword, "" + 1, "" + 30, new NetworkManager.OnResultListener<SearchingBookSuccess>() {
                 @Override
                 public void onSuccess(Request request, SearchingBookSuccess result) {
                     listView.setAdapter(sAdapter);

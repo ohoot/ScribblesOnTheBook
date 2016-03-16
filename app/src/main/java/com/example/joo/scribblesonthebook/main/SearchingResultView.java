@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.joo.scribblesonthebook.R;
 import com.example.joo.scribblesonthebook.data.vo.BookData;
 
@@ -37,6 +38,7 @@ public class SearchingResultView extends FrameLayout {
     }
 
     public void setSearchingResultView(BookData bookData) {
+        Glide.with(getContext()).load(bookData.getCoverImage()).into(coverView);
         titleView.setText(bookData.getTitle());
         authorView.setText(bookData.getAuthor());
     }

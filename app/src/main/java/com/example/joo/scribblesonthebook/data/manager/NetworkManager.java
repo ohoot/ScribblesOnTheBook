@@ -253,7 +253,7 @@ public class NetworkManager {
 
     private static final String SEARCHING_RESULT_URL_FORMAT = "http://ec2-52-79-99-227.ap-northeast-2.compute.amazonaws.com/books?keyward=%s&page=%s&rows=%s";
 
-    public Request getSearchingResult(Context context, String keyword, String page,String rows, final OnResultListener<SearchingBookSuccess> listener) throws UnsupportedEncodingException {
+    public Request getSearchingResult(Context context, String keyword, String page, String rows, final OnResultListener<SearchingBookSuccess> listener) throws UnsupportedEncodingException {
         String url = String.format(SEARCHING_RESULT_URL_FORMAT, URLEncoder.encode(keyword, "utf-8"), page, rows);
 
         final CallbackObject<SearchingBookSuccess> callbackObject = new CallbackObject<SearchingBookSuccess>();
@@ -353,14 +353,13 @@ public class NetworkManager {
         return request;
     }
 
-    private static final String RECOMMENDATION_URL_FORMAT = "http://ec2-52-79-99-227.ap-northeast-2.compute.amazonaws.com/recommendations/me?pageNum=%s";
+    private static final String RECOMMENDATION_URL_FORMAT = "http://ec2-52-79-99-227.ap-northeast-2.compute.amazonaws.com/recommendations/me";
 
-    public Request getRecommendations(Context context, String page, final OnResultListener<RecommendationSuccess> listener) throws UnsupportedEncodingException {
-        String url = String.format(RECOMMENDATION_URL_FORMAT, page);
+    public Request getRecommendations(Context context, final OnResultListener<RecommendationSuccess> listener) throws UnsupportedEncodingException {
 
         final CallbackObject<RecommendationSuccess> callbackObject = new CallbackObject<RecommendationSuccess>();
 
-        Request request = new Request.Builder().url(url)
+        Request request = new Request.Builder().url(REWARD_RECORD_URL_FORMAT)
                 .tag(context)
                 .build();
 

@@ -14,7 +14,7 @@ public class RecommendationSuccess {
     public int rows;
     @SerializedName("recommend_id")
     public int recommendId;
-    BookData recommendBook;
-    EventInfo recommendProgram;
-    CommunityInfo recommendClub;
+    public BookData recommendBook;
+    public EventInfo recommendProgram;
+    public CommunityInfo recommendClub;
 }

@@ -56,7 +56,7 @@ public class DefaultChildFragment extends Fragment {
             public void onClick(View v) {
                 Fragment fragment = new AddBookFragment();
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                ft.add(R.id.addbook_view_container, fragment);
+                ft.replace(R.id.addbook_view_container, fragment);
                 ft.addToBackStack(ADDBOOK_BACKSTACK);
                 ft.commit();
             }
