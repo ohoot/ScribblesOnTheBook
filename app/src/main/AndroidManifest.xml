@@ -29,7 +29,7 @@
         <activity
             android:name=".LoginActivity"
             android:launchMode="singleTask"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.LoginTheme" />
         <activity android:name=".writing_scribble.WritingScribbleActivity" />
         <activity android:name=".DetailBookInfoActivity" />
         <activity android:name=".find_password.FindPasswordActivity" />

@@ -40,7 +40,7 @@
             android:inputType="textPassword"
             android:hint="@string/login_hint_password"
             android:backgroundTint="#ffc600"
-            android:textColor="#ffffff"
+            android:textColor="#ffc660"
             android:textColorHint="#ffffff"
             android:textSize="@dimen/text_login_password_size"
             android:background="@drawable/bg_line_yellow1"

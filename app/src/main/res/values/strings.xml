@@ -59,4 +59,5 @@
     <string name="terms_hint_password2">Password again</string>
     <string name="text_service_terms">It is not prepared in English.</string>
     <string name="text_personal_terms">It is not prepared in English.</string>
+    <string name="text_actionbar_signup">Personal Info</string>
 </resources>
