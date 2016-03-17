@@ -1,5 +1,6 @@
 package com.example.joo.scribblesonthebook.list_scribble;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ExpandableListView;
@@ -7,6 +8,7 @@ import android.widget.ExpandableListView;
 import com.example.joo.scribblesonthebook.R;
 import com.example.joo.scribblesonthebook.data.ReferScribbleRecordSuccess;
 import com.example.joo.scribblesonthebook.data.manager.NetworkManager;
+import com.example.joo.scribblesonthebook.data.vo.BookData;
 import com.example.joo.scribblesonthebook.data.vo.Scribble;
 
 import java.io.UnsupportedEncodingException;
@@ -17,14 +19,20 @@ import okhttp3.Request;
 
 public class ScribbleListActivity extends AppCompatActivity {
 
+    public static final String CURRENT_BOOK_DATA = "currentBook";
+
     ExpandableListView listView;
     ScribbleListAdapter sAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scribble_list);
+        Intent intent = getIntent();
+        BookData bookData = (BookData) intent.getSerializableExtra(CURRENT_BOOK_DATA);
+
         try {
-            NetworkManager.getInstance().getScribbleList(ScribbleListActivity.this, ":isbn", "" + 1, "" + 10, new NetworkManager.OnResultListener<ReferScribbleRecordSuccess>() {
+            NetworkManager.getInstance().getScribbleList(ScribbleListActivity.this, bookData.getIsbn(), "" + 1, new NetworkManager.OnResultListener<ReferScribbleRecordSuccess>() {
                 @Override
                 public void onSuccess(Request request, ReferScribbleRecordSuccess result) {
                     listView = (ExpandableListView) findViewById(R.id.expandableScribbleListView);

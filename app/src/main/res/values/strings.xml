@@ -62,4 +62,6 @@
     <string name="text_actionbar_signup">Personal Info</string>
     <string name="text_toolbar_signup"><![CDATA[Email & Terms]]></string>
     <string name="text_toolbar_profile">Profile</string>
+    <string name="text_toolbar_filter">Filter</string>
+    <string name="text_toolbar_find_password">Find Password</string>
 </resources>

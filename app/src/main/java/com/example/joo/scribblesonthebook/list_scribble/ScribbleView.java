@@ -1,11 +1,13 @@
 package com.example.joo.scribblesonthebook.list_scribble;
 
 import android.content.Context;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.joo.scribblesonthebook.R;
+import com.example.joo.scribblesonthebook.data.manager.NetworkManager;
 import com.example.joo.scribblesonthebook.data.vo.Scribble;
 
 import java.util.List;
@@ -26,6 +28,12 @@ public class ScribbleView extends FrameLayout {
         inflate(getContext(), R.layout.view_scribble, this);
         pictureView = (ImageView) findViewById(R.id.image_scribble_writer);
         heartView = (ImageView) findViewById(R.id.image_heart);
+        heartView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //NetworkManager.getInstance().setScribbleLike(getContext(), )
+            }
+        });
         optionView = (ImageView) findViewById(R.id.image_triangle_icon);
         userNickView = (TextView) findViewById(R.id.text_scribble_writer);
         dateView = (TextView) findViewById(R.id.text_scribble_date);

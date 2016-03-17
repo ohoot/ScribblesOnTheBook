@@ -13,6 +13,7 @@ public class Scribble {
     @SerializedName("write_user_id")
     int writerId;
     String isbn;
+    @SerializedName("doodle_page")
     int page;
     @SerializedName("text_doodle")
     String content;

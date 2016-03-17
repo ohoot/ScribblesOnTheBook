@@ -7,6 +7,24 @@
     >
 
     <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbar_height"
+        android:layout_gravity="center"
+        android:background="#110e34"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_toolbar_signup"
+            android:id="@+id/text_toolbar_signup"
+            android:layout_gravity="center"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/text_size_toolbar" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/terms_content_margin_left"

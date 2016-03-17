@@ -64,12 +64,13 @@ public class ScribbleFragment extends Fragment {
         //sAdapter = new ScribblePagerAdapter(getChildFragmentManager());
         //viewPager.setAdapter(sAdapter);
         arrowView = (ImageView) view.findViewById(R.id.image_swaping_arrow);
-        arrowView.setOnClickListener(new View.OnClickListener() {
+        /*arrowView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 startActivity(new Intent(getActivity(), ScribbleListActivity.class));
             }
-        });
+        });*/
         totalBookView = (TextView) view.findViewById(R.id.text_total_books);
         seekBar = (SeekBar) view.findViewById(R.id.seekBar);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -109,6 +110,15 @@ public class ScribbleFragment extends Fragment {
                             public void onClick(View v) {
                                 Intent intent = new Intent(getContext(), WritingScribbleActivity.class);
                                 intent.putExtra(WritingScribbleActivity.CURRENT_BOOK_DATA, sAdapter.getCurrentBook(viewPager.getCurrentItem()));
+                                startActivity(intent);
+                            }
+                        });
+
+                        arrowView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(getContext(), ScribbleListActivity.class);
+                                intent.putExtra(ScribbleListActivity.CURRENT_BOOK_DATA, sAdapter.getCurrentBook(viewPager.getCurrentItem()));
                                 startActivity(intent);
                             }
                         });

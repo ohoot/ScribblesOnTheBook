@@ -56,6 +56,8 @@
     <string name="text_actionbar_signup">이메일입력 및 약관동의</string>
     <string name="text_toolbar_signup">이메일입력 및 약관동의</string>
     <string name="text_toolbar_profile">프로필 등록하기</string>
+    <string name="text_toolbar_filter">필터 설정</string>
+    <string name="text_toolbar_find_password">비밀번호 찾기</string>
 
     <!--<string name="text_service_terms">제1조 (목적)
 본 약관은 Team 조곤(이하 "회사")이(가) 운영하는 ‘책장에 낙서’(이하 “책낙”) 서비스의 이용과 관련하여 회사와 회원간의 이용조건 및 제반 절차, 기타 필요한 사항을 규정함을 목적으로 합니다.

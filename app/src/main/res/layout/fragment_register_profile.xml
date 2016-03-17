@@ -5,6 +5,22 @@
     android:orientation="vertical"
     android:background="#ede3cb">
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbar_height"
+        android:background="#110e34"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_toolbar_profile"
+            android:id="@+id/text_toolbar_profile"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/text_size_toolbar" />
+    </LinearLayout>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

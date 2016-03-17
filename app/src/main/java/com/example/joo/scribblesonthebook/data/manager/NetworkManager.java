@@ -219,8 +219,8 @@ public class NetworkManager {
 
     private static final String SCRIBBLE_LIST_URL_FORMAT = "http://ec2-52-79-99-227.ap-northeast-2.compute.amazonaws.com/books/%s/doodles?page=%s&rows=%s";
 
-    public Request getScribbleList(Context context, String isbn, String page, String rows, final OnResultListener<ReferScribbleRecordSuccess> listener) throws UnsupportedEncodingException {
-        String url = String.format(SCRIBBLE_LIST_URL_FORMAT, isbn, page, rows);
+    public Request getScribbleList(Context context, String isbn, String pageNum, final OnResultListener<ReferScribbleRecordSuccess> listener) throws UnsupportedEncodingException {
+        String url = String.format(SCRIBBLE_LIST_URL_FORMAT, isbn, pageNum);
 
         final CallbackObject<ReferScribbleRecordSuccess> callbackObject = new CallbackObject<ReferScribbleRecordSuccess>();
 
@@ -586,9 +586,9 @@ public class NetworkManager {
         return request;
     }
 
-    public Request changePassword(Context context, String password1, String password2, final OnResultListener<ReferScribbleRecordSuccess> listener) throws UnsupportedEncodingException {
+    public Request changePassword(Context context, String password1, String password2, final OnResultListener<SimpleRequest> listener) throws UnsupportedEncodingException {
 
-        final CallbackObject<ReferScribbleRecordSuccess> callbackObject = new CallbackObject<ReferScribbleRecordSuccess>();
+        final CallbackObject<SimpleRequest> callbackObject = new CallbackObject<SimpleRequest>();
 
         RequestBody requestBody = new FormBody.Builder()
                 .add("local_pw", password1)
@@ -613,8 +613,8 @@ public class NetworkManager {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 Gson gson = new Gson();
-                ReferScribbleRecordResponse rsrr = gson.fromJson(response.body().string(), ReferScribbleRecordResponse.class);
-                callbackObject.result = rsrr.success;
+                SimpleRequest sr = gson.fromJson(response.body().string(), SimpleRequest.class);
+                callbackObject.result = sr;
                 Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
                 mHandler.sendMessage(msg);
             }

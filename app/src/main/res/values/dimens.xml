@@ -122,4 +122,5 @@
     <dimen name="btn_bookshelf_width">300dp</dimen>
     <dimen name="toolbar_height">56dp</dimen>
     <dimen name="text_size_toolbar">19dp</dimen>
+    <dimen name="gridview_filter_height">512dp</dimen>
 </resources>

@@ -62,12 +62,10 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.OnMe
         View tabBookshelf = View.inflate(this, R.layout.view_tab_bookshelf, null);
         View tabRecomm = View.inflate(this, R.layout.view_tab_recomm, null);
 
-
         fragmentTabHost.addTab(fragmentTabHost.newTabSpec(TABSPEC_BOOKSHELF).setIndicator(tabBookshelf), BookshelfFragment.class, null);
         fragmentTabHost.addTab(fragmentTabHost.newTabSpec(TABSPEC_SCRIBBLE).setIndicator(tabScribble), ScribbleFragment.class, null);
         fragmentTabHost.addTab(fragmentTabHost.newTabSpec(TABSPEC_SEARCHING_RECOMM).setIndicator(tabRecomm), SearchRecommFragment.class, null);
         fragmentTabHost.setCurrentTab(SCRIBBLE_TAB_INDEX);
-
 
         fragmentTabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener() {
             @Override
