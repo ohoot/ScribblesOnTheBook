@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
@@ -22,7 +23,9 @@ import com.example.joo.scribblesonthebook.data.manager.NetworkManager;
 import com.example.joo.scribblesonthebook.list_scribble.ScribbleListActivity;
 import com.example.joo.scribblesonthebook.main.adapter.DefaultPagerAdapter;
 import com.example.joo.scribblesonthebook.main.adapter.ScribblePagerAdapter;
+import com.example.joo.scribblesonthebook.writing_scribble.WritingScribbleActivity;
 
+import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 
 import okhttp3.Request;
@@ -45,12 +48,14 @@ public class ScribbleFragment extends Fragment {
     DefaultPagerAdapter dApater;
     TextView totalBookView;
     SeekBar seekBar;
+    Button fab;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_scribble, container, false);
+        fab = (Button) getActivity().findViewById(R.id.fab);
         spinner = (Spinner) view.findViewById(R.id.spinner_scribble);
         mApdater = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item);
         mApdater.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -97,7 +102,16 @@ public class ScribbleFragment extends Fragment {
                         sAdapter = new ScribblePagerAdapter(getChildFragmentManager());
                         sAdapter.clearAll();
                         sAdapter.addAll(result.tenseList);
+                        viewPager.setAdapter(sAdapter);
 
+                        fab.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(getContext(), WritingScribbleActivity.class);
+                                intent.putExtra(WritingScribbleActivity.CURRENT_BOOK_DATA, sAdapter.getCurrentBook(viewPager.getCurrentItem()));
+                                startActivity(intent);
+                            }
+                        });
                     }
                     setScribblePage(result);
                 }

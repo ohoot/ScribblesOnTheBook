@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.example.joo.scribblesonthebook.R;
 
+import java.io.Serializable;
+
 /**
  * A simple {@link Fragment} subclass.
  */

@@ -33,7 +33,8 @@
         <activity android:name=".writing_scribble.WritingScribbleActivity" />
         <activity android:name=".DetailBookInfoActivity" />
         <activity android:name=".find_password.FindPasswordActivity" />
-        <activity android:name=".signup.SignupActivity"/>
+        <activity android:name=".signup.SignupActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".list_scribble.ScribbleListActivity" />
         <activity android:name=".ChangePasswordActivity"></activity>
     </application>

@@ -120,4 +120,6 @@
     <dimen name="tab_height">48dp</dimen>
     <dimen name="btn_bookshelf_height">25dp</dimen>
     <dimen name="btn_bookshelf_width">300dp</dimen>
+    <dimen name="toolbar_height">56dp</dimen>
+    <dimen name="text_size_toolbar">19dp</dimen>
 </resources>

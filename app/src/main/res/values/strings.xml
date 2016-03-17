@@ -60,4 +60,6 @@
     <string name="text_service_terms">It is not prepared in English.</string>
     <string name="text_personal_terms">It is not prepared in English.</string>
     <string name="text_actionbar_signup">Personal Info</string>
+    <string name="text_toolbar_signup"><![CDATA[Email & Terms]]></string>
+    <string name="text_toolbar_profile">Profile</string>
 </resources>

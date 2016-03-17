@@ -697,19 +697,31 @@ public class NetworkManager {
         return request;
     }
 
-    private static final String WRITE_SCRIBBLE_URL_FORMAT = "http://ec2-52-79-99-227.ap-northeast-2.compute.amazonaws.com/books/:isbn/doodles";
+    private static final String WRITE_SCRIBBLE_URL_FORMAT = "http://ec2-52-79-99-227.ap-northeast-2.compute.amazonaws.com/books/%s/doodles";
 
-    public Request writeScribble(Context context, String isbn, String scribblePage, String scribbleContent, String scribblePhoto, String emotionId, final OnResultListener<Success> listener) throws UnsupportedEncodingException {
+    public Request writeScribble(Context context, String isbn, String scribblePage, String scribbleContent, File scribblePhoto, String emotionId, final OnResultListener<SimpleRequest> listener) throws UnsupportedEncodingException {
         String url = String.format(WRITE_SCRIBBLE_URL_FORMAT, isbn);
 
-        final CallbackObject<Success> callbackObject = new CallbackObject<Success>();
+        final CallbackObject<SimpleRequest> callbackObject = new CallbackObject<SimpleRequest>();
 
-        RequestBody requestBody = new FormBody.Builder()
-                .add("doodle_page", scribblePage)
-                .add("text_doodle", scribbleContent)
-                .add("picture_doodle", scribblePhoto)
-                .add("emotion_doodle_id", emotionId)
-                .build();
+        if (scribbleContent == null) scribbleContent = "";
+        if (emotionId == null) emotionId = "0";
+
+        RequestBody requestBody;
+        if (scribblePhoto != null) {
+            MultipartBody.Builder builder = new MultipartBody.Builder();
+            builder.addFormDataPart("doodle_page", scribblePage)
+                   .addFormDataPart("text_doodle", scribbleContent)
+                   .addFormDataPart("picture_doodle", scribblePhoto.getName(), RequestBody.create(MediaType.parse("image/jpeg"), scribblePhoto))
+                   .addFormDataPart("emotion_doodle_id", emotionId);
+            requestBody = builder.build();
+        } else {
+            requestBody = new FormBody.Builder()
+                    .add("doodle_page", scribblePage)
+                    .add("text_doodle", scribbleContent)
+                    .add("emotion_doodle_id", emotionId)
+                    .build();
+        }
 
         Request request = new Request.Builder().url(url)
                 .post(requestBody)
@@ -731,7 +743,7 @@ public class NetworkManager {
             public void onResponse(Call call, Response response) throws IOException {
                 Gson gson = new Gson();
                 SimpleRequest sr = gson.fromJson(response.body().string(), SimpleRequest.class);
-                callbackObject.result = sr.success;
+                callbackObject.result = sr;
                 Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
                 mHandler.sendMessage(msg);
             }

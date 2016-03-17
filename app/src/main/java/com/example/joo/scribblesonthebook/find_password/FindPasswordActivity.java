@@ -9,7 +9,6 @@ import com.example.joo.scribblesonthebook.R;
 
 public class FindPasswordActivity extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,7 +17,6 @@ public class FindPasswordActivity extends AppCompatActivity {
         Fragment fragment = new FindPasswordEmailFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.add(R.id.find_password_container, fragment);
-        ft.addToBackStack("email");
         ft.commit();
     }
 }

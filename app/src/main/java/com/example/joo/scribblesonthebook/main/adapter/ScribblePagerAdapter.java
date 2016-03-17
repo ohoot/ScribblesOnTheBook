@@ -45,4 +45,8 @@ public class ScribblePagerAdapter extends FragmentStatePagerAdapter {
         items.clear();
         notifyDataSetChanged();
     }
+
+    public BookData getCurrentBook (int position) {
+        return items.get(position);
+    }
 }
