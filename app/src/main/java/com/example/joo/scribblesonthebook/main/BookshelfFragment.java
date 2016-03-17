@@ -7,7 +7,9 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.example.joo.scribblesonthebook.R;
@@ -16,6 +18,8 @@ import com.example.joo.scribblesonthebook.data.MonthlyReadingSuccess;
 import com.example.joo.scribblesonthebook.data.manager.NetworkManager;
 import com.example.joo.scribblesonthebook.main.adapter.BookshelfPagerAdapter;
 import com.example.joo.scribblesonthebook.main.adapter.DefaultPagerAdapter;
+
+import org.w3c.dom.Text;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Calendar;
@@ -32,6 +36,7 @@ public class BookshelfFragment extends Fragment {
     ImageView monthlyPageText;
     BookshelfPagerAdapter bAdapter;
     DefaultPagerAdapter dApater;
+    RadioGroup radioGroup;
 
     public BookshelfFragment() {
         // Required empty public constructor
@@ -67,8 +72,34 @@ public class BookshelfFragment extends Fragment {
             e.printStackTrace();
         }
 
+        callBookList(1);
+
+        radioGroup = (RadioGroup) view.findViewById(R.id.radio_group_bookshelf);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId) {
+                    case R.id.radio_bookshelf_done : {
+                        callBookList(0);
+                        break;
+                    }
+                    case R.id.radio_bookshelf_reading : {
+                        callBookList(1);
+                        break;
+                    }
+                    case R.id.radio_bookshelf_will : {
+                        callBookList(2);
+                        break;
+                    }
+                }
+            }
+        });
+        return view;
+    }
+
+    private void callBookList(int i) {
         try {
-            NetworkManager.getInstance().getBookList(getContext(), 0 + "", 1 + "", new NetworkManager.OnResultListener<BookListSuccess>() {
+            NetworkManager.getInstance().getBookList(getContext(), i + "", 1 + "", new NetworkManager.OnResultListener<BookListSuccess>() {
                 @Override
                 public void onSuccess(Request request, BookListSuccess result) {
                     if (result.tenseList.size() == 0) {
@@ -89,7 +120,5 @@ public class BookshelfFragment extends Fragment {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-
-        return view;
     }
 }

@@ -439,9 +439,9 @@ public class NetworkManager {
 
     private static final String LOGIN_USER_URL_FORMAT = "https://ec2-52-79-99-227.ap-northeast-2.compute.amazonaws.com/users/login";
 
-    public Request userLogin(Context context, String email, String password, final OnResultListener<Success> listener) throws UnsupportedEncodingException {
+    public Request userLogin(Context context, String email, String password, final OnResultListener<SimpleRequest> listener) throws UnsupportedEncodingException {
 
-        final CallbackObject<Success> callbackObject = new CallbackObject<Success>();
+        final CallbackObject<SimpleRequest> callbackObject = new CallbackObject<SimpleRequest>();
 
         RequestBody requestBody = new FormBody.Builder()
                 .add("local_email", email)
@@ -476,7 +476,7 @@ public class NetworkManager {
             public void onResponse(Call call, Response response) throws IOException {
                 Gson gson = new Gson();
                 SimpleRequest sr = gson.fromJson(response.body().string(), SimpleRequest.class);
-                callbackObject.result = sr.success;
+                callbackObject.result = sr;
                 Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
                 mHandler.sendMessage(msg);
             }

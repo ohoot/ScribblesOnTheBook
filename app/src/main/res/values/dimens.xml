@@ -118,4 +118,6 @@
     <dimen name="text_actionbar_size">18dp</dimen>
     <dimen name="tab_width">120dp</dimen>
     <dimen name="tab_height">48dp</dimen>
+    <dimen name="btn_bookshelf_height">25dp</dimen>
+    <dimen name="btn_bookshelf_width">300dp</dimen>
 </resources>

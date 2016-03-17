@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.joo.scribblesonthebook.data.manager.NetworkManager;
+import com.example.joo.scribblesonthebook.data.vo.SimpleRequest;
 import com.example.joo.scribblesonthebook.data.vo.Success;
 import com.example.joo.scribblesonthebook.find_password.FindPasswordActivity;
 import com.example.joo.scribblesonthebook.list_scribble.ScribbleListActivity;
@@ -46,6 +47,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btn.setOnClickListener(this);
     }
 
+    private static final String NETWORK_ERROR_MESSAGE = "Network Error";
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -58,17 +61,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.btn_login :
                 try {
-                    NetworkManager.getInstance().userLogin(LoginActivity.this, editId.getText().toString(), editPassword.getText().toString(), new NetworkManager.OnResultListener<Success>() {
+                    NetworkManager.getInstance().userLogin(LoginActivity.this, editId.getText().toString(), editPassword.getText().toString(), new NetworkManager.OnResultListener<SimpleRequest>() {
                         @Override
-                        public void onSuccess(Request request, Success result) {
-                            Toast.makeText(LoginActivity.this, "Success", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                            finish();
+                        public void onSuccess(Request request, SimpleRequest result) {
+                            if (result.success != null) {
+                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                finish();
+                            } else {
+                                Toast.makeText(LoginActivity.this, result.error.message, Toast.LENGTH_SHORT).show();
+                            }
                         }
 
                         @Override
                         public void onFailure(Request request, int code, Throwable cause) {
-                            Toast.makeText(LoginActivity.this, cause.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, NETWORK_ERROR_MESSAGE, Toast.LENGTH_SHORT).show();
                         }
                     });
                 } catch (UnsupportedEncodingException e) {

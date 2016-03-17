@@ -66,27 +66,42 @@
 
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:layout_gravity="center_horizontal">
+        android:layout_width="@dimen/btn_bookshelf_width"
+        android:layout_height="@dimen/btn_bookshelf_height"
+        android:layout_gravity="center"
+        android:background="#10599112"
+        android:gravity="center">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/btn_bookshelf_done"
-            android:id="@+id/btn_bookshelf_done" />
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:id="@+id/radio_group_bookshelf">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/btn_bookshelf_reading"
-            android:id="@+id/btn_bookshelf_reading" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radio_bookshelf_done"
+                android:background="@drawable/bookshelf_done_selector"
+                android:button="@null"
+                android:checked="false" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/btn_bookshelf_will"
-            android:id="@+id/btn_bookshelf_will" />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radio_bookshelf_reading"
+                android:background="@drawable/bookshelf_reading_selector"
+                android:checked="true"
+                android:button="@null" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radio_bookshelf_will"
+                android:background="@drawable/bookshelf_will_selector"
+                android:checked="false"
+                android:button="@null" />
+        </RadioGroup>
+
     </LinearLayout>
 </LinearLayout>
