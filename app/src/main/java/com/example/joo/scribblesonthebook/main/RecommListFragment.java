@@ -50,6 +50,8 @@ public class RecommListFragment extends Fragment {
             public void onPageSelected(int position) {
                 if (position == 2) {
                     descView.setVisibility(View.VISIBLE);
+                } else {
+                    descView.setVisibility(View.GONE);
                 }
             }
 

@@ -54,5 +54,6 @@ public class SearchingRecommAdapter extends FragmentStatePagerAdapter {
 
     public void addAll(RecommendationSuccess result) {
         this.result = result;
+        notifyDataSetChanged();
     }
 }

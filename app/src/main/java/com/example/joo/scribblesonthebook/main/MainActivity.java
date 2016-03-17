@@ -58,13 +58,14 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.OnMe
         fragmentTabHost = (FragmentTabHost) findViewById(R.id.tabhost);
         fragmentTabHost.setup(this, getSupportFragmentManager(), android.R.id.tabcontent);
 
-        String bookshelf = getResources().getString(R.string.tab_bookshelf_indicator);
-        String scribble = getResources().getString(R.string.tab_scribble_indicator);
-        String searchingRecomm = getResources().getString(R.string.tab_searchingRecomm_indicator);
+        View tabScribble = View.inflate(this, R.layout.view_tab_scribble, null);
+        View tabBookshelf = View.inflate(this, R.layout.view_tab_bookshelf, null);
+        View tabRecomm = View.inflate(this, R.layout.view_tab_recomm, null);
 
-        fragmentTabHost.addTab(fragmentTabHost.newTabSpec(TABSPEC_BOOKSHELF).setIndicator(bookshelf), BookshelfFragment.class, null);
-        fragmentTabHost.addTab(fragmentTabHost.newTabSpec(TABSPEC_SCRIBBLE).setIndicator(scribble), ScribbleFragment.class, null);
-        fragmentTabHost.addTab(fragmentTabHost.newTabSpec(TABSPEC_SEARCHING_RECOMM).setIndicator(searchingRecomm), SearchRecommFragment.class, null);
+
+        fragmentTabHost.addTab(fragmentTabHost.newTabSpec(TABSPEC_BOOKSHELF).setIndicator(tabBookshelf), BookshelfFragment.class, null);
+        fragmentTabHost.addTab(fragmentTabHost.newTabSpec(TABSPEC_SCRIBBLE).setIndicator(tabScribble), ScribbleFragment.class, null);
+        fragmentTabHost.addTab(fragmentTabHost.newTabSpec(TABSPEC_SEARCHING_RECOMM).setIndicator(tabRecomm), SearchRecommFragment.class, null);
         fragmentTabHost.setCurrentTab(SCRIBBLE_TAB_INDEX);
 
 

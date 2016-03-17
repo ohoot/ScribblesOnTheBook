@@ -116,4 +116,6 @@
     <dimen name="image_addbook_height">59dp</dimen>
     <dimen name="actionbar__height">56dp</dimen>
     <dimen name="text_actionbar_size">18dp</dimen>
+    <dimen name="tab_width">120dp</dimen>
+    <dimen name="tab_height">48dp</dimen>
 </resources>

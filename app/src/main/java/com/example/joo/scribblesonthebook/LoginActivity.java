@@ -61,6 +61,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     NetworkManager.getInstance().userLogin(LoginActivity.this, editId.getText().toString(), editPassword.getText().toString(), new NetworkManager.OnResultListener<Success>() {
                         @Override
                         public void onSuccess(Request request, Success result) {
+                            Toast.makeText(LoginActivity.this, "Success", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(LoginActivity.this, MainActivity.class));
                             finish();
                         }

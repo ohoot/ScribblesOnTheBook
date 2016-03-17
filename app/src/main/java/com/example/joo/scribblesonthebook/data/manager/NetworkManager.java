@@ -359,7 +359,7 @@ public class NetworkManager {
 
         final CallbackObject<RecommendationSuccess> callbackObject = new CallbackObject<RecommendationSuccess>();
 
-        Request request = new Request.Builder().url(REWARD_RECORD_URL_FORMAT)
+        Request request = new Request.Builder().url(RECOMMENDATION_URL_FORMAT)
                 .tag(context)
                 .build();
 
