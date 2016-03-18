@@ -56,6 +56,15 @@ public class ScribbleFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_scribble, container, false);
         fab = (Button) getActivity().findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), WritingScribbleActivity.class);
+                intent.putExtra(WritingScribbleActivity.CURRENT_BOOK_DATA, sAdapter.getCurrentBook(viewPager.getCurrentItem()));
+                startActivity(intent);
+            }
+        });
+
         spinner = (Spinner) view.findViewById(R.id.spinner_scribble);
         mApdater = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item);
         mApdater.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -64,13 +73,14 @@ public class ScribbleFragment extends Fragment {
         //sAdapter = new ScribblePagerAdapter(getChildFragmentManager());
         //viewPager.setAdapter(sAdapter);
         arrowView = (ImageView) view.findViewById(R.id.image_swaping_arrow);
-        /*arrowView.setOnClickListener(new View.OnClickListener() {
+        arrowView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                startActivity(new Intent(getActivity(), ScribbleListActivity.class));
+                Intent intent = new Intent(getContext(), ScribbleListActivity.class);
+                intent.putExtra(ScribbleListActivity.CURRENT_BOOK_DATA, sAdapter.getCurrentBook(viewPager.getCurrentItem()));
+                startActivity(intent);
             }
-        });*/
+        });
         totalBookView = (TextView) view.findViewById(R.id.text_total_books);
         seekBar = (SeekBar) view.findViewById(R.id.seekBar);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -91,6 +101,8 @@ public class ScribbleFragment extends Fragment {
         return view;
     }
 
+    //public static final int
+
     private void callBookList(int position) {
         try {
             NetworkManager.getInstance().getBookList(getContext(), "" + position, "" + 1, new NetworkManager.OnResultListener<BookListSuccess>() {
@@ -104,24 +116,6 @@ public class ScribbleFragment extends Fragment {
                         sAdapter.clearAll();
                         sAdapter.addAll(result.tenseList);
                         viewPager.setAdapter(sAdapter);
-
-                        fab.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent(getContext(), WritingScribbleActivity.class);
-                                intent.putExtra(WritingScribbleActivity.CURRENT_BOOK_DATA, sAdapter.getCurrentBook(viewPager.getCurrentItem()));
-                                startActivity(intent);
-                            }
-                        });
-
-                        arrowView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent intent = new Intent(getContext(), ScribbleListActivity.class);
-                                intent.putExtra(ScribbleListActivity.CURRENT_BOOK_DATA, sAdapter.getCurrentBook(viewPager.getCurrentItem()));
-                                startActivity(intent);
-                            }
-                        });
                     }
                     setScribblePage(result);
                 }

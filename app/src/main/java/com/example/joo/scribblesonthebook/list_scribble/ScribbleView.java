@@ -32,15 +32,9 @@ public class ScribbleView extends FrameLayout {
         heartView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                ExpandableListView eView =(ExpandableListView) findViewById(R.id.expandableScribbleListView);
-                eView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-                    @Override
-                    public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-
-                        return false;
-                    }
-                });
-                //NetworkManager.getInstance().setScribbleLike(getContext(), )
+                if (mHeartClickListener != null) {
+                    mHeartClickListener.onHeartClick(mScribble);
+                }
             }
         });
         optionView = (ImageView) findViewById(R.id.image_triangle_icon);
@@ -52,7 +46,9 @@ public class ScribbleView extends FrameLayout {
 
     }
 
+    Scribble mScribble;
     public void setScribbleView(ScribbleGroup scribbleGroup) {
+        mScribble = scribbleGroup.myScribble;
         userNickView.setText(scribbleGroup.myScribble.getNickName().toString());
         dateView.setText(scribbleGroup.myScribble.getScribbleDate().toString());
         pageView.setText(scribbleGroup.myScribble.getPage() + "");
@@ -62,6 +58,7 @@ public class ScribbleView extends FrameLayout {
     }
 
     public void setScribbleViewChild(Scribble scribble) {
+        mScribble = scribble;
         pictureView.setVisibility(GONE);
         optionView.setVisibility(GONE);
         userNickView.setVisibility(GONE);
@@ -70,5 +67,15 @@ public class ScribbleView extends FrameLayout {
         pageView.setText(scribble.getPage() + "");
         likeView.setText(scribble.getLike() + "");
         contentView.setText(scribble.getContent().toString());
+    }
+
+    public interface OnHeartClickListener {
+        public void onHeartClick(Scribble scribble);
+    }
+
+    OnHeartClickListener mHeartClickListener;
+
+    public void setOnHeartClickListener(OnHeartClickListener listener) {
+        mHeartClickListener = listener;
     }
 }

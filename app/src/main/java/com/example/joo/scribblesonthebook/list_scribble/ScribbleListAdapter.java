@@ -4,7 +4,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 
-import com.example.joo.scribblesonthebook.data.ReferScribbleRecordSuccess;
 import com.example.joo.scribblesonthebook.data.vo.Scribble;
 
 import java.util.ArrayList;
@@ -13,7 +12,7 @@ import java.util.List;
 /**
  * Created by Joo on 2016-03-08.
  */
-public class ScribbleListAdapter extends BaseExpandableListAdapter {
+public class ScribbleListAdapter extends BaseExpandableListAdapter implements ScribbleView.OnHeartClickListener {
     List<ScribbleGroup> items = new ArrayList<ScribbleGroup>();
     @Override
     public int getGroupCount() {
@@ -48,6 +47,7 @@ public class ScribbleListAdapter extends BaseExpandableListAdapter {
                 ScribbleView sView;
                 if (convertView == null || !(convertView instanceof ScribbleView)) {
                     sView = new ScribbleView(parent.getContext());
+                    sView.setOnHeartClickListener(this);
                 } else {
                     sView = (ScribbleView) convertView;
                 }
@@ -78,6 +78,7 @@ public class ScribbleListAdapter extends BaseExpandableListAdapter {
         ScribbleView view;
         if (convertView == null) {
             view = new ScribbleView(parent.getContext());
+            view.setOnHeartClickListener(this);
         } else {
             view = (ScribbleView) convertView;
         }
@@ -119,4 +120,22 @@ public class ScribbleListAdapter extends BaseExpandableListAdapter {
         this.items.addAll(result);
         notifyDataSetChanged();
     }
+
+    @Override
+    public void onHeartClick(Scribble scribble) {
+        if (mAdapterHeartClickListener != null) {
+            mAdapterHeartClickListener.receiveScribble(scribble);
+        }
+    }
+
+    public interface OnAdapterHeartClickListener {
+        public void receiveScribble(Scribble scribble);
+    }
+
+    private OnAdapterHeartClickListener mAdapterHeartClickListener;
+
+    public void setOnAdapterHeartClickListener(OnAdapterHeartClickListener listener) {
+        mAdapterHeartClickListener = listener;
+    }
+
 }

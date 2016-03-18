@@ -64,4 +64,5 @@
     <string name="text_toolbar_profile">Profile</string>
     <string name="text_toolbar_filter">Filter</string>
     <string name="text_toolbar_find_password">Find Password</string>
+    <string name="text_scribble_modify">Modify</string>
 </resources>

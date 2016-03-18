@@ -6,12 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 import com.example.joo.scribblesonthebook.R;
 import com.example.joo.scribblesonthebook.data.ReferScribbleRecordSuccess;
 import com.example.joo.scribblesonthebook.data.manager.NetworkManager;
 import com.example.joo.scribblesonthebook.data.vo.BookData;
 import com.example.joo.scribblesonthebook.data.vo.Scribble;
+import com.example.joo.scribblesonthebook.data.vo.SimpleRequest;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -32,14 +34,38 @@ public class ScribbleListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scribble_list);
         Intent intent = getIntent();
         BookData bookData = (BookData) intent.getSerializableExtra(CURRENT_BOOK_DATA);
+        listView = (ExpandableListView) findViewById(R.id.expandableScribbleListView);
+        sAdapter = new ScribbleListAdapter();
+        sAdapter.setOnAdapterHeartClickListener(new ScribbleListAdapter.OnAdapterHeartClickListener() {
+            @Override
+            public void receiveScribble(Scribble scribble) {
+                try {
+                    NetworkManager.getInstance().setScribbleLike(ScribbleListActivity.this, scribble.getIsbn(), "" + scribble.getScribbleId(), new NetworkManager.OnResultListener<SimpleRequest>() {
+                        @Override
+                        public void onSuccess(Request request, SimpleRequest result) {
+                            if (result.success != null) {
+                                Toast.makeText(ScribbleListActivity.this, result.success.message, Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(ScribbleListActivity.this, result.error.message, Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Request request, int code, Throwable cause) {
+
+                        }
+                    });
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        listView.setAdapter(sAdapter);
 
         try {
             NetworkManager.getInstance().getScribbleList(ScribbleListActivity.this, bookData.getIsbn(), "" + 1, new NetworkManager.OnResultListener<ReferScribbleRecordSuccess>() {
                 @Override
                 public void onSuccess(Request request, ReferScribbleRecordSuccess result) {
-                    listView = (ExpandableListView) findViewById(R.id.expandableScribbleListView);
-                    sAdapter = new ScribbleListAdapter();
-                    listView.setAdapter(sAdapter);
                     sAdapter.addAll(convertScribbleGroup(result.doodleList));
                 }
 

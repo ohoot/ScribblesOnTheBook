@@ -1,0 +1,71 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context="com.example.joo.scribblesonthebook.list_scribble.ModifyDialogFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ImageView
+        android:layout_width="@dimen/image_bubble_width"
+        android:layout_height="@dimen/image_bubble_height"
+        android:id="@+id/image_scribble_modify_bubble"
+        android:layout_gravity="left|top"
+        android:src="@drawable/icn_modi_bubble" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/modify_bubble_content_margin_left">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="left|top"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dialog_modify_margin_top"
+            android:layout_marginRight="@dimen/dialog_modify_margin_right"
+            android:layout_marginBottom="@dimen/dialog_modify_margin_bottom">
+
+            <ImageView
+                android:layout_width="@dimen/image_bubble_icn_width"
+                android:layout_height="@dimen/image_bubble_icn_height"
+                android:id="@+id/image_scribble_edit"
+                android:src="@drawable/icn_edit_nor"
+                android:layout_marginRight="@dimen/bubble_icn_modify_margin_right" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_scribble_modify"
+                android:textColor="#ffffff"
+                android:id="@+id/text_scribble_modify"
+                android:textSize="@dimen/text_bubble_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/image_scribble_delete"
+                android:src="@drawable/icn_delete_nor"
+                android:layout_marginRight="@dimen/bubble_icn_delete_margin_right" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_scribble_modify"
+                android:textColor="#ffffff"
+                android:id="@+id/text_scribble_delete"
+                android:textSize="@dimen/text_bubble_size" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>

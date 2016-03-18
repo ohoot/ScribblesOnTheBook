@@ -831,10 +831,10 @@ public class NetworkManager {
 
     private static final String LIKE_SCRIBBLE_URL_FORMAT = "http://ec2-52-79-99-227.ap-northeast-2.compute.amazonaws.com/books/%s/doodles/%s/heart";
 
-    public Request setScribbleLike(Context context, String isbn, String scribbleId, final OnResultListener<Success> listener) throws UnsupportedEncodingException {
+    public Request setScribbleLike(Context context, String isbn, String scribbleId, final OnResultListener<SimpleRequest> listener) throws UnsupportedEncodingException {
         String url = String.format(LIKE_SCRIBBLE_URL_FORMAT, isbn, scribbleId);
 
-        final CallbackObject<Success> callbackObject = new CallbackObject<Success>();
+        final CallbackObject<SimpleRequest> callbackObject = new CallbackObject<SimpleRequest>();
 
         Request request = new Request.Builder().url(url)
                 .tag(context)
@@ -855,7 +855,7 @@ public class NetworkManager {
             public void onResponse(Call call, Response response) throws IOException {
                 Gson gson = new Gson();
                 SimpleRequest sr = gson.fromJson(response.body().string(), SimpleRequest.class);
-                callbackObject.result = sr.success;
+                callbackObject.result = sr;
                 Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
                 mHandler.sendMessage(msg);
             }

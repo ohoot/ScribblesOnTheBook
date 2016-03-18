@@ -36,8 +36,6 @@ public class WritingScribbleActivity extends AppCompatActivity {
         Intent intent = getIntent();
         bookData = (BookData) intent.getSerializableExtra(CURRENT_BOOK_DATA);
 
-        Toast.makeText(WritingScribbleActivity.this, bookData.getIsbn().toString(), Toast.LENGTH_SHORT).show();
-
         imagePage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
