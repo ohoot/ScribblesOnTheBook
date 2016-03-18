@@ -8,7 +8,7 @@
     <dimen name="seekBar_right_margin">41dp</dimen>
     <dimen name="seekBar_top_margin">35dp</dimen>
     <dimen name="monthly_page_text_width">227dp</dimen>
-    <dimen name="monthly_page_text_height">11dp</dimen>
+    <dimen name="monthly_page_text_height">25dp</dimen>
     <dimen name="monthly_page_value_height">86dp</dimen>
     <dimen name="monthly_page_value_size">80dp</dimen>
     <dimen name="bookshelf_pager_height">292dp</dimen>
@@ -141,4 +141,8 @@
     <dimen name="bubble_icn_delete_margin_right">6dp</dimen>
     <dimen name="scribble_list_dialog_width">95dp</dimen>
     <dimen name="scribble_list_dialog_height">75dp</dimen>
+    <dimen name="bookshelf_pager_margin_bottom">8dp</dimen>
+    <dimen name="text_bookshelf_month_size">11dp</dimen>
+    <dimen name="image_bookshelf_month_arrow_height">11dp</dimen>
+    <dimen name="image_bookshelf_month_arrow_width">10dp</dimen>
 </resources>

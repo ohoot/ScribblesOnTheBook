@@ -42,7 +42,7 @@ public class ScribbleView extends FrameLayout {
             @Override
             public void onClick(View v) {
                 if (mOptionListener != null) {
-                    mOptionListener.onOptionTriangleClick();
+                    mOptionListener.onOptionTriangleClick(mScribble);
                 }
             }
         });
@@ -88,7 +88,7 @@ public class ScribbleView extends FrameLayout {
     }
 
     public interface OnOptionTriangleClickListener {
-        public void onOptionTriangleClick();
+        public void onOptionTriangleClick(Scribble scribble);
     }
 
     private OnOptionTriangleClickListener mOptionListener;

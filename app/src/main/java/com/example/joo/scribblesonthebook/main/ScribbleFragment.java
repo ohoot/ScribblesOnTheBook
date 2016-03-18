@@ -61,6 +61,7 @@ public class ScribbleFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), WritingScribbleActivity.class);
                 intent.putExtra(WritingScribbleActivity.CURRENT_BOOK_DATA, sAdapter.getCurrentBook(viewPager.getCurrentItem()));
+                intent.putExtra(WritingScribbleActivity.OUTPUT_TYPE, WritingScribbleActivity.OUTPUT_TYPE_WRITING);
                 startActivity(intent);
             }
         });

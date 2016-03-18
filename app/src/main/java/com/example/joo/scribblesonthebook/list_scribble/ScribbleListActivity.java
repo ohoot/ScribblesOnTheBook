@@ -24,6 +24,8 @@ import okhttp3.Request;
 public class ScribbleListActivity extends AppCompatActivity {
 
     public static final String CURRENT_BOOK_DATA = "currentBook";
+    public static final String TRIANGLE_CLICKED_SCRIBBLE = "triangleClickedScribble";
+    public static final String MODIFY_DIALOG_TAG = "modifyDialog";
 
     ExpandableListView listView;
     ScribbleListAdapter sAdapter;
@@ -39,7 +41,7 @@ public class ScribbleListActivity extends AppCompatActivity {
         sAdapter = new ScribbleListAdapter();
         sAdapter.setOnAdapterHeartClickListener(new ScribbleListAdapter.OnAdapterHeartClickListener() {
             @Override
-            public void receiveScribble(Scribble scribble) {
+            public void receiveHeartClickedScribble(Scribble scribble) {
                 try {
                     NetworkManager.getInstance().setScribbleLike(ScribbleListActivity.this, scribble.getIsbn(), "" + scribble.getScribbleId(), new NetworkManager.OnResultListener<SimpleRequest>() {
                         @Override
@@ -61,6 +63,18 @@ public class ScribbleListActivity extends AppCompatActivity {
                 }
             }
         });
+
+        sAdapter.setOnAdapterOptionTriangleClickListener(new ScribbleListAdapter.OnAdapterOptionTriangleClickListener() {
+            @Override
+            public void receiveTriangleClickedScribble(Scribble scribble) {
+                ModifyDialogFragment fragment = new ModifyDialogFragment();
+                Bundle b = new Bundle();
+                b.putSerializable(TRIANGLE_CLICKED_SCRIBBLE, scribble);
+                fragment.setArguments(b);
+                fragment.show(getSupportFragmentManager(), MODIFY_DIALOG_TAG);
+            }
+        });
+
         listView.setAdapter(sAdapter);
 
         try {

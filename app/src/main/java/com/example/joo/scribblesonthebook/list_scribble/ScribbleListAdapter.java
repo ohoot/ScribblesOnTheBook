@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by Joo on 2016-03-08.
  */
-public class ScribbleListAdapter extends BaseExpandableListAdapter implements ScribbleView.OnHeartClickListener {
+public class ScribbleListAdapter extends BaseExpandableListAdapter implements ScribbleView.OnHeartClickListener, ScribbleView.OnOptionTriangleClickListener {
     List<ScribbleGroup> items = new ArrayList<ScribbleGroup>();
     @Override
     public int getGroupCount() {
@@ -48,6 +48,7 @@ public class ScribbleListAdapter extends BaseExpandableListAdapter implements Sc
                 if (convertView == null || !(convertView instanceof ScribbleView)) {
                     sView = new ScribbleView(parent.getContext());
                     sView.setOnHeartClickListener(this);
+                    sView.setOnOptionTriangleClickListener(this);
                 } else {
                     sView = (ScribbleView) convertView;
                 }
@@ -79,6 +80,7 @@ public class ScribbleListAdapter extends BaseExpandableListAdapter implements Sc
         if (convertView == null) {
             view = new ScribbleView(parent.getContext());
             view.setOnHeartClickListener(this);
+            view.setOnOptionTriangleClickListener(this);
         } else {
             view = (ScribbleView) convertView;
         }
@@ -124,12 +126,29 @@ public class ScribbleListAdapter extends BaseExpandableListAdapter implements Sc
     @Override
     public void onHeartClick(Scribble scribble) {
         if (mAdapterHeartClickListener != null) {
-            mAdapterHeartClickListener.receiveScribble(scribble);
+            mAdapterHeartClickListener.receiveHeartClickedScribble(scribble);
         }
     }
 
+    @Override
+    public void onOptionTriangleClick(Scribble scribble) {
+        if (mAdapterOptionTriangleListener != null) {
+            mAdapterOptionTriangleListener.receiveTriangleClickedScribble(scribble);
+        }
+    }
+
+    public interface OnAdapterOptionTriangleClickListener {
+        public void receiveTriangleClickedScribble(Scribble scribble);
+    }
+
+    private OnAdapterOptionTriangleClickListener mAdapterOptionTriangleListener;
+
+    public void setOnAdapterOptionTriangleClickListener (OnAdapterOptionTriangleClickListener listener) {
+        mAdapterOptionTriangleListener = listener;
+    }
+
     public interface OnAdapterHeartClickListener {
-        public void receiveScribble(Scribble scribble);
+        public void receiveHeartClickedScribble(Scribble scribble);
     }
 
     private OnAdapterHeartClickListener mAdapterHeartClickListener;

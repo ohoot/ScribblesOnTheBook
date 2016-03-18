@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.example.joo.scribblesonthebook.R;
 import com.example.joo.scribblesonthebook.data.manager.NetworkManager;
 import com.example.joo.scribblesonthebook.data.vo.BookData;
+import com.example.joo.scribblesonthebook.data.vo.Scribble;
 import com.example.joo.scribblesonthebook.data.vo.SimpleRequest;
 
 import java.io.UnsupportedEncodingException;
@@ -20,10 +21,16 @@ import okhttp3.Request;
 public class WritingScribbleActivity extends AppCompatActivity {
 
     public static final String CURRENT_BOOK_DATA = "currentBook";
+    public static final String MODIFY_SCRIBBLE_DATA = "modifyScribble";
+    public static final String OUTPUT_TYPE = "outPutType";
+    public static final int OUTPUT_TYPE_WRITING = 1;
+    public static final int OUTPUT_TYPE_MODIFIYNG = 2;
+
 
     EditText pageView, contentView;
     ImageView imagePage;
     BookData bookData;
+    Scribble scribble;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +41,12 @@ public class WritingScribbleActivity extends AppCompatActivity {
         imagePage = (ImageView) findViewById(R.id.image_scribble_page);
 
         Intent intent = getIntent();
-        bookData = (BookData) intent.getSerializableExtra(CURRENT_BOOK_DATA);
+        int type = intent.getIntExtra(OUTPUT_TYPE, 0);
+        if (type == 1) {
+            bookData = (BookData) intent.getSerializableExtra(CURRENT_BOOK_DATA);
+        } else if (type == 2) {
+            scribble = (Scribble) intent.getSerializableExtra(MODIFY_SCRIBBLE_DATA);
+        }
 
         imagePage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,10 +74,9 @@ public class WritingScribbleActivity extends AppCompatActivity {
                 }
             }
         });
+    }
 
-
-
-
+    private void setScribbleNote(BookData bookData) {
 
     }
 }

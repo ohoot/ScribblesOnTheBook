@@ -2,12 +2,13 @@ package com.example.joo.scribblesonthebook.data.vo;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by Joo on 2016-02-22.
  */
-public class Scribble {
+public class Scribble implements Serializable{
     @SerializedName("doodle_id")
     int scribbleId;
     @SerializedName("write_user_id")
