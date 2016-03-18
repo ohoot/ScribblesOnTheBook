@@ -3,6 +3,8 @@ package com.example.joo.scribblesonthebook.list_scribble;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ExpandableListView;
 
 import com.example.joo.scribblesonthebook.R;

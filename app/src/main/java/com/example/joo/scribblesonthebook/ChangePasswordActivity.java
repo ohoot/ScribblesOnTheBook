@@ -24,10 +24,10 @@ public class ChangePasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
 
-        passwordView1 = (EditText) findViewById(R.id.edit_new_password1);
-        passwordView2 = (EditText) findViewById(R.id.edit_new_password2);
+        passwordView1 = (EditText) findViewById(R.id.edit_setting_new_password1);
+        passwordView2 = (EditText) findViewById(R.id.edit_setting_new_password2);
 
-        Button btn = (Button) findViewById(R.id.btn_change_pwd_ok);
+        Button btn = (Button) findViewById(R.id.btn_menu_change_pwd_ok);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,7 +37,6 @@ public class ChangePasswordActivity extends AppCompatActivity {
                         public void onSuccess(Request request, SimpleRequest result) {
                             if (result.success != null) {
                                 Toast.makeText(ChangePasswordActivity.this, result.success.message, Toast.LENGTH_SHORT).show();
-                                //startActivity(new Intent(ChangePasswordActivity.this, LoginActivity.class));
                                 finish();
                             } else {
                                 Toast.makeText(ChangePasswordActivity.this, result.error.message, Toast.LENGTH_SHORT).show();
@@ -55,7 +54,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
             }
         });
 
-        btn = (Button) findViewById(R.id.btn_change_pwd_cancel);
+        btn = (Button) findViewById(R.id.btn_menu_change_pwd_cancel);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

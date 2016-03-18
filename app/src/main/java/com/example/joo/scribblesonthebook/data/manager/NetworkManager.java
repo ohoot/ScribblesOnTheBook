@@ -613,7 +613,8 @@ public class NetworkManager {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 Gson gson = new Gson();
-                SimpleRequest sr = gson.fromJson(response.body().string(), SimpleRequest.class);
+                String text = response.body().string();
+                SimpleRequest sr = gson.fromJson(text, SimpleRequest.class);
                 callbackObject.result = sr;
                 Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
                 mHandler.sendMessage(msg);

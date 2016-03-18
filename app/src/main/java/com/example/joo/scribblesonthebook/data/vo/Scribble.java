@@ -31,6 +31,7 @@ public class Scribble {
     String nickName;
     @SerializedName("cover_url")
     String coverUrl;
+    int myheart;
 
     public int getScribbleId() {
         return scribbleId;
@@ -126,5 +127,13 @@ public class Scribble {
 
     public void setCoverUrl(String coverUrl) {
         this.coverUrl = coverUrl;
+    }
+
+    public int getMyheart() {
+        return myheart;
+    }
+
+    public void setMyheart(int myheart) {
+        this.myheart = myheart;
     }
 }

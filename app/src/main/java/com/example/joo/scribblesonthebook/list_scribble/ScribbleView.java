@@ -2,6 +2,7 @@ package com.example.joo.scribblesonthebook.list_scribble;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.ExpandableListView;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,6 +32,14 @@ public class ScribbleView extends FrameLayout {
         heartView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                ExpandableListView eView =(ExpandableListView) findViewById(R.id.expandableScribbleListView);
+                eView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+                    @Override
+                    public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+
+                        return false;
+                    }
+                });
                 //NetworkManager.getInstance().setScribbleLike(getContext(), )
             }
         });
