@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.joo.scribblesonthebook.R;
 import com.example.joo.scribblesonthebook.data.manager.NetworkManager;
 import com.example.joo.scribblesonthebook.data.vo.BookData;
@@ -28,9 +30,10 @@ public class WritingScribbleActivity extends AppCompatActivity {
 
 
     EditText pageView, contentView;
-    ImageView imagePage;
+    ImageView imagePage, imageScribble;
     BookData bookData;
     Scribble scribble;
+    int type = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,44 +42,66 @@ public class WritingScribbleActivity extends AppCompatActivity {
         pageView = (EditText) findViewById(R.id.edit_scribble_page);
         contentView = (EditText) findViewById(R.id.edit_scribble_content);
         imagePage = (ImageView) findViewById(R.id.image_scribble_page);
+        imageScribble = (ImageView) findViewById(R.id.image_scribble_content);
 
         Intent intent = getIntent();
-        int type = intent.getIntExtra(OUTPUT_TYPE, 0);
-        if (type == 1) {
+        type = intent.getIntExtra(OUTPUT_TYPE, 0);
+        if (type == OUTPUT_TYPE_WRITING) {
             bookData = (BookData) intent.getSerializableExtra(CURRENT_BOOK_DATA);
-        } else if (type == 2) {
+            type = OUTPUT_TYPE_WRITING;
+        } else if (type == OUTPUT_TYPE_MODIFIYNG) {
             scribble = (Scribble) intent.getSerializableExtra(MODIFY_SCRIBBLE_DATA);
+            type = OUTPUT_TYPE_MODIFIYNG;
+            setScribbleNote(scribble);
         }
 
         imagePage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    NetworkManager.getInstance().writeScribble(WritingScribbleActivity.this,
-                            bookData.getIsbn() + "", pageView.getText().toString(), contentView.getText().toString(), null, null, new NetworkManager.OnResultListener<SimpleRequest>() {
-                                @Override
-                                public void onSuccess(Request request, SimpleRequest result) {
-                                    if (result.success != null) {
-                                        Toast.makeText(WritingScribbleActivity.this, result.success.message, Toast.LENGTH_SHORT).show();
-                                        finish();
-                                    } else {
-                                        Toast.makeText(WritingScribbleActivity.this, result.error.message, Toast.LENGTH_SHORT).show();
-                                    }
-                                }
 
-                                @Override
-                                public void onFailure(Request request, int code, Throwable cause) {
-                                    Toast.makeText(WritingScribbleActivity.this, "Failure", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
+            }
+        });
+
+        Button btn = (Button) findViewById(R.id.btn_upload_tmp);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (type == OUTPUT_TYPE_WRITING) {
+                    try {
+                        NetworkManager.getInstance().writeScribble(WritingScribbleActivity.this,
+                                bookData.getIsbn() + "", pageView.getText().toString(), contentView.getText().toString(), null, null, new NetworkManager.OnResultListener<SimpleRequest>() {
+                                    @Override
+                                    public void onSuccess(Request request, SimpleRequest result) {
+                                        if (result.success != null) {
+                                            Toast.makeText(WritingScribbleActivity.this, result.success.message, Toast.LENGTH_SHORT).show();
+                                            finish();
+                                        } else {
+                                            Toast.makeText(WritingScribbleActivity.this, result.error.message, Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFailure(Request request, int code, Throwable cause) {
+                                        Toast.makeText(WritingScribbleActivity.this, "Failure", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+                } else if (type == OUTPUT_TYPE_MODIFIYNG) {
+                    // 수정하기
                 }
             }
         });
     }
 
-    private void setScribbleNote(BookData bookData) {
-
+    private void setScribbleNote(Scribble scribble) {
+        pageView.setText(scribble.getPage() + "");
+        if (scribble.getScribbleImage() != null) {
+            Glide.with(WritingScribbleActivity.this).load(scribble.getScribbleImage()).into(imageScribble);
+        }
+        if (scribble.getContent() != null) {
+            contentView.setText(scribble.getContent());
+        }
     }
 }

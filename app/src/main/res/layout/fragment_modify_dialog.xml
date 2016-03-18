@@ -1,71 +1,62 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    tools:context="com.example.joo.scribblesonthebook.list_scribble.ModifyDialogFragment">
+    android:layout_width="185dp"
+    android:layout_height="109dp"
+    tools:context="com.example.joo.scribblesonthebook.list_scribble.ModifyDialogFragment"
+    android:paddingLeft="14dp"
+    android:background="@drawable/bg_bookcase_datail_popup">
 
     <!-- TODO: Update blank fragment layout -->
-
-    <ImageView
-        android:layout_width="@dimen/image_bubble_width"
-        android:layout_height="@dimen/image_bubble_height"
-        android:id="@+id/image_scribble_modify_bubble"
-        android:layout_gravity="left|top"
-        android:src="@drawable/icn_modi_bubble" />
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/modify_bubble_content_margin_left">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="left|top"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/dialog_modify_margin_top"
-            android:layout_marginRight="@dimen/dialog_modify_margin_right"
-            android:layout_marginBottom="@dimen/dialog_modify_margin_bottom">
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_weight="1">
 
             <ImageView
-                android:layout_width="@dimen/image_bubble_icn_width"
-                android:layout_height="@dimen/image_bubble_icn_height"
-                android:id="@+id/image_scribble_edit"
-                android:src="@drawable/icn_edit_nor"
-                android:layout_marginRight="@dimen/bubble_icn_modify_margin_right" />
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:id="@+id/image_scribble_modify"
+                android:src="@drawable/icn_detail_edit_nor_new"
+                android:layout_marginRight="30dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/text_scribble_modify"
-                android:textColor="#ffffff"
                 android:id="@+id/text_scribble_modify"
-                android:textSize="@dimen/text_bubble_size" />
+                android:textSize="13dp"
+                android:textColor="#110e34" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_weight="1">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:id="@+id/image_scribble_delete"
-                android:src="@drawable/icn_delete_nor"
-                android:layout_marginRight="@dimen/bubble_icn_delete_margin_right" />
+                android:src="@drawable/icn_detail_close_nor_new"
+                android:layout_marginRight="30dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/text_scribble_delete"
-                android:textColor="#ffffff"
                 android:id="@+id/text_scribble_delete"
-                android:textSize="@dimen/text_bubble_size" />
-
+                android:textSize="13dp"
+                android:textColor="#110e34" />
         </LinearLayout>
     </LinearLayout>
-
 </FrameLayout>

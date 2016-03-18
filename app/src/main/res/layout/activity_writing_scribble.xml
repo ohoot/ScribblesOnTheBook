@@ -41,8 +41,8 @@
             android:layout_marginBottom="7dp" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="162dp"
+            android:layout_height="90dp"
             android:id="@+id/image_scribble_content" />
     </LinearLayout>
 
@@ -129,5 +129,11 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="upload"
+        android:id="@+id/btn_upload_tmp" />
 
 </LinearLayout>
