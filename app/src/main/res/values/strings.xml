@@ -66,4 +66,5 @@
     <string name="text_toolbar_find_password">Find Password</string>
     <string name="text_scribble_modify">Modify</string>
     <string name="text_scribble_delete">Delete</string>
+    <string name="scribble_content_hint">content</string>
 </resources>
