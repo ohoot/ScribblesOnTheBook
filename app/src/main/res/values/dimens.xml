@@ -139,4 +139,6 @@
     <dimen name="dialog_modify_margin_right">8dp</dimen>
     <dimen name="dialog_modify_margin_bottom">10dp</dimen>
     <dimen name="bubble_icn_delete_margin_right">6dp</dimen>
+    <dimen name="scribble_list_dialog_width">95dp</dimen>
+    <dimen name="scribble_list_dialog_height">75dp</dimen>
 </resources>

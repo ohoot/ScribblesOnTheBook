@@ -217,7 +217,7 @@ public class NetworkManager {
 
     }
 
-    private static final String SCRIBBLE_LIST_URL_FORMAT = "http://ec2-52-79-99-227.ap-northeast-2.compute.amazonaws.com/books/%s/doodles?page=%s&rows=%s";
+    private static final String SCRIBBLE_LIST_URL_FORMAT = "http://ec2-52-79-99-227.ap-northeast-2.compute.amazonaws.com/books/%s/doodles?pageNum=%s";
 
     public Request getScribbleList(Context context, String isbn, String pageNum, final OnResultListener<ReferScribbleRecordSuccess> listener) throws UnsupportedEncodingException {
         String url = String.format(SCRIBBLE_LIST_URL_FORMAT, isbn, pageNum);
@@ -251,14 +251,19 @@ public class NetworkManager {
         return request;
     }
 
-    private static final String SEARCHING_RESULT_URL_FORMAT = "http://ec2-52-79-99-227.ap-northeast-2.compute.amazonaws.com/books?keyward=%s&page=%s&rows=%s";
+    private static final String SEARCHING_RESULT_URL_FORMAT = "http://ec2-52-79-99-227.ap-northeast-2.compute.amazonaws.com/books?pageNum=%s";
 
-    public Request getSearchingResult(Context context, String keyword, String page, String rows, final OnResultListener<SearchingBookSuccess> listener) throws UnsupportedEncodingException {
-        String url = String.format(SEARCHING_RESULT_URL_FORMAT, URLEncoder.encode(keyword, "utf-8"), page, rows);
+    public Request getSearchingResult(Context context, String keyword, String pageNum, final OnResultListener<SearchingBookResponse> listener) throws UnsupportedEncodingException {
+        String url = String.format(SEARCHING_RESULT_URL_FORMAT, pageNum);
 
-        final CallbackObject<SearchingBookSuccess> callbackObject = new CallbackObject<SearchingBookSuccess>();
+        final CallbackObject<SearchingBookResponse> callbackObject = new CallbackObject<SearchingBookResponse>();
+
+        RequestBody requestBody = new FormBody.Builder()
+                .add("keyword", keyword)
+                .build();
 
         Request request = new Request.Builder().url(url)
+                .post(requestBody)
                 .tag(context)
                 .build();
 
@@ -275,8 +280,9 @@ public class NetworkManager {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 Gson gson = new Gson();
-                SearchingBookResponse sbr = gson.fromJson(response.body().string(), SearchingBookResponse.class);
-                callbackObject.result = sbr.success;
+                String test = response.body().string();
+                SearchingBookResponse sbr = gson.fromJson(test, SearchingBookResponse.class);
+                callbackObject.result = sbr;
                 Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
                 mHandler.sendMessage(msg);
             }

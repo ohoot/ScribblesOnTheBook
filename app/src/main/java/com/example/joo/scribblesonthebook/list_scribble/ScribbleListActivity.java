@@ -27,13 +27,14 @@ public class ScribbleListActivity extends AppCompatActivity {
 
     ExpandableListView listView;
     ScribbleListAdapter sAdapter;
+    BookData bookData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scribble_list);
         Intent intent = getIntent();
-        BookData bookData = (BookData) intent.getSerializableExtra(CURRENT_BOOK_DATA);
+        bookData = (BookData) intent.getSerializableExtra(CURRENT_BOOK_DATA);
         listView = (ExpandableListView) findViewById(R.id.expandableScribbleListView);
         sAdapter = new ScribbleListAdapter();
         sAdapter.setOnAdapterHeartClickListener(new ScribbleListAdapter.OnAdapterHeartClickListener() {
@@ -81,9 +82,10 @@ public class ScribbleListActivity extends AppCompatActivity {
 
     private List<ScribbleGroup> convertScribbleGroup(List<Scribble> scribbleList) {
         List<ScribbleGroup> list = new ArrayList<>();
-        int writerId = 1;
+        int writerId = -1;
         ScribbleGroup otherGroup = null;
         for (Scribble scribble : scribbleList) {
+            writerId = scribble.getWriterId();
             if (scribble.getWriterId() == writerId) {
                 ScribbleGroup g = new ScribbleGroup();
                 g.type = ScribbleGroup.GROUP_TYPE_MY;

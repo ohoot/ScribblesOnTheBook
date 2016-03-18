@@ -46,6 +46,7 @@ public class WritingScribbleActivity extends AppCompatActivity {
                                 public void onSuccess(Request request, SimpleRequest result) {
                                     if (result.success != null) {
                                         Toast.makeText(WritingScribbleActivity.this, result.success.message, Toast.LENGTH_SHORT).show();
+                                        finish();
                                     } else {
                                         Toast.makeText(WritingScribbleActivity.this, result.error.message, Toast.LENGTH_SHORT).show();
                                     }

@@ -38,6 +38,14 @@ public class ScribbleView extends FrameLayout {
             }
         });
         optionView = (ImageView) findViewById(R.id.image_triangle_icon);
+        optionView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mOptionListener != null) {
+                    mOptionListener.onOptionTriangleClick();
+                }
+            }
+        });
         userNickView = (TextView) findViewById(R.id.text_scribble_writer);
         dateView = (TextView) findViewById(R.id.text_scribble_date);
         pageView = (TextView) findViewById(R.id.text_scribble_bookmark);
@@ -77,5 +85,15 @@ public class ScribbleView extends FrameLayout {
 
     public void setOnHeartClickListener(OnHeartClickListener listener) {
         mHeartClickListener = listener;
+    }
+
+    public interface OnOptionTriangleClickListener {
+        public void onOptionTriangleClick();
+    }
+
+    private OnOptionTriangleClickListener mOptionListener;
+
+    public void setOnOptionTriangleClickListener(OnOptionTriangleClickListener listener) {
+        mOptionListener = listener;
     }
 }

@@ -1,6 +1,7 @@
 package com.example.joo.scribblesonthebook.main;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -31,6 +33,7 @@ public class SearchRecommFragment extends Fragment {
     }
 
     EditText keywordView;
+    InputMethodManager mIMM;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,6 +46,7 @@ public class SearchRecommFragment extends Fragment {
         ft.addToBackStack(RECOMM_LIST_BACKSTACK);
         ft.commit();
 
+        mIMM = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         keywordView = (EditText) view.findViewById(R.id.edit_searching_keyword);
         keywordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -57,6 +61,8 @@ public class SearchRecommFragment extends Fragment {
                     fts.replace(R.id.searching_recomm_container, f);
                     fts.addToBackStack(SEARCHING_RESULT_BACKSTACK);
                     fts.commit();
+
+                    mIMM.hideSoftInputFromWindow(keywordView.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
                 }
                 return true;
             }

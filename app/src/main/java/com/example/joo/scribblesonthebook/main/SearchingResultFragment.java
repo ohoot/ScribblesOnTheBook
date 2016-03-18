@@ -3,12 +3,15 @@ package com.example.joo.scribblesonthebook.main;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.joo.scribblesonthebook.R;
+import com.example.joo.scribblesonthebook.data.SearchingBookResponse;
 import com.example.joo.scribblesonthebook.data.SearchingBookSuccess;
 import com.example.joo.scribblesonthebook.data.manager.NetworkManager;
 import com.example.joo.scribblesonthebook.data.vo.BookData;
@@ -30,6 +33,7 @@ public class SearchingResultFragment extends Fragment {
     }
 
     String searchingKeyword;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +46,8 @@ public class SearchingResultFragment extends Fragment {
     ListView listView;
     SearchingResultAdapter sAdapter;
 
+    public static final String NORESULT_BACKSTACK = "noResult";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -51,11 +57,19 @@ public class SearchingResultFragment extends Fragment {
         sAdapter = new SearchingResultAdapter();
 
         try {
-            NetworkManager.getInstance().getSearchingResult(getContext(), searchingKeyword, "" + 1, "" + 30, new NetworkManager.OnResultListener<SearchingBookSuccess>() {
+            NetworkManager.getInstance().getSearchingResult(getContext(), searchingKeyword, "" + 1, new NetworkManager.OnResultListener<SearchingBookResponse>() {
                 @Override
-                public void onSuccess(Request request, SearchingBookSuccess result) {
+                public void onSuccess(Request request, SearchingBookResponse result) {
                     listView.setAdapter(sAdapter);
-                    sAdapter.addAll(result.searchList);
+                    if (result.success.searchList.size() == 0) {
+                        ResultNothingFragment f = new ResultNothingFragment();
+                        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                        ft.replace(R.id.searching_recomm_container, f);
+                        ft.addToBackStack(NORESULT_BACKSTACK);
+                        ft.commit();
+                    }
+
+                    sAdapter.addAll(result.success.searchList);
                 }
 
                 @Override
@@ -66,7 +80,6 @@ public class SearchingResultFragment extends Fragment {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-
         return view;
     }
 
