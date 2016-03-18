@@ -90,6 +90,26 @@ public class WritingScribbleActivity extends AppCompatActivity {
                     }
                 } else if (type == OUTPUT_TYPE_MODIFIYNG) {
                     // 수정하기
+                    try {
+                        NetworkManager.getInstance().modifyScribble(WritingScribbleActivity.this, scribble.getIsbn(), pageView.getText().toString(), contentView.getText().toString(), null, null, "" + scribble.getScribbleId(), new NetworkManager.OnResultListener<SimpleRequest>() {
+                            @Override
+                            public void onSuccess(Request request, SimpleRequest result) {
+                                if (result.success.message != null) {
+                                    Toast.makeText(WritingScribbleActivity.this, result.success.message, Toast.LENGTH_SHORT).show();
+                                    finish();
+                                } else {
+                                    Toast.makeText(WritingScribbleActivity.this, result.error.message, Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Request request, int code, Throwable cause) {
+
+                            }
+                        });
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });

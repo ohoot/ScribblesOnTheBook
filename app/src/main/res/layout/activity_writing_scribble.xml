@@ -46,6 +46,12 @@
             android:id="@+id/image_scribble_content" />
     </LinearLayout>
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:src="#878686"
+        android:layout_marginBottom="4dp" />
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -72,6 +78,12 @@
             android:id="@+id/image_scribble_gallay"
             android:src="@drawable/btn_doodle_gallery" />
     </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:src="#878686"
+        android:layout_marginTop="4dp" />
 
     <LinearLayout
         android:orientation="horizontal"

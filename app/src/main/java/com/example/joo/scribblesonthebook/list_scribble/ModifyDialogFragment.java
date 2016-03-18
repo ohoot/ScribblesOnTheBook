@@ -13,8 +13,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.joo.scribblesonthebook.R;
+import com.example.joo.scribblesonthebook.data.manager.NetworkManager;
 import com.example.joo.scribblesonthebook.data.vo.Scribble;
+import com.example.joo.scribblesonthebook.data.vo.SimpleRequest;
 import com.example.joo.scribblesonthebook.writing_scribble.WritingScribbleActivity;
+
+import java.io.UnsupportedEncodingException;
+
+import okhttp3.Request;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -51,13 +57,34 @@ public class ModifyDialogFragment extends DialogFragment {
                 intent.putExtra(WritingScribbleActivity.MODIFY_SCRIBBLE_DATA, scribble);
                 intent.putExtra(WritingScribbleActivity.OUTPUT_TYPE, WritingScribbleActivity.OUTPUT_TYPE_MODIFIYNG);
                 startActivity(intent);
+                dismiss();
             }
         });
         textDelete = (TextView) view.findViewById(R.id.text_scribble_delete);
         textDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Delete", Toast.LENGTH_SHORT).show();
+                try {
+                    NetworkManager.getInstance().deleteScribble(getContext(), scribble.getIsbn(), scribble.getScribbleId() + "", new NetworkManager.OnResultListener<SimpleRequest>() {
+                        @Override
+                        public void onSuccess(Request request, SimpleRequest result) {
+                            if (result.success.message != null) {
+                                Toast.makeText(getContext(), result.success.message, Toast.LENGTH_SHORT).show();
+                                dismiss();
+                            } else {
+                                Toast.makeText(getContext(), result.error.message, Toast.LENGTH_SHORT).show();
+                                dismiss();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Request request, int code, Throwable cause) {
+
+                        }
+                    });
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
             }
         });
         return view;

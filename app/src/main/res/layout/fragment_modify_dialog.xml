@@ -3,7 +3,6 @@
     android:layout_width="185dp"
     android:layout_height="109dp"
     tools:context="com.example.joo.scribblesonthebook.list_scribble.ModifyDialogFragment"
-    android:paddingLeft="14dp"
     android:background="@drawable/bg_bookcase_datail_popup">
 
     <!-- TODO: Update blank fragment layout -->
@@ -18,7 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:paddingLeft="14dp">
 
             <ImageView
                 android:layout_width="25dp"
@@ -36,12 +36,20 @@
                 android:textColor="#110e34" />
         </LinearLayout>
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:src="#9a9999" />
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:paddingLeft="14dp">
 
             <ImageView
                 android:layout_width="25dp"

@@ -760,17 +760,34 @@ public class NetworkManager {
 
     private static final String MODIFY_SCRIBBLE_URL_FORMAT = "http://ec2-52-79-99-227.ap-northeast-2.compute.amazonaws.com/books/%s/doodles/%s";
 
-    public Request modifyScribble(Context context, String isbn, String scribblePage, String scribbleContent, String scribblePhoto, String emotionId, String scribbleId, final OnResultListener<Success> listener) throws UnsupportedEncodingException {
+    public Request modifyScribble(Context context, String isbn, String scribblePage, String scribbleContent, String scribblePhoto, String emotionId, String scribbleId, final OnResultListener<SimpleRequest> listener) throws UnsupportedEncodingException {
         String url = String.format(MODIFY_SCRIBBLE_URL_FORMAT, isbn, scribbleId);
 
-        final CallbackObject<Success> callbackObject = new CallbackObject<Success>();
+        final CallbackObject<SimpleRequest> callbackObject = new CallbackObject<SimpleRequest>();
 
-        RequestBody requestBody = new FormBody.Builder()
-                .add("doodle_page", scribblePage)
-                .add("text_doodle", scribbleContent)
-                .add("picture_doodle", scribblePhoto)
-                .add("emotion_doodle_id", emotionId)
-                .build();
+        if (scribbleContent == null) scribbleContent = "";
+        if (emotionId == null) emotionId = "0";
+
+        RequestBody requestBody;
+
+        if (scribblePhoto != null) {
+            MultipartBody.Builder builder = new MultipartBody.Builder();
+            builder.addFormDataPart("isbn", isbn)
+                    .addFormDataPart("doodle_id", scribbleId)
+                    .addFormDataPart("doodle_page", scribblePage)
+                    .addFormDataPart("text_doodle", scribbleContent)
+                    .addFormDataPart("picture_doodle", scribblePhoto)
+                    .addFormDataPart("emotion_doodle_id", emotionId);
+            requestBody = builder.build();
+        } else {
+            requestBody = new FormBody.Builder()
+                    .add("isbn", isbn)
+                    .add("doodle_id", scribbleId)
+                    .add("doodle_page", scribblePage)
+                    .add("text_doodle", scribbleContent)
+                    .add("emotion_doodle_id", emotionId)
+                    .build();
+        }
 
         Request request = new Request.Builder().url(url)
                 .put(requestBody)
@@ -792,7 +809,7 @@ public class NetworkManager {
             public void onResponse(Call call, Response response) throws IOException {
                 Gson gson = new Gson();
                 SimpleRequest sr = gson.fromJson(response.body().string(), SimpleRequest.class);
-                callbackObject.result = sr.success;
+                callbackObject.result = sr;
                 Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
                 mHandler.sendMessage(msg);
             }
@@ -802,10 +819,10 @@ public class NetworkManager {
 
     private static final String DELETE_SCRIBBLE_URL_FORMAT = "http://ec2-52-79-99-227.ap-northeast-2.compute.amazonaws.com/books/%s/doodles/%s";
 
-    public Request deleteScribble(Context context, String isbn, String scribbleId, final OnResultListener<Success> listener) throws UnsupportedEncodingException {
+    public Request deleteScribble(Context context, String isbn, String scribbleId, final OnResultListener<SimpleRequest> listener) throws UnsupportedEncodingException {
         String url = String.format(DELETE_SCRIBBLE_URL_FORMAT, isbn, scribbleId);
 
-        final CallbackObject<Success> callbackObject = new CallbackObject<Success>();
+        final CallbackObject<SimpleRequest> callbackObject = new CallbackObject<SimpleRequest>();
 
         Request request = new Request.Builder().url(url)
                 .delete()
@@ -827,7 +844,7 @@ public class NetworkManager {
             public void onResponse(Call call, Response response) throws IOException {
                 Gson gson = new Gson();
                 SimpleRequest sr = gson.fromJson(response.body().string(), SimpleRequest.class);
-                callbackObject.result = sr.success;
+                callbackObject.result = sr;
                 Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
                 mHandler.sendMessage(msg);
             }

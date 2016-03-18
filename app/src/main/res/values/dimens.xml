@@ -139,8 +139,8 @@
     <dimen name="dialog_modify_margin_right">8dp</dimen>
     <dimen name="dialog_modify_margin_bottom">10dp</dimen>
     <dimen name="bubble_icn_delete_margin_right">6dp</dimen>
-    <dimen name="scribble_list_dialog_width">95dp</dimen>
-    <dimen name="scribble_list_dialog_height">75dp</dimen>
+    <dimen name="scribble_list_dialog_width">190dp</dimen>
+    <dimen name="scribble_list_dialog_height">124dp</dimen>
     <dimen name="bookshelf_pager_margin_bottom">8dp</dimen>
     <dimen name="text_bookshelf_month_size">11dp</dimen>
     <dimen name="image_bookshelf_month_arrow_height">11dp</dimen>
