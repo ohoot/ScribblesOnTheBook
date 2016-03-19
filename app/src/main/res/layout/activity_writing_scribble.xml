@@ -46,7 +46,7 @@
             android:layout_height="90dp"
             android:id="@+id/image_scribble_content"
             android:layout_gravity="top|left"
-            android:adjustViewBounds="true" />
+            android:adjustViewBounds="false" />
     </LinearLayout>
 
     <ImageView
