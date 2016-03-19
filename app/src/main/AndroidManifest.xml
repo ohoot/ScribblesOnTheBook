@@ -3,7 +3,7 @@
     package="com.example.joo.scribblesonthebook">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".data.manager.MyApplication"
@@ -17,28 +17,35 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".SplashActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:launchMode="singleInstance">
+        <activity
+            android:name=".SplashActivity"
+            android:launchMode="singleInstance"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme.LoginTheme"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity android:name=".writing_scribble.WritingScribbleActivity" />
+        <activity android:name=".DetailBookInfoActivity" />
+        <activity
+            android:name=".find_password.FindPasswordActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".signup.SignupActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".list_scribble.ScribbleListActivity" />
+        <activity android:name=".ChangePasswordActivity" />
+        <activity android:name=".TestActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".LoginActivity"
-            android:launchMode="singleTask"
-            android:theme="@style/AppTheme.LoginTheme"
-            android:windowSoftInputMode="adjustNothing"/>
-        <activity android:name=".writing_scribble.WritingScribbleActivity" />
-        <activity android:name=".DetailBookInfoActivity" />
-        <activity android:name=".find_password.FindPasswordActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".signup.SignupActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".list_scribble.ScribbleListActivity" />
-        <activity android:name=".ChangePasswordActivity"></activity>
     </application>
 
 </manifest>

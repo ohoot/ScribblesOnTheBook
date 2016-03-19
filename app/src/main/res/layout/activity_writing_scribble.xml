@@ -19,7 +19,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="p."
-                android:textSize="13dp" />
+                android:textSize="13dp"
+                android:textColor="#110e34" />
 
             <EditText
                 android:inputType="number"
@@ -37,13 +38,15 @@
             android:id="@+id/edit_scribble_content"
             android:gravity="top|left"
             android:background="@drawable/bg_bookcase_datail_popup"
-            android:hint="@string/scribble_content_hint"
-            android:layout_marginBottom="7dp" />
+            android:layout_marginBottom="7dp"
+            android:textSize="11dp" />
 
         <ImageView
             android:layout_width="162dp"
             android:layout_height="90dp"
-            android:id="@+id/image_scribble_content" />
+            android:id="@+id/image_scribble_content"
+            android:layout_gravity="top|left"
+            android:adjustViewBounds="true" />
     </LinearLayout>
 
     <ImageView
@@ -75,7 +78,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/image_scribble_gallay"
+            android:id="@+id/image_scribble_gallary"
             android:src="@drawable/btn_doodle_gallery" />
     </LinearLayout>
 
@@ -94,50 +97,71 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center">
+            android:layout_height="50dp">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/image_scribble_bookmark_enjoy"
-                android:src="@drawable/btn_bookmark_enjoy_nor"
-                android:layout_weight="1" />
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingLeft="9dp"
+                android:id="@+id/radioGroup_writing_sc_emotion">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/image_scribble_bookmark_surprise"
-                android:src="@drawable/btn_bookmark_surprise_nor"
-                android:layout_weight="1" />
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radio_enjoy"
+                    android:button="@null"
+                    android:checked="false"
+                    android:background="@drawable/writing_sc_enjoy_selector"
+                    android:layout_marginRight="14dp" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/image_scribble_bookmark_emb"
-                android:src="@drawable/btn_bookmark_emb_nor"
-                android:layout_weight="1" />
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radio_surprise"
+                    android:button="@null"
+                    android:checked="false"
+                    android:background="@drawable/writing_sc_surprise_selector"
+                    android:layout_marginRight="14dp" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/image_scribble_bookmark_sad"
-                android:src="@drawable/btn_bookmark_sad_nor"
-                android:layout_weight="1" />
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radio_sad"
+                    android:button="@null"
+                    android:checked="false"
+                    android:background="@drawable/writing_sc_sad_selector"
+                    android:layout_marginRight="14dp" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/image_scribble_bookmark_awk"
-                android:src="@drawable/btn_bookmark_awaken_nor"
-                android:layout_weight="1" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/image_scribble_bookmark_lovely"
-                android:src="@drawable/btn_bookmark_lovely_nor"
-                android:layout_weight="1" />
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radio_emb"
+                    android:button="@null"
+                    android:checked="false"
+                    android:background="@drawable/writing_sc_emb_selector"
+                    android:layout_marginRight="14dp" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radio_awaken"
+                    android:button="@null"
+                    android:checked="false"
+                    android:background="@drawable/writing_sc_awaken_selector"
+                    android:layout_marginRight="14dp" />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radio_lovely"
+                    android:button="@null"
+                    android:checked="false"
+                    android:background="@drawable/writing_sc_lovely_selector" />
+
+            </RadioGroup>
+
         </LinearLayout>
 
     </LinearLayout>

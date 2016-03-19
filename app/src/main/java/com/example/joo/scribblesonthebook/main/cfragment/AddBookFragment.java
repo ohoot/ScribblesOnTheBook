@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.joo.scribblesonthebook.R;
+import com.example.joo.scribblesonthebook.main.MainActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,6 +34,7 @@ public class AddBookFragment extends Fragment {
             @Override
             public void onClick(View v) {
             // When click the searching icon.
+                getActivity().findViewById(R.id.tabhost).findViewWithTag(MainActivity.TABSPEC_SEARCHING_RECOMM).performClick();
             }
         });
         barcodeView = (ImageView) view.findViewById(R.id.image_addbook_barcode);

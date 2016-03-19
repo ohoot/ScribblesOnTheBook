@@ -1,12 +1,17 @@
 package com.example.joo.scribblesonthebook.writing_scribble;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -16,6 +21,7 @@ import com.example.joo.scribblesonthebook.data.vo.BookData;
 import com.example.joo.scribblesonthebook.data.vo.Scribble;
 import com.example.joo.scribblesonthebook.data.vo.SimpleRequest;
 
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 
 import okhttp3.Request;
@@ -30,10 +36,12 @@ public class WritingScribbleActivity extends AppCompatActivity {
 
 
     EditText pageView, contentView;
-    ImageView imagePage, imageScribble;
+    ImageView imagePage, imageScribble, imageGallary;
     BookData bookData;
     Scribble scribble;
+    RadioGroup radioGroup;
     int type = 0;
+    int emotionId = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +51,28 @@ public class WritingScribbleActivity extends AppCompatActivity {
         contentView = (EditText) findViewById(R.id.edit_scribble_content);
         imagePage = (ImageView) findViewById(R.id.image_scribble_page);
         imageScribble = (ImageView) findViewById(R.id.image_scribble_content);
+        imageGallary = (ImageView) findViewById(R.id.image_scribble_gallary);
+        imageGallary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callGallery();
+            }
+        });
+
+        radioGroup = (RadioGroup) findViewById(R.id.radioGroup_writing_sc_emotion);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId) {
+                    case R.id.radio_enjoy : emotionId = 1; break;
+                    case R.id.radio_surprise : emotionId = 2; break;
+                    case R.id.radio_emb : emotionId = 3; break;
+                    case R.id.radio_sad : emotionId = 4; break;
+                    case R.id.radio_awaken : emotionId = 5; break;
+                    case R.id.radio_lovely : emotionId = 6; break;
+                }
+            }
+        });
 
         Intent intent = getIntent();
         type = intent.getIntExtra(OUTPUT_TYPE, 0);
@@ -66,10 +96,15 @@ public class WritingScribbleActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                File file = null;
+                if (mFileUri != null) {
+                    file = new File(mFileUri.getPath());
+                }
+
                 if (type == OUTPUT_TYPE_WRITING) {
                     try {
                         NetworkManager.getInstance().writeScribble(WritingScribbleActivity.this,
-                                bookData.getIsbn() + "", pageView.getText().toString(), contentView.getText().toString(), null, null, new NetworkManager.OnResultListener<SimpleRequest>() {
+                                bookData.getIsbn() + "", pageView.getText().toString(), contentView.getText().toString(), file, "" + emotionId, new NetworkManager.OnResultListener<SimpleRequest>() {
                                     @Override
                                     public void onSuccess(Request request, SimpleRequest result) {
                                         if (result.success != null) {
@@ -91,7 +126,7 @@ public class WritingScribbleActivity extends AppCompatActivity {
                 } else if (type == OUTPUT_TYPE_MODIFIYNG) {
                     // 수정하기
                     try {
-                        NetworkManager.getInstance().modifyScribble(WritingScribbleActivity.this, scribble.getIsbn(), pageView.getText().toString(), contentView.getText().toString(), null, null, "" + scribble.getScribbleId(), new NetworkManager.OnResultListener<SimpleRequest>() {
+                        NetworkManager.getInstance().modifyScribble(WritingScribbleActivity.this, scribble.getIsbn(), pageView.getText().toString(), contentView.getText().toString(), file, "" + emotionId, "" + scribble.getScribbleId(), new NetworkManager.OnResultListener<SimpleRequest>() {
                             @Override
                             public void onSuccess(Request request, SimpleRequest result) {
                                 if (result.success.message != null) {
@@ -113,6 +148,45 @@ public class WritingScribbleActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public static final int RC_GALLERY = 1;
+    public static final String DIR_PATH = "myfile";
+    public static final String INTENT_TYPE = "image/*";
+    Uri mFileUri;
+
+    private void callGallery() {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        intent.setType(INTENT_TYPE);
+
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, getFileUri());
+        startActivityForResult(intent, RC_GALLERY);
+    }
+
+    private Uri getFileUri() {
+        File dir = getExternalFilesDir(DIR_PATH);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+        File file = new File(dir, "my_image_" + System.currentTimeMillis() + ".jpeg");
+        mFileUri = Uri.fromFile(file);
+        return mFileUri;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RC_GALLERY) {
+            if (resultCode == Activity.RESULT_OK) {
+                Uri uri = data.getData();
+                Cursor c = getContentResolver().query(uri, new String[]{MediaStore.Images.Media.DATA}, null, null, null);
+                if (c.moveToNext()) {
+                    String path = c.getString(c.getColumnIndex(MediaStore.Images.Media.DATA));
+                    mFileUri = Uri.fromFile(new File(path));
+                    Glide.with(WritingScribbleActivity.this).load(mFileUri).into(imageScribble);
+                }
+            }
+        }
     }
 
     private void setScribbleNote(Scribble scribble) {

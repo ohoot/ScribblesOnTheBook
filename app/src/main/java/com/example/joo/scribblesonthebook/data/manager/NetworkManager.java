@@ -712,7 +712,6 @@ public class NetworkManager {
         final CallbackObject<SimpleRequest> callbackObject = new CallbackObject<SimpleRequest>();
 
         if (scribbleContent == null) scribbleContent = "";
-        if (emotionId == null) emotionId = "0";
 
         RequestBody requestBody;
         if (scribblePhoto != null) {
@@ -760,23 +759,22 @@ public class NetworkManager {
 
     private static final String MODIFY_SCRIBBLE_URL_FORMAT = "http://ec2-52-79-99-227.ap-northeast-2.compute.amazonaws.com/books/%s/doodles/%s";
 
-    public Request modifyScribble(Context context, String isbn, String scribblePage, String scribbleContent, String scribblePhoto, String emotionId, String scribbleId, final OnResultListener<SimpleRequest> listener) throws UnsupportedEncodingException {
+    public Request modifyScribble(Context context, String isbn, String scribblePage, String scribbleContent, File file, String emotionId, String scribbleId, final OnResultListener<SimpleRequest> listener) throws UnsupportedEncodingException {
         String url = String.format(MODIFY_SCRIBBLE_URL_FORMAT, isbn, scribbleId);
 
         final CallbackObject<SimpleRequest> callbackObject = new CallbackObject<SimpleRequest>();
 
         if (scribbleContent == null) scribbleContent = "";
-        if (emotionId == null) emotionId = "0";
 
         RequestBody requestBody;
 
-        if (scribblePhoto != null) {
+        if (file != null) {
             MultipartBody.Builder builder = new MultipartBody.Builder();
             builder.addFormDataPart("isbn", isbn)
                     .addFormDataPart("doodle_id", scribbleId)
                     .addFormDataPart("doodle_page", scribblePage)
                     .addFormDataPart("text_doodle", scribbleContent)
-                    .addFormDataPart("picture_doodle", scribblePhoto)
+                    .addFormDataPart("picture_doodle", file.getName(), RequestBody.create(MediaType.parse("image/jpeg"), file))
                     .addFormDataPart("emotion_doodle_id", emotionId);
             requestBody = builder.build();
         } else {
