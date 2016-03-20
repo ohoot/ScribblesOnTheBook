@@ -61,6 +61,20 @@
     <string name="text_scribble_modify">수정하기</string>
     <string name="text_scribble_delete">삭제하기</string>
     <string name="scribble_content_hint">내용을 입력하세요</string>
+    <string name="filter_1reference_book">참고서/교재</string>
+    <string name="filter_2kid_book">아동/청소년</string>
+    <string name="filter_3economy_book">경제경영</string>
+    <string name="filter_4social_science_book">사회과학</string>
+    <string name="filter_5history_book">역사/종교/역학</string>
+    <string name="filter_6art_book">예술/대중문화</string>
+    <string name="filter_7science_book">과학</string>
+    <string name="filter_8family_book">가정/취미/건강</string>
+    <string name="filter_9self_develop_book">자기계발</string>
+    <string name="filter_10computer_book">컴퓨터/인터넷</string>
+    <string name="filter_11comic_book">만화</string>
+    <string name="filter_12humanity_book">인문학</string>
+    <string name="filter_13novel_book">소설/시/희곡</string>
+    <string name="filter_14essay_book">에세이</string>
 
     <!--<string name="text_service_terms">제1조 (목적)
 본 약관은 Team 조곤(이하 "회사")이(가) 운영하는 ‘책장에 낙서’(이하 “책낙”) 서비스의 이용과 관련하여 회사와 회원간의 이용조건 및 제반 절차, 기타 필요한 사항을 규정함을 목적으로 합니다.

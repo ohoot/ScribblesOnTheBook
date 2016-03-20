@@ -20,6 +20,7 @@ import com.example.joo.scribblesonthebook.data.manager.NetworkManager;
 import com.example.joo.scribblesonthebook.data.vo.BookData;
 import com.example.joo.scribblesonthebook.data.vo.Scribble;
 import com.example.joo.scribblesonthebook.data.vo.SimpleRequest;
+import com.example.joo.scribblesonthebook.list_scribble.ScribbleListActivity;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
@@ -109,6 +110,7 @@ public class WritingScribbleActivity extends AppCompatActivity {
                                     public void onSuccess(Request request, SimpleRequest result) {
                                         if (result.success != null) {
                                             Toast.makeText(WritingScribbleActivity.this, result.success.message, Toast.LENGTH_SHORT).show();
+                                            startActivity(new Intent(WritingScribbleActivity.this, ScribbleListActivity.class));
                                             finish();
                                         } else {
                                             Toast.makeText(WritingScribbleActivity.this, result.error.message, Toast.LENGTH_SHORT).show();

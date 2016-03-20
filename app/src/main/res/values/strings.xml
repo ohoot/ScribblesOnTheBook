@@ -67,4 +67,19 @@
     <string name="text_scribble_modify">Modify</string>
     <string name="text_scribble_delete">Delete</string>
     <string name="scribble_content_hint">content</string>
+    <string name="filter_1reference_book">Reference Book</string>
+    <string name="filter_2kid_book">Kid Book</string>
+    <string name="filter_3economy_book">Economy</string>
+    <string name="filter_4social_science_book">Social Science</string>
+    <string name="filter_5history_book">History</string>
+    <string name="filter_6art_book">Art</string>
+    <string name="filter_7science_book">Science</string>
+    <string name="filter_8family_book">Family/Hobby</string>
+    <string name="filter_9self_develop_book">Self Develop</string>
+    <string name="filter_10computer_book">Computer/Internet</string>
+    <string name="filter_11comic_book">Comic</string>
+    <string name="filter_12humanity_book">Humanity</string>
+    <string name="filter_13novel_book">Novel</string>
+    <string name="filter_14essay_book">Essay</string>
+
 </resources>

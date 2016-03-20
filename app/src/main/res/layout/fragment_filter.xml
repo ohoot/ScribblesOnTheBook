@@ -22,15 +22,16 @@
     </LinearLayout>
 
     <GridView
-        android:id="@+id/gridView"
+        android:id="@+id/gridView_filter"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/gridview_filter_height"
-        android:layout_above="@+id/linearLayout"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:choiceMode="multipleChoice"
-        android:numColumns="2">
-
+        android:numColumns="2"
+        android:paddingLeft="33dp"
+        android:paddingTop="33dp"
+        android:paddingRight="33dp">
 
     </GridView>
 
