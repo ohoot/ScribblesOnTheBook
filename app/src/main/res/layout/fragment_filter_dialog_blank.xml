@@ -1,0 +1,46 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="550dp"
+    tools:context=".main.FilterDialogFragment"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_marginBottom="31dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_filter_dialog_head"
+            android:textSize="17dp"
+            android:textColor="#110e34"
+            android:layout_marginTop="19dp"
+            android:layout_marginBottom="33dp"
+            android:layout_gravity="center_horizontal" />
+
+        <GridView
+            android:layout_width="wrap_content"
+            android:layout_height="385dp"
+            android:id="@+id/gridView_filter_dialog"
+            android:choiceMode="multipleChoice"
+            android:numColumns="2" />
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:text="@string/btn_filter_dialog"
+        android:id="@+id/btn_filter_dialog"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="16dp"
+        android:background="#110e34"
+        android:textColor="#ffc600" />
+
+</LinearLayout>

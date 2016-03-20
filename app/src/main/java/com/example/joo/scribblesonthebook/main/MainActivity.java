@@ -2,8 +2,6 @@ package com.example.joo.scribblesonthebook.main;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTabHost;
 import android.support.v4.app.FragmentTransaction;
@@ -15,16 +13,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.Spinner;
 import android.widget.TabHost;
 import android.widget.Toast;
 
 import com.example.joo.scribblesonthebook.ChangePasswordActivity;
 import com.example.joo.scribblesonthebook.R;
-import com.example.joo.scribblesonthebook.writing_scribble.WritingScribbleActivity;
 
 public class MainActivity extends AppCompatActivity implements MenuFragment.OnMenuItemSeletedListener {
     public static final String TABSPEC_BOOKSHELF = "bookshelf";
@@ -90,6 +84,8 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.OnMe
         actionBar.setLogo(R.drawable.icn_main_bookmark);
     }
 
+    public static final String FILTER_DIALOG_TAG = "filterDialog";
+
     @Override
     public void onMenuItemSelected(int menuId) {
         switch (menuId) {
@@ -100,7 +96,8 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.OnMe
                 Toast.makeText(this, "Logout...", Toast.LENGTH_SHORT).show();
                 break;
             case MenuFragment.MENU_ID_FILTER_SETTING :
-                Toast.makeText(this, "Filter...", Toast.LENGTH_SHORT).show();
+                FilterDialogFragment fragment = new FilterDialogFragment();
+                fragment.show(getSupportFragmentManager(), FILTER_DIALOG_TAG);
                 break;
 
         }

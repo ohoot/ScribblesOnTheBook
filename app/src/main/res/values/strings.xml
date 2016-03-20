@@ -81,5 +81,7 @@
     <string name="filter_12humanity_book">Humanity</string>
     <string name="filter_13novel_book">Novel</string>
     <string name="filter_14essay_book">Essay</string>
+    <string name="text_filter_dialog_head">Filter Setting</string>
+    <string name="btn_filter_dialog">OK</string>
 
 </resources>

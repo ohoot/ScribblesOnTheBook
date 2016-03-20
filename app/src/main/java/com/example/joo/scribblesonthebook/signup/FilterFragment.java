@@ -4,14 +4,17 @@ package com.example.joo.scribblesonthebook.signup;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.example.joo.scribblesonthebook.LoginActivity;
 import com.example.joo.scribblesonthebook.R;
+import com.example.joo.scribblesonthebook.data.manager.NetworkManager;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -65,9 +68,11 @@ public class FilterFragment extends Fragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //NetworkManager.getInstance().changeInterests(getContext(), )
                 startActivity(new Intent(getContext(), LoginActivity.class));
             }
         });
+
         return view;
 
     }

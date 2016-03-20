@@ -145,4 +145,6 @@
     <dimen name="text_bookshelf_month_size">11dp</dimen>
     <dimen name="image_bookshelf_month_arrow_height">11dp</dimen>
     <dimen name="image_bookshelf_month_arrow_width">10dp</dimen>
+    <dimen name="filter_dialog_width">300dp</dimen>
+    <dimen name="filter_dialog_height">560dp</dimen>
 </resources>

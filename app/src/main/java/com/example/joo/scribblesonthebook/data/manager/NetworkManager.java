@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.util.SparseBooleanArray;
 
 import com.example.joo.scribblesonthebook.R;
 import com.example.joo.scribblesonthebook.data.BookDetailResponse;
@@ -492,13 +493,12 @@ public class NetworkManager {
 
     private static final String CHANGE_INTERESTS_URL_FORMAT = "http://ec2-52-79-99-227.ap-northeast-2.compute.amazonaws.com/users/filter";
 
-    public Request changeInterests (Context context, String email, String password, final OnResultListener<Success> listener) throws UnsupportedEncodingException {
+    public Request changeInterests (Context context, SparseBooleanArray sbArray, final OnResultListener<Success> listener) throws UnsupportedEncodingException {
 
         final CallbackObject<Success> callbackObject = new CallbackObject<Success>();
 
         RequestBody requestBody = new FormBody.Builder()
-                .add("local_email", email)
-                .add("local_pw", password)
+                //.add("selected", sbArray)
                 .build();
 
         Request request = new Request.Builder().url(CHANGE_INTERESTS_URL_FORMAT)
