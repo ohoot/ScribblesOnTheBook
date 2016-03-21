@@ -14,6 +14,7 @@ import com.example.joo.scribblesonthebook.data.manager.NetworkManager;
 import com.example.joo.scribblesonthebook.data.vo.BookData;
 import com.example.joo.scribblesonthebook.data.vo.Scribble;
 import com.example.joo.scribblesonthebook.data.vo.SimpleRequest;
+import com.example.joo.scribblesonthebook.writing_scribble.WritingScribbleActivity;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -24,19 +25,29 @@ import okhttp3.Request;
 public class ScribbleListActivity extends AppCompatActivity {
 
     public static final String CURRENT_BOOK_DATA = "currentBook";
+    public static final String MODIFY_SCRIBBLE_DATA = "modiScribble";
     public static final String TRIANGLE_CLICKED_SCRIBBLE = "triangleClickedScribble";
     public static final String MODIFY_DIALOG_TAG = "modifyDialog";
 
     ExpandableListView listView;
     ScribbleListAdapter sAdapter;
     BookData bookData;
+    Scribble scribbleData;
+    String isbn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scribble_list);
         Intent intent = getIntent();
-        bookData = (BookData) intent.getSerializableExtra(CURRENT_BOOK_DATA);
+        bookData = (BookData) intent.getSerializableExtra(WritingScribbleActivity.CURRENT_BOOK_DATA);
+        scribbleData = (Scribble) intent.getSerializableExtra(WritingScribbleActivity.MODIFY_SCRIBBLE_DATA);
+        if (bookData != null) {
+            isbn = bookData.getIsbn();
+        } else if (scribbleData != null) {
+            isbn = scribbleData.getIsbn();
+        }
+
         listView = (ExpandableListView) findViewById(R.id.expandableScribbleListView);
         sAdapter = new ScribbleListAdapter();
         sAdapter.setOnAdapterHeartClickListener(new ScribbleListAdapter.OnAdapterHeartClickListener() {
@@ -78,7 +89,7 @@ public class ScribbleListActivity extends AppCompatActivity {
         listView.setAdapter(sAdapter);
 
         try {
-            NetworkManager.getInstance().getScribbleList(ScribbleListActivity.this, bookData.getIsbn(), "" + 1, new NetworkManager.OnResultListener<ReferScribbleRecordSuccess>() {
+            NetworkManager.getInstance().getScribbleList(ScribbleListActivity.this, isbn, "" + 1, new NetworkManager.OnResultListener<ReferScribbleRecordSuccess>() {
                 @Override
                 public void onSuccess(Request request, ReferScribbleRecordSuccess result) {
                     sAdapter.addAll(convertScribbleGroup(result.doodleList));

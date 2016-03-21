@@ -70,6 +70,7 @@ public class FilterFragment extends Fragment {
             public void onClick(View v) {
                 //NetworkManager.getInstance().changeInterests(getContext(), )
                 startActivity(new Intent(getContext(), LoginActivity.class));
+                getActivity().finish();
             }
         });
 

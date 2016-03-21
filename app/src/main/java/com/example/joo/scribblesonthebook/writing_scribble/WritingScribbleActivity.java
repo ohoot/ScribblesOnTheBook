@@ -30,11 +30,10 @@ import okhttp3.Request;
 public class WritingScribbleActivity extends AppCompatActivity {
 
     public static final String CURRENT_BOOK_DATA = "currentBook";
-    public static final String MODIFY_SCRIBBLE_DATA = "modifyScribble";
+    public static final String MODIFY_SCRIBBLE_DATA = "modifiedScribble";
     public static final String OUTPUT_TYPE = "outPutType";
     public static final int OUTPUT_TYPE_WRITING = 1;
     public static final int OUTPUT_TYPE_MODIFIYNG = 2;
-
 
     EditText pageView, contentView;
     ImageView imagePage, imageScribble, imageGallary;
@@ -81,7 +80,7 @@ public class WritingScribbleActivity extends AppCompatActivity {
             bookData = (BookData) intent.getSerializableExtra(CURRENT_BOOK_DATA);
             type = OUTPUT_TYPE_WRITING;
         } else if (type == OUTPUT_TYPE_MODIFIYNG) {
-            scribble = (Scribble) intent.getSerializableExtra(MODIFY_SCRIBBLE_DATA);
+            scribble = (Scribble) intent.getSerializableExtra(ScribbleListActivity.MODIFY_SCRIBBLE_DATA);
             type = OUTPUT_TYPE_MODIFIYNG;
             setScribbleNote(scribble);
         }
@@ -110,7 +109,9 @@ public class WritingScribbleActivity extends AppCompatActivity {
                                     public void onSuccess(Request request, SimpleRequest result) {
                                         if (result.success != null) {
                                             Toast.makeText(WritingScribbleActivity.this, result.success.message, Toast.LENGTH_SHORT).show();
-                                            startActivity(new Intent(WritingScribbleActivity.this, ScribbleListActivity.class));
+                                            Intent intent = new Intent(WritingScribbleActivity.this, ScribbleListActivity.class);
+                                            intent.putExtra(CURRENT_BOOK_DATA, bookData);
+                                            startActivity(intent);
                                             finish();
                                         } else {
                                             Toast.makeText(WritingScribbleActivity.this, result.error.message, Toast.LENGTH_SHORT).show();
@@ -132,7 +133,8 @@ public class WritingScribbleActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(Request request, SimpleRequest result) {
                                 if (result.success.message != null) {
-                                    Toast.makeText(WritingScribbleActivity.this, result.success.message, Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(WritingScribbleActivity.this, ScribbleListActivity.class);
+                                    intent.putExtra(ScribbleListActivity.MODIFY_SCRIBBLE_DATA, scribble);
                                     finish();
                                 } else {
                                     Toast.makeText(WritingScribbleActivity.this, result.error.message, Toast.LENGTH_SHORT).show();
