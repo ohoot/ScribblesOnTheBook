@@ -13,6 +13,7 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import com.example.joo.scribblesonthebook.R;
+import com.example.joo.scribblesonthebook.data.ReferInterestResponse;
 import com.example.joo.scribblesonthebook.data.manager.NetworkManager;
 import com.example.joo.scribblesonthebook.data.vo.SimpleRequest;
 import com.example.joo.scribblesonthebook.signup.FilterAdapter;
@@ -49,6 +50,8 @@ public class FilterDialogFragment extends DialogFragment {
 
     GridView gridView;
     FilterAdapter fAdapter;
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +66,27 @@ public class FilterDialogFragment extends DialogFragment {
         gridView = (GridView) view.findViewById(R.id.gridView_filter_dialog);
         fAdapter = new FilterAdapter();
         gridView.setAdapter(fAdapter);
+
+        try {
+            NetworkManager.getInstance().getInterests(getContext(), new NetworkManager.OnResultListener<ReferInterestResponse>() {
+                @Override
+                public void onSuccess(Request request, ReferInterestResponse result) {
+                    if (result.success != null) {
+                        for (int i = 0; i < result.success.filter.selectedItems.size(); i++) {
+                            gridView.setItemChecked(result.success.filter.selectedItems.get(i) - 1, true);
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Request request, int code, Throwable cause) {
+
+                }
+            });
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
         fAdapter.addFilterText(convertIntResource(filterContents));
 
         Button btn = (Button) view.findViewById(R.id.btn_filter_dialog);

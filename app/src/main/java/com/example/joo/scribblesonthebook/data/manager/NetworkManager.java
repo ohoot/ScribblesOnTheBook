@@ -17,6 +17,7 @@ import com.example.joo.scribblesonthebook.data.MonthlyReadingResponse;
 import com.example.joo.scribblesonthebook.data.MonthlyReadingSuccess;
 import com.example.joo.scribblesonthebook.data.RecommendationResponse;
 import com.example.joo.scribblesonthebook.data.RecommendationSuccess;
+import com.example.joo.scribblesonthebook.data.ReferInterestResponse;
 import com.example.joo.scribblesonthebook.data.ReferPersonalResponse;
 import com.example.joo.scribblesonthebook.data.ReferPersonalSuccess;
 import com.example.joo.scribblesonthebook.data.ReferScribbleRecordResponse;
@@ -541,9 +542,9 @@ public class NetworkManager {
         return request;
     }
 
-    public Request getInterests (Context context, final OnResultListener<Success> listener) throws UnsupportedEncodingException {
+    public Request getInterests (Context context, final OnResultListener<ReferInterestResponse> listener) throws UnsupportedEncodingException {
 
-        final CallbackObject<Success> callbackObject = new CallbackObject<Success>();
+        final CallbackObject<ReferInterestResponse> callbackObject = new CallbackObject<ReferInterestResponse>();
 
         Request request = new Request.Builder().url(CHANGE_INTERESTS_URL_FORMAT)
                 .tag(context)
@@ -563,8 +564,9 @@ public class NetworkManager {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 Gson gson = new Gson();
-                SimpleRequest sr = gson.fromJson(response.body().string(), SimpleRequest.class);
-                callbackObject.result = sr.success;
+                String str = response.body().string();
+                ReferInterestResponse rir = gson.fromJson(str, ReferInterestResponse.class);
+                callbackObject.result = rir;
                 Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
                 mHandler.sendMessage(msg);
             }
@@ -595,7 +597,8 @@ public class NetworkManager {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 Gson gson = new Gson();
-                ReferPersonalResponse rpr = gson.fromJson(response.body().string(), ReferPersonalResponse.class);
+                String str = response.body().string();
+                ReferPersonalResponse rpr = gson.fromJson(str, ReferPersonalResponse.class);
                 callbackObject.result = rpr.success;
                 Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
                 mHandler.sendMessage(msg);
@@ -898,10 +901,10 @@ public class NetworkManager {
 
     private static final String ADD_BOOK_URL_FORMAT = "http://ec2-52-79-99-227.ap-northeast-2.compute.amazonaws.com/books/%s/bookcases/%s";
 
-    public Request addBook(Context context, String isbn, String tense, final OnResultListener<Success> listener) throws UnsupportedEncodingException {
+    public Request addBook(Context context, String isbn, String tense, final OnResultListener<SimpleRequest> listener) throws UnsupportedEncodingException {
         String url = String.format(ADD_BOOK_URL_FORMAT, isbn, tense);
 
-        final CallbackObject<Success> callbackObject = new CallbackObject<Success>();
+        final CallbackObject<SimpleRequest> callbackObject = new CallbackObject<SimpleRequest>();
 
         Request request = new Request.Builder().url(url)
                 .tag(context)
@@ -922,7 +925,7 @@ public class NetworkManager {
             public void onResponse(Call call, Response response) throws IOException {
                 Gson gson = new Gson();
                 SimpleRequest sr = gson.fromJson(response.body().string(), SimpleRequest.class);
-                callbackObject.result = sr.success;
+                callbackObject.result = sr;
                 Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
                 mHandler.sendMessage(msg);
             }

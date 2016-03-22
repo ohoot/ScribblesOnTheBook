@@ -42,10 +42,10 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".list_scribble.ScribbleListActivity" />
         <activity android:name=".ChangePasswordActivity" />
-        <activity android:name=".TestActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+        <activity
+            android:name=".TestActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".AddBookActivity"></activity>
     </application>
 
 </manifest>

@@ -87,5 +87,6 @@
     <string name="text_book_detail_author">Author:</string>
     <string name="text_book_detail_publisher">Publisher:</string>
     <string name="text_book_detail_category">Category:</string>
+    <string name="btn_add_book">Add Book</string>
 
 </resources>

@@ -7,5 +7,5 @@ import java.util.ArrayList;
  */
 public class ReferInterestSuccess {
     public String message;
-    public ArrayList<Integer> filter = new ArrayList<Integer>();
+    public SelectedCategory filter;
 }
