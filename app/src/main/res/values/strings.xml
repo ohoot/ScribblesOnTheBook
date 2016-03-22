@@ -83,5 +83,9 @@
     <string name="filter_14essay_book">Essay</string>
     <string name="text_filter_dialog_head">Filter Setting</string>
     <string name="btn_filter_dialog">OK</string>
+    <string name="text_book_detail_info_title">Book Title: </string>
+    <string name="text_book_detail_author">Author:</string>
+    <string name="text_book_detail_publisher">Publisher:</string>
+    <string name="text_book_detail_category">Category:</string>
 
 </resources>

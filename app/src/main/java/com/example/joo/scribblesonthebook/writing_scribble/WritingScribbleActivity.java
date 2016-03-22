@@ -65,11 +65,11 @@ public class WritingScribbleActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
                     case R.id.radio_enjoy : emotionId = 1; break;
-                    case R.id.radio_surprise : emotionId = 2; break;
+                    case R.id.radio_sad : emotionId = 2; break;
                     case R.id.radio_emb : emotionId = 3; break;
-                    case R.id.radio_sad : emotionId = 4; break;
-                    case R.id.radio_awaken : emotionId = 5; break;
-                    case R.id.radio_lovely : emotionId = 6; break;
+                    case R.id.radio_awaken : emotionId = 4; break;
+                    case R.id.radio_lovely : emotionId = 5; break;
+                    case R.id.radio_surprise : emotionId = 6; break;
                 }
             }
         });

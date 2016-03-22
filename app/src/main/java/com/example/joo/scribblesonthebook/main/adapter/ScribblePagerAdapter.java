@@ -23,7 +23,7 @@ public class ScribblePagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return ScribbleChildFragment.newInstance(items.get(position).getCoverImage());
+        return ScribbleChildFragment.newInstance(items.get(position));
     }
 
     @Override

@@ -21,7 +21,11 @@
             android:name=".SplashActivity"
             android:launchMode="singleInstance"
             android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".LoginActivity"
@@ -29,7 +33,7 @@
             android:theme="@style/AppTheme.LoginTheme"
             android:windowSoftInputMode="adjustNothing" />
         <activity android:name=".writing_scribble.WritingScribbleActivity" />
-        <activity android:name=".DetailBookInfoActivity" />
+        <activity android:name=".book_detail.DetailBookInfoActivity" />
         <activity
             android:name=".find_password.FindPasswordActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -40,11 +44,7 @@
         <activity android:name=".ChangePasswordActivity" />
         <activity android:name=".TestActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

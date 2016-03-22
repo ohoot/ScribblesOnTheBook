@@ -29,7 +29,10 @@
             android:layout_height="385dp"
             android:id="@+id/gridView_filter_dialog"
             android:choiceMode="multipleChoice"
-            android:numColumns="2" />
+            android:numColumns="2"
+            android:horizontalSpacing="@dimen/filter_dialog_horizontal_sapcing"
+            android:verticalSpacing="@dimen/filter_dialog_vertical_sapcing"/>
+
     </LinearLayout>
 
     <Button

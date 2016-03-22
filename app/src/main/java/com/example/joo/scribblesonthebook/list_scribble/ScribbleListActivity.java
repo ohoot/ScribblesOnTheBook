@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.example.joo.scribblesonthebook.R;
 import com.example.joo.scribblesonthebook.data.ReferScribbleRecordSuccess;
 import com.example.joo.scribblesonthebook.data.manager.NetworkManager;
+import com.example.joo.scribblesonthebook.data.manager.UserPropertyManager;
 import com.example.joo.scribblesonthebook.data.vo.BookData;
 import com.example.joo.scribblesonthebook.data.vo.Scribble;
 import com.example.joo.scribblesonthebook.data.vo.SimpleRequest;
@@ -107,7 +108,7 @@ public class ScribbleListActivity extends AppCompatActivity {
 
     private List<ScribbleGroup> convertScribbleGroup(List<Scribble> scribbleList) {
         List<ScribbleGroup> list = new ArrayList<>();
-        int writerId = -1;
+        int writerId = UserPropertyManager.getInstance().userId;
         ScribbleGroup otherGroup = null;
         for (Scribble scribble : scribbleList) {
             writerId = scribble.getWriterId();

@@ -12,6 +12,7 @@ import com.example.joo.scribblesonthebook.data.BookDetailResponse;
 import com.example.joo.scribblesonthebook.data.BookDetailSuccess;
 import com.example.joo.scribblesonthebook.data.BookListResponse;
 import com.example.joo.scribblesonthebook.data.BookListSuccess;
+import com.example.joo.scribblesonthebook.data.LoginRequest;
 import com.example.joo.scribblesonthebook.data.MonthlyReadingResponse;
 import com.example.joo.scribblesonthebook.data.MonthlyReadingSuccess;
 import com.example.joo.scribblesonthebook.data.RecommendationResponse;
@@ -43,6 +44,7 @@ import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
+import java.util.List;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
@@ -446,9 +448,9 @@ public class NetworkManager {
 
     private static final String LOGIN_USER_URL_FORMAT = "https://ec2-52-79-99-227.ap-northeast-2.compute.amazonaws.com/users/login";
 
-    public Request userLogin(Context context, String email, String password, final OnResultListener<SimpleRequest> listener) throws UnsupportedEncodingException {
+    public Request userLogin(Context context, String email, String password, final OnResultListener<LoginRequest> listener) throws UnsupportedEncodingException {
 
-        final CallbackObject<SimpleRequest> callbackObject = new CallbackObject<SimpleRequest>();
+        final CallbackObject<LoginRequest> callbackObject = new CallbackObject<LoginRequest>();
 
         RequestBody requestBody = new FormBody.Builder()
                 .add("local_email", email)
@@ -482,8 +484,9 @@ public class NetworkManager {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 Gson gson = new Gson();
-                SimpleRequest sr = gson.fromJson(response.body().string(), SimpleRequest.class);
-                callbackObject.result = sr;
+                String str = response.body().string();
+                LoginRequest lr = gson.fromJson(str, LoginRequest.class);
+                callbackObject.result = lr;
                 Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
                 mHandler.sendMessage(msg);
             }
@@ -493,14 +496,22 @@ public class NetworkManager {
 
     private static final String CHANGE_INTERESTS_URL_FORMAT = "http://ec2-52-79-99-227.ap-northeast-2.compute.amazonaws.com/users/filter";
 
-    public Request changeInterests (Context context, SparseBooleanArray sbArray, final OnResultListener<Success> listener) throws UnsupportedEncodingException {
+    public Request changeInterests (Context context, String[] checkedItems, final OnResultListener<SimpleRequest> listener) throws UnsupportedEncodingException {
 
-        final CallbackObject<Success> callbackObject = new CallbackObject<Success>();
+        final CallbackObject<SimpleRequest> callbackObject = new CallbackObject<SimpleRequest>();
 
-        RequestBody requestBody = new FormBody.Builder()
-                //.add("selected", sbArray)
-                .build();
+        /*FormBody.Builder builder = new FormBody.Builder();
 
+        for (int i = 0; i < checkedItems.length; i++) {
+            builder.add("selected["+i+"]", checkedItems[i]);
+        }*/
+
+        FormBody.Builder builder = new FormBody.Builder();
+        for (int i = 0; i < checkedItems.length; i++) {
+            builder.add("selected", checkedItems[i]);
+        }
+
+        RequestBody requestBody = builder.build();
         Request request = new Request.Builder().url(CHANGE_INTERESTS_URL_FORMAT)
                 .post(requestBody)
                 .tag(context)
@@ -520,8 +531,9 @@ public class NetworkManager {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 Gson gson = new Gson();
-                SimpleRequest sr = gson.fromJson(response.body().string(), SimpleRequest.class);
-                callbackObject.result = sr.success;
+                String str = response.body().string();
+                SimpleRequest sr = gson.fromJson(str, SimpleRequest.class);
+                callbackObject.result = sr;
                 Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
                 mHandler.sendMessage(msg);
             }

@@ -31,7 +31,9 @@
         android:numColumns="2"
         android:paddingLeft="33dp"
         android:paddingTop="33dp"
-        android:paddingRight="33dp">
+        android:paddingRight="33dp"
+        android:horizontalSpacing="52dp"
+        android:verticalSpacing="49dp">
 
     </GridView>
 

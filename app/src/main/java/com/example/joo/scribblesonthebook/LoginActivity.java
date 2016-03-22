@@ -9,7 +9,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.joo.scribblesonthebook.data.LoginRequest;
 import com.example.joo.scribblesonthebook.data.manager.NetworkManager;
+import com.example.joo.scribblesonthebook.data.manager.UserPropertyManager;
 import com.example.joo.scribblesonthebook.data.vo.SimpleRequest;
 import com.example.joo.scribblesonthebook.data.vo.Success;
 import com.example.joo.scribblesonthebook.find_password.FindPasswordActivity;
@@ -61,11 +63,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.btn_login :
                 try {
-                    NetworkManager.getInstance().userLogin(LoginActivity.this, editId.getText().toString(), editPassword.getText().toString(), new NetworkManager.OnResultListener<SimpleRequest>() {
+                    NetworkManager.getInstance().userLogin(LoginActivity.this, editId.getText().toString(), editPassword.getText().toString(), new NetworkManager.OnResultListener<LoginRequest>() {
                         @Override
-                        public void onSuccess(Request request, SimpleRequest result) {
+                        public void onSuccess(Request request, LoginRequest result) {
                             if (result.success != null) {
                                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                UserPropertyManager.getInstance().userId = result.success.userId;
+                                Toast.makeText(LoginActivity.this, UserPropertyManager.getInstance().userId + "", Toast.LENGTH_SHORT).show();
                                 finish();
                             } else {
                                 Toast.makeText(LoginActivity.this, result.error.message, Toast.LENGTH_SHORT).show();

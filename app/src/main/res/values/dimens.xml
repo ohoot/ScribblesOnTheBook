@@ -147,4 +147,6 @@
     <dimen name="image_bookshelf_month_arrow_width">10dp</dimen>
     <dimen name="filter_dialog_width">300dp</dimen>
     <dimen name="filter_dialog_height">560dp</dimen>
+    <dimen name="filter_dialog_horizontal_sapcing">22dp</dimen>
+    <dimen name="filter_dialog_vertical_sapcing">40dp</dimen>
 </resources>

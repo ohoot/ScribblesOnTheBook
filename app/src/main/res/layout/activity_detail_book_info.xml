@@ -1,12 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".DetailBookInfoActivity">
+    tools:context=".book_detail.DetailBookInfoActivity"
+    android:orientation="vertical"
+    android:paddingTop="20dp"
+    android:background="#ede3cb">
 
-</RelativeLayout>
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/image_container_detail">
+
+        <ImageView
+            android:layout_width="285dp"
+            android:layout_height="344dp"
+            android:id="@+id/image_book_detail_cover"
+            android:layout_gravity="center_horizontal" />
+
+    </FrameLayout>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:id="@+id/radioGroup_book_detail"
+        android:layout_marginBottom="10dp">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radio_book_detail_done"
+            android:checked="false"
+            android:button="@null"
+            android:background="@drawable/bookshelf_done_selector" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radio_book_detail_reading"
+            android:checked="true"
+            android:background="@drawable/bookshelf_reading_selector"
+            android:button="@null" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radio_book_detail_will"
+            android:checked="false"
+            android:background="@drawable/bookshelf_will_selector"
+            android:button="@null" />
+    </RadioGroup>
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listView"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp" />
+</LinearLayout>

@@ -6,13 +6,16 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="10dp">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="45dp"
+            android:layout_height="40dp"
             android:id="@+id/image_scribble_writer"
-            android:src="@drawable/bg_doodle" />
+            android:src="@drawable/bg_doodle"
+            android:layout_marginRight="5dp" />
 
         <LinearLayout
             android:orientation="vertical"
@@ -23,20 +26,26 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:gravity="center_vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="Small Text"
-                    android:id="@+id/text_scribble_writer" />
+                    android:id="@+id/text_scribble_writer"
+                    android:textSize="10dp"
+                    android:textColor="#110e34"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/image_triangle_icon"
-                    android:src="@drawable/btn_modi_arrow_nor" />
+                    android:src="@drawable/btn_modi_arrow_nor"
+                    android:layout_marginLeft="4dp" />
             </LinearLayout>
 
             <TextView
@@ -44,7 +53,9 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="Small Text"
-                android:id="@+id/text_scribble_date" />
+                android:id="@+id/text_scribble_date"
+                android:textSize="10dp"
+                android:textColor="#110e34" />
         </LinearLayout>
 
         <TextView
@@ -54,7 +65,8 @@
             android:id="@+id/text_scribble_bookmark"
             android:background="@drawable/icn_bookmark_enjoy"
             android:layout_marginRight="@dimen/scribble_bookmark_margin_right"
-            android:gravity="center" />
+            android:gravity="center"
+            android:textColor="#ffffff" />
 
     </LinearLayout>
 
@@ -62,7 +74,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="New Text"
-        android:id="@+id/text_scribble_content" />
+        android:id="@+id/text_scribble_content"
+        android:paddingLeft="10dp" />
 
     <LinearLayout
         android:orientation="horizontal"

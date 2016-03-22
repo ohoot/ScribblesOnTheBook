@@ -65,10 +65,10 @@
     <string name="filter_2kid_book">아동/청소년</string>
     <string name="filter_3economy_book">경제경영</string>
     <string name="filter_4social_science_book">사회과학</string>
-    <string name="filter_5history_book">역사/종교/역학</string>
+    <string name="filter_5history_book">역사/종교</string>
     <string name="filter_6art_book">예술/대중문화</string>
     <string name="filter_7science_book">과학</string>
-    <string name="filter_8family_book">가정/취미/건강</string>
+    <string name="filter_8family_book">취미/건강</string>
     <string name="filter_9self_develop_book">자기계발</string>
     <string name="filter_10computer_book">컴퓨터/인터넷</string>
     <string name="filter_11comic_book">만화</string>
@@ -77,6 +77,10 @@
     <string name="filter_14essay_book">에세이</string>
     <string name="text_filter_dialog_head">필터 설정</string>
     <string name="btn_filter_dialog">확인</string>
+    <string name="text_book_detail_info_title">책이름: </string>
+    <string name="text_book_detail_author">저자: </string>
+    <string name="text_book_detail_publisher">출판사: </string>
+    <string name="text_book_detail_category">분류: </string>
 
 
     <!--<string name="text_service_terms">제1조 (목적)

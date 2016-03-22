@@ -15,6 +15,13 @@ import android.widget.Toast;
 import com.example.joo.scribblesonthebook.LoginActivity;
 import com.example.joo.scribblesonthebook.R;
 import com.example.joo.scribblesonthebook.data.manager.NetworkManager;
+import com.example.joo.scribblesonthebook.data.vo.SimpleRequest;
+
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
+
+import okhttp3.Request;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -68,7 +75,46 @@ public class FilterFragment extends Fragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //NetworkManager.getInstance().changeInterests(getContext(), )
+                SparseBooleanArray sbArray = gridView.getCheckedItemPositions();
+                int checkedCount = 0;
+                for (int i = 0; i < sbArray.size(); i++) {
+                    int p = sbArray.keyAt(i);
+                    if (sbArray.get(p)) {
+                        checkedCount++;
+                    }
+                }
+                String[] checkedItems = new String[checkedCount];
+
+                int checkedItemIndex = 0;
+                for (int i = 0; i < sbArray.size(); i++) {
+                    int p = sbArray.keyAt(i);
+                    if (sbArray.get(p)) {
+                        checkedItems[checkedItemIndex] = "" + p;
+                        checkedItemIndex++;
+                    }
+                }
+
+                try {
+                    NetworkManager.getInstance().changeInterests(getContext(), checkedItems, new NetworkManager.OnResultListener<SimpleRequest>() {
+                        @Override
+                        public void onSuccess(Request request, SimpleRequest result) {
+                            if (result.success.message != null) {
+                                Toast.makeText(getContext(), "회원 가입에 성공하였습니다", Toast.LENGTH_SHORT).show();
+                                getActivity().finish();
+                            } else {
+                                Toast.makeText(getContext(), result.error.message, Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
+
+                        @Override
+                        public void onFailure(Request request, int code, Throwable cause) {
+
+                        }
+                    });
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
                 startActivity(new Intent(getContext(), LoginActivity.class));
                 getActivity().finish();
             }
