@@ -17,6 +17,8 @@ public class DetailBookInfoActivity extends AppCompatActivity {
 
     ImageView coverView;
     BookData bookData;
+    boolean isClicked = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,13 +29,22 @@ public class DetailBookInfoActivity extends AppCompatActivity {
         coverView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DetailInfoFragment fragment = new DetailInfoFragment();
-                Bundle b = new Bundle();
-                b.putSerializable(DetailInfoFragment.CLICKED_BOOK_DATA, bookData);
-                fragment.setArguments(b);
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                ft.add(R.id.image_container_detail, fragment);
-                ft.commit();
+                if (!isClicked) {
+                    DetailInfoFragment fragment = new DetailInfoFragment();
+                    Bundle b = new Bundle();
+                    b.putSerializable(DetailInfoFragment.CLICKED_BOOK_DATA, bookData);
+                    fragment.setArguments(b);
+                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    ft.add(R.id.image_container_detail, fragment);
+                    ft.commit();
+                    isClicked = true;
+                } else {
+                    DetailBlankFragment fragment = new DetailBlankFragment();
+                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    ft.replace(R.id.image_container_detail, fragment);
+                    ft.commit();
+                    isClicked = false;
+                }
             }
         });
         Glide.with(DetailBookInfoActivity.this).load(bookData.getCoverImage()).into(coverView);

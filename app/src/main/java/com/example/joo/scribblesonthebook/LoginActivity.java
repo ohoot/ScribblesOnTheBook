@@ -69,7 +69,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             if (result.success != null) {
                                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                 UserPropertyManager.getInstance().userId = result.success.userId;
-                                Toast.makeText(LoginActivity.this, UserPropertyManager.getInstance().userId + "", Toast.LENGTH_SHORT).show();
                                 finish();
                             } else {
                                 Toast.makeText(LoginActivity.this, result.error.message, Toast.LENGTH_SHORT).show();

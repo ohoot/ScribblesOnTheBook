@@ -9,7 +9,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.joo.scribblesonthebook.R;
+import com.example.joo.scribblesonthebook.data.BookDetailResponse;
+import com.example.joo.scribblesonthebook.data.manager.NetworkManager;
 import com.example.joo.scribblesonthebook.data.vo.BookData;
+
+import java.io.UnsupportedEncodingException;
+
+import okhttp3.Request;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -44,15 +50,32 @@ public class DetailInfoFragment extends Fragment {
         publisherView = (TextView) view.findViewById(R.id.text_book_detail_publisher);
         categoryView = (TextView) view.findViewById(R.id.text_book_detail_category);
 
-        setDetailText();
+        try {
+            NetworkManager.getInstance().getBookDetail(getContext(), bookData.getIsbn(), new NetworkManager.OnResultListener<BookDetailResponse>() {
+                @Override
+                public void onSuccess(Request request, BookDetailResponse result) {
+                    if (result.success != null) {
+                        bookData = result.success.bookDetail;
+                        setDetailText(bookData);
+                    }
+                }
+
+                @Override
+                public void onFailure(Request request, int code, Throwable cause) {
+
+                }
+            });
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         return view;
     }
 
-    private void setDetailText() {
-        titleView.setText(bookData.getTitle());
-        authorView.setText(bookData.getAuthor());
-        publisherView.setText(bookData.getPublisher());
-        categoryView.setText(bookData.getCategory());
+    private void setDetailText(BookData bd) {
+        titleView.setText(bd.getTitle());
+        authorView.setText(bd.getAuthor());
+        publisherView.setText(bd.getPublisher());
+        categoryView.setText(bd.getCategory());
     }
 
 }

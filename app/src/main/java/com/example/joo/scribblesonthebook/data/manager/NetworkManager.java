@@ -644,10 +644,10 @@ public class NetworkManager {
 
     private static final String BOOK_DETAIL_URL_FORMAT = "http://ec2-52-79-99-227.ap-northeast-2.compute.amazonaws.com/books/%s";
 
-    public Request getBookDetail(Context context, String isbn, final OnResultListener<BookDetailSuccess> listener) throws UnsupportedEncodingException {
+    public Request getBookDetail(Context context, String isbn, final OnResultListener<BookDetailResponse> listener) throws UnsupportedEncodingException {
         String url = String.format(BOOK_DETAIL_URL_FORMAT, isbn);
 
-        final CallbackObject<BookDetailSuccess> callbackObject = new CallbackObject<BookDetailSuccess>();
+        final CallbackObject<BookDetailResponse> callbackObject = new CallbackObject<BookDetailResponse>();
 
         Request request = new Request.Builder().url(url)
                 .tag(context)
@@ -668,7 +668,7 @@ public class NetworkManager {
             public void onResponse(Call call, Response response) throws IOException {
                 Gson gson = new Gson();
                 BookDetailResponse bdr = gson.fromJson(response.body().string(), BookDetailResponse.class);
-                callbackObject.result = bdr.success;
+                callbackObject.result = bdr;
                 Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
                 mHandler.sendMessage(msg);
             }

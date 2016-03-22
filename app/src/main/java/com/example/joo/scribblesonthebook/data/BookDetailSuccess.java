@@ -9,5 +9,5 @@ import java.util.List;
  */
 public class BookDetailSuccess {
     public String message;
-    public List<BookData> bookDetail;
+    public BookData bookDetail;
 }
