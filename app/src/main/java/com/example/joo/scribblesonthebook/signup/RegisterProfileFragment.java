@@ -9,6 +9,9 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +44,7 @@ public class RegisterProfileFragment extends Fragment {
     ImageView photoView;
     EditText nickView;
     Uri mFileUri;
+    boolean nickCompleted = false;
 
     public RegisterProfileFragment() {
         // Required empty public constructor
@@ -49,6 +53,8 @@ public class RegisterProfileFragment extends Fragment {
     String email;
     String password1;
     String password2;
+    Button btnNext;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +71,8 @@ public class RegisterProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_register_profile, container, false);
+        btnNext = (Button) view.findViewById(R.id.btn_profile_next);
+        btnNext.setEnabled(false);
         photoView = (ImageView) view.findViewById(R.id.image_user_profile);
         photoView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,6 +81,34 @@ public class RegisterProfileFragment extends Fragment {
             }
         });
         nickView = (EditText) view.findViewById(R.id.edit_nick);
+        nickView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() >= 2 && s.length() <= 8) {
+                    nickCompleted = true;
+                } else {
+                    nickCompleted = false;
+                }
+
+                if (nickCompleted) {
+                    btnNext.setEnabled(true);
+                    btnNext.setTextColor(ContextCompat.getColor(getContext(), R.color.activatedButton));
+                } else {
+                    btnNext.setEnabled(false);
+                    btnNext.setTextColor(ContextCompat.getColor(getContext(), R.color.disableddButton));
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         Button btn = (Button) view.findViewById(R.id.btn_profile_cancel);
         btn.setOnClickListener(new View.OnClickListener() {
@@ -82,8 +118,8 @@ public class RegisterProfileFragment extends Fragment {
             }
         });
 
-        btn = (Button) view.findViewById(R.id.btn_profile_next);
-        btn.setOnClickListener(new View.OnClickListener() {
+        btnNext = (Button) view.findViewById(R.id.btn_profile_next);
+        btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 File file = null;

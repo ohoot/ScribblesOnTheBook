@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.joo.scribblesonthebook.R;
 
@@ -22,12 +23,15 @@ public class FindPasswordKeyFragment extends Fragment {
         // Required empty public constructor
     }
 
+    Button btnNext;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_find_password_key, container, false);
+        btnNext = (Button) view.findViewById(R.id.btn_change_password);
+        //btnNext.setEnabled(false);
         Button btn = (Button) view.findViewById(R.id.btn_confirm_key_cancel);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,15 +40,15 @@ public class FindPasswordKeyFragment extends Fragment {
             }
         });
 
-        btn = (Button) view.findViewById(R.id.btn_change_password);
-        btn.setOnClickListener(new View.OnClickListener() {
+        btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = new ChangePasswordFragment();
+                Toast.makeText(getContext(), "구현 예정...", Toast.LENGTH_SHORT).show();
+                /*Fragment fragment = new ChangePasswordFragment();
                 FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.find_password_container, fragment);
                 ft.addToBackStack(CHANGE_PASSWORD_BACKSTACK);
-                ft.commit();
+                ft.commit();*/
             }
         });
         return view;
