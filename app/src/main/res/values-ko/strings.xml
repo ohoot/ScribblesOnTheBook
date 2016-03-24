@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">책장에낙서</string>
     <string name="find_password"><u>비밀번호 찾기</u></string>
     <string name="login_id_hint">이메일 주소를 입력하세요</string>
     <string name="login_hint_password">비밀 번호를 입력하세요</string>

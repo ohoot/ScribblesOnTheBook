@@ -11,7 +11,7 @@ import java.util.Date;
 public class Scribble implements Serializable{
     @SerializedName("doodle_id")
     int scribbleId;
-    @SerializedName("write_user_id")
+    @SerializedName("writer_user_id")
     int writerId;
     String isbn;
     @SerializedName("doodle_page")

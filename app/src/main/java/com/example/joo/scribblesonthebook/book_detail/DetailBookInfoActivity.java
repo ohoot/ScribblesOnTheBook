@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.joo.scribblesonthebook.R;
@@ -32,7 +34,6 @@ public class DetailBookInfoActivity extends AppCompatActivity {
     boolean isClicked = false;
     ListView scribbleList;
     MyScribbleListAdapter mAdapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -33,7 +33,7 @@ public class AddBookActivity extends AppCompatActivity {
         if (bookData == null) {
             bookData = (BookData) intent.getSerializableExtra(SEARCHED_BOOK_TAG);
         }
-        Toast.makeText(AddBookActivity.this, bookData.getIsbn(), Toast.LENGTH_SHORT).show();
+
         coverView = (ImageView) findViewById(R.id.image_add_book_cover);
         Glide.with(AddBookActivity.this).load(bookData.getCoverImage()).into(coverView);
 

@@ -72,15 +72,18 @@ public class SearchingResultFragment extends Fragment {
                 @Override
                 public void onSuccess(Request request, SearchingBookResponse result) {
                     listView.setAdapter(sAdapter);
-                    if (result.success.searchList.size() == 0) {
-                        ResultNothingFragment f = new ResultNothingFragment();
-                        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                        ft.replace(R.id.searching_recomm_container, f);
-                        ft.addToBackStack(NORESULT_BACKSTACK);
-                        ft.commit();
+                    if (result.error == null) {
+                        if (result.success.searchList.size() == 0) {
+                            ResultNothingFragment f = new ResultNothingFragment();
+                            FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                            ft.replace(R.id.searching_recomm_container, f);
+                            ft.addToBackStack(NORESULT_BACKSTACK);
+                            ft.commit();
+                        }
+                        sAdapter.addAll(result.success.searchList);
+                    } else {
+                        Toast.makeText(getContext(), result.error.message, Toast.LENGTH_SHORT).show();
                     }
-
-                    sAdapter.addAll(result.success.searchList);
                 }
 
                 @Override
