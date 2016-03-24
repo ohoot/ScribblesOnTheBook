@@ -54,7 +54,7 @@ public class DetailInfoFragment extends Fragment {
             NetworkManager.getInstance().getBookDetail(getContext(), bookData.getIsbn(), new NetworkManager.OnResultListener<BookDetailResponse>() {
                 @Override
                 public void onSuccess(Request request, BookDetailResponse result) {
-                    if (result.success != null) {
+                    if (result.error == null) {
                         bookData = result.success.bookDetail;
                         setDetailText(bookData);
                     }

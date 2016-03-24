@@ -1,5 +1,6 @@
 package com.example.joo.scribblesonthebook.main.adapter;
 
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -31,13 +32,19 @@ public class SearchingResultAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         SearchingResultView view;
         if (convertView == null || !(convertView instanceof SearchingResultView)) {
             view = new SearchingResultView(parent.getContext());
         } else {
             view = (SearchingResultView) convertView;
         }
+        view.setOnSearchingResultArrowClickListener(new SearchingResultView.OnSearchingResultArrowClickListenrer() {
+            @Override
+            public void onSearchingResultArrowClick() {
+                onResultArrowClickListener.onResultArrowClick(items.get(position));
+            }
+        });
         view.setSearchingResultView(items.get(position));
         return view;
     }
@@ -45,5 +52,15 @@ public class SearchingResultAdapter extends BaseAdapter {
     public void addAll(ArrayList<BookData> searchList) {
         items.addAll(searchList);
         notifyDataSetChanged();
+    }
+
+    public interface OnResultArrowClickListener {
+        public void onResultArrowClick(BookData bookData);
+    }
+
+    public OnResultArrowClickListener onResultArrowClickListener;
+
+    public void setOnResultArrowClickListener(OnResultArrowClickListener listener) {
+        onResultArrowClickListener = listener;
     }
 }

@@ -7,6 +7,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.joo.scribblesonthebook.R;
 import com.example.joo.scribblesonthebook.data.manager.NetworkManager;
 import com.example.joo.scribblesonthebook.data.vo.Scribble;
@@ -62,6 +63,7 @@ public class ScribbleView extends FrameLayout {
         pageView.setText(scribbleGroup.myScribble.getPage() + "");
         likeView.setText(scribbleGroup.myScribble.getLike() + "");
         contentView.setText(scribbleGroup.myScribble.getContent().toString());
+        Glide.with(getContext()).load(scribbleGroup.myScribble.getUserPhoto()).into(pictureView);
 
     }
 
@@ -75,6 +77,15 @@ public class ScribbleView extends FrameLayout {
         pageView.setText(scribble.getPage() + "");
         likeView.setText(scribble.getLike() + "");
         contentView.setText(scribble.getContent().toString());
+    }
+
+    public void setDetailMyScribbles(Scribble scribble) {
+        userNickView.setText(scribble.getNickName().toString());
+        dateView.setText(scribble.getScribbleDate().toString());
+        pageView.setText(scribble.getPage() + "");
+        likeView.setText(scribble.getLike() + "");
+        contentView.setText(scribble.getContent().toString());
+        Glide.with(getContext()).load(scribble.getUserPhoto()).into(pictureView);
     }
 
     public interface OnHeartClickListener {

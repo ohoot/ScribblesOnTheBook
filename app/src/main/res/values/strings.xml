@@ -88,5 +88,7 @@
     <string name="text_book_detail_publisher">Publisher:</string>
     <string name="text_book_detail_category">Category:</string>
     <string name="btn_add_book">Add Book</string>
+    <string name="btn_page_dialog">OK</string>
+    <string name="facebook_app_id">792738897525674</string>
 
 </resources>

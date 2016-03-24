@@ -57,7 +57,7 @@ public class BookshelfFragment extends Fragment {
 
         int month = Integer.parseInt(monthValueView.getText().toString());
         try {
-            NetworkManager.getInstance().getMonthlyReading(getContext(), Calendar.getInstance().get(Calendar.YEAR) + "", month + "", new NetworkManager.OnResultListener<MonthlyReadingSuccess>() {
+            NetworkManager.getInstance().getMonthlyReading(getContext(), Calendar.getInstance().get(Calendar.YEAR) + "", 3 + "", new NetworkManager.OnResultListener<MonthlyReadingSuccess>() {
                 @Override
                 public void onSuccess(Request request, MonthlyReadingSuccess result) {
                     monthlyPage.setText(result.monthlyPage + "");

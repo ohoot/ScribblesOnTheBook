@@ -20,6 +20,7 @@ import okhttp3.Request;
 public class AddBookActivity extends AppCompatActivity {
 
     public static final String RECOMMENDED_BOOK_TAG = "recommendedBook";
+    public static final String SEARCHED_BOOK_TAG = "searchedBook";
     BookData bookData;
 
     ImageView coverView;
@@ -29,6 +30,10 @@ public class AddBookActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_book);
         Intent intent = getIntent();
         bookData = (BookData) intent.getSerializableExtra(RECOMMENDED_BOOK_TAG);
+        if (bookData == null) {
+            bookData = (BookData) intent.getSerializableExtra(SEARCHED_BOOK_TAG);
+        }
+        Toast.makeText(AddBookActivity.this, bookData.getIsbn(), Toast.LENGTH_SHORT).show();
         coverView = (ImageView) findViewById(R.id.image_add_book_cover);
         Glide.with(AddBookActivity.this).load(bookData.getCoverImage()).into(coverView);
 
@@ -40,7 +45,7 @@ public class AddBookActivity extends AppCompatActivity {
                     NetworkManager.getInstance().addBook(AddBookActivity.this, bookData.getIsbn(), "" + bookData.getBookCondition(), new NetworkManager.OnResultListener<SimpleRequest>() {
                         @Override
                         public void onSuccess(Request request, SimpleRequest result) {
-                            if (result.success.message != null) {
+                            if (result.error == null) {
                                 Toast.makeText(AddBookActivity.this, result.success.message, Toast.LENGTH_SHORT).show();
                             } else {
                                 Toast.makeText(AddBookActivity.this, result.error.message, Toast.LENGTH_SHORT).show();

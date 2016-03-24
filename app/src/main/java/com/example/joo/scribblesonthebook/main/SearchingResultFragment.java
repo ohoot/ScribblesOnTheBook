@@ -1,6 +1,7 @@
 package com.example.joo.scribblesonthebook.main;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -10,7 +11,9 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.joo.scribblesonthebook.AddBookActivity;
 import com.example.joo.scribblesonthebook.R;
+import com.example.joo.scribblesonthebook.book_detail.DetailBookInfoActivity;
 import com.example.joo.scribblesonthebook.data.SearchingBookResponse;
 import com.example.joo.scribblesonthebook.data.SearchingBookSuccess;
 import com.example.joo.scribblesonthebook.data.manager.NetworkManager;
@@ -55,6 +58,14 @@ public class SearchingResultFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_searching_result, container, false);
         listView = (ListView) view.findViewById(R.id.searching_result_list);
         sAdapter = new SearchingResultAdapter();
+        sAdapter.setOnResultArrowClickListener(new SearchingResultAdapter.OnResultArrowClickListener() {
+            @Override
+            public void onResultArrowClick(BookData bookData) {
+                Intent intent = new Intent(getActivity(), AddBookActivity.class);
+                intent.putExtra(AddBookActivity.SEARCHED_BOOK_TAG, bookData);
+                startActivity(intent);
+            }
+        });
 
         try {
             NetworkManager.getInstance().getSearchingResult(getContext(), searchingKeyword, "" + 1, new NetworkManager.OnResultListener<SearchingBookResponse>() {

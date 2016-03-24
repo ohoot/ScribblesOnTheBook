@@ -78,14 +78,18 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginBottom="7dp">
 
                 <CheckBox
                     android:id="@+id/checkBox_service_terms"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    android:text="@string/service_terms_agreement" />
+                    android:text="@string/service_terms_agreement"
+                    android:button="@drawable/terms_check_selector"
+                    android:paddingStart="10dp"
+                    android:paddingLeft="10dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -127,14 +131,18 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginBottom="12dp">
 
                 <CheckBox
                     android:id="@+id/checkBox_personal_terms"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    android:text="@string/personal_info_terms" />
+                    android:text="@string/personal_info_terms"
+                    android:button="@drawable/terms_check_selector"
+                    android:paddingStart="10dp"
+                    android:paddingLeft="10dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"

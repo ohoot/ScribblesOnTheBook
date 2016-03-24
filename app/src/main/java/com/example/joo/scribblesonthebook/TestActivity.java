@@ -14,9 +14,9 @@ public class TestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-        FilterFragment fragment = new FilterFragment();
+        /*FilterFragment fragment = new FilterFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.add(R.id.test_container, fragment);
-        ft.commit();
+        ft.commit();*/
     }
 }

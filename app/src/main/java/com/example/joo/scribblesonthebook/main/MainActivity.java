@@ -81,7 +81,6 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.OnMe
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.btn_menu_nor);
         actionBar.setTitle("");
-        actionBar.setLogo(R.drawable.icn_main_bookmark);
     }
 
     public static final String FILTER_DIALOG_TAG = "filterDialog";
@@ -124,6 +123,7 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.OnMe
         }
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+
             return true;
         }
 

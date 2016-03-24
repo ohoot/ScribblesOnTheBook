@@ -149,4 +149,6 @@
     <dimen name="filter_dialog_height">560dp</dimen>
     <dimen name="filter_dialog_horizontal_sapcing">22dp</dimen>
     <dimen name="filter_dialog_vertical_sapcing">40dp</dimen>
+    <dimen name="page_dialog_width">280dp</dimen>
+    <dimen name="page_dialog_height">280dp</dimen>
 </resources>

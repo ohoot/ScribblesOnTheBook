@@ -30,7 +30,7 @@ public class SearchingResultView extends FrameLayout {
         triangleView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Test...", Toast.LENGTH_SHORT).show();
+                searchingResultArrowClickListenrer.onSearchingResultArrowClick();
             }
         });
         titleView = (TextView) findViewById(R.id.text_searching_title);
@@ -41,5 +41,15 @@ public class SearchingResultView extends FrameLayout {
         Glide.with(getContext()).load(bookData.getCoverImage()).into(coverView);
         titleView.setText(bookData.getTitle());
         authorView.setText(bookData.getAuthor());
+    }
+
+    public interface OnSearchingResultArrowClickListenrer {
+        public void onSearchingResultArrowClick();
+    }
+
+    public OnSearchingResultArrowClickListenrer searchingResultArrowClickListenrer;
+
+    public void setOnSearchingResultArrowClickListener (OnSearchingResultArrowClickListenrer listener) {
+        searchingResultArrowClickListenrer = listener;
     }
 }

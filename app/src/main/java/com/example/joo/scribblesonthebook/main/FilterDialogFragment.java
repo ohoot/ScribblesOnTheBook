@@ -71,7 +71,7 @@ public class FilterDialogFragment extends DialogFragment {
             NetworkManager.getInstance().getInterests(getContext(), new NetworkManager.OnResultListener<ReferInterestResponse>() {
                 @Override
                 public void onSuccess(Request request, ReferInterestResponse result) {
-                    if (result.success != null) {
+                    if (result.error == null) {
                         for (int i = 0; i < result.success.filter.selectedItems.size(); i++) {
                             gridView.setItemChecked(result.success.filter.selectedItems.get(i) - 1, true);
                         }

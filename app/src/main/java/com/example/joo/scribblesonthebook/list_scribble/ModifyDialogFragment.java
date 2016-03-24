@@ -68,7 +68,7 @@ public class ModifyDialogFragment extends DialogFragment {
                     NetworkManager.getInstance().deleteScribble(getContext(), scribble.getIsbn(), scribble.getScribbleId() + "", new NetworkManager.OnResultListener<SimpleRequest>() {
                         @Override
                         public void onSuccess(Request request, SimpleRequest result) {
-                            if (result.success.message != null) {
+                            if (result.error == null) {
                                 Toast.makeText(getContext(), result.success.message, Toast.LENGTH_SHORT).show();
                                 dismiss();
                             } else {

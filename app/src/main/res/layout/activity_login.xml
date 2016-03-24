@@ -31,7 +31,8 @@
             android:textSize="@dimen/text_login_id_size"
             android:background="@drawable/bg_line_yellow1"
             android:layout_marginBottom="@dimen/edit_login_email_margin_bottom"
-            android:singleLine="true"/>
+            android:singleLine="true"
+            android:inputType="textEmailAddress"/>
 
         <EditText
             android:id="@+id/edit_password"

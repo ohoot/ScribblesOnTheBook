@@ -495,6 +495,41 @@ public class NetworkManager {
         return request;
     }
 
+    private static final String FACEBOOK_LOGIN_URL_FORMAT = "https://ec2-52-79-99-227.ap-northeast-2.compute.amazonaws.com/users/facebook/token?access_token=%s";
+
+    public Request facebookLogin(Context context, String token, final OnResultListener<LoginRequest> listener) throws UnsupportedEncodingException {
+        String url = String.format(FACEBOOK_LOGIN_URL_FORMAT, token);
+
+        final CallbackObject<LoginRequest> callbackObject = new CallbackObject<LoginRequest>();
+
+        Request request = new Request.Builder().url(url)
+                .tag(context)
+                .build();
+
+        callbackObject.request = request;
+
+        callbackObject.listener = listener;
+        mClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                callbackObject.exception = e;
+                Message msg = mHandler.obtainMessage(MESSAGE_FAILURE, callbackObject);
+                mHandler.sendMessage(msg);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Gson gson = new Gson();
+                String str = response.body().string();
+                LoginRequest lr = gson.fromJson(str, LoginRequest.class);
+                callbackObject.result = lr;
+                Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
+                mHandler.sendMessage(msg);
+            }
+        });
+        return request;
+    }
+
     private static final String CHANGE_INTERESTS_URL_FORMAT = "http://ec2-52-79-99-227.ap-northeast-2.compute.amazonaws.com/users/filter";
 
     public Request changeInterests (Context context, String[] checkedItems, final OnResultListener<SimpleRequest> listener) throws UnsupportedEncodingException {
@@ -681,10 +716,10 @@ public class NetworkManager {
 
     private static final String SEND_BOOKMARK_URL_FORMAT = "http://ec2-52-79-99-227.ap-northeast-2.compute.amazonaws.com/books/%s/bookmarks";
 
-    public Request sendBookMark(Context context, String isbn, String startPage, String endPage, final OnResultListener<Success> listener) throws UnsupportedEncodingException {
+    public Request sendBookMark(Context context, String isbn, String startPage, String endPage, final OnResultListener<SimpleRequest> listener) throws UnsupportedEncodingException {
         String url = String.format(SEND_BOOKMARK_URL_FORMAT, isbn);
 
-        final CallbackObject<Success> callbackObject = new CallbackObject<Success>();
+        final CallbackObject<SimpleRequest> callbackObject = new CallbackObject<SimpleRequest>();
 
         RequestBody requestBody = new FormBody.Builder()
                 .add("start_page", startPage)
@@ -710,8 +745,9 @@ public class NetworkManager {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 Gson gson = new Gson();
-                SimpleRequest sr = gson.fromJson(response.body().string(), SimpleRequest.class);
-                callbackObject.result = sr.success;
+                String str = response.body().string();
+                SimpleRequest sr = gson.fromJson(str, SimpleRequest.class);
+                callbackObject.result = sr;
                 Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
                 mHandler.sendMessage(msg);
             }
@@ -924,7 +960,8 @@ public class NetworkManager {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 Gson gson = new Gson();
-                SimpleRequest sr = gson.fromJson(response.body().string(), SimpleRequest.class);
+                String str = response.body().string();
+                SimpleRequest sr = gson.fromJson(str, SimpleRequest.class);
                 callbackObject.result = sr;
                 Message msg = mHandler.obtainMessage(MESSAGE_SUCCESS, callbackObject);
                 mHandler.sendMessage(msg);

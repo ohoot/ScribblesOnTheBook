@@ -82,6 +82,7 @@
     <string name="text_book_detail_publisher">출판사: </string>
     <string name="text_book_detail_category">분류: </string>
     <string name="btn_add_book">추가하기</string>
+    <string name="btn_page_dialog">확인</string>
 
 
     <!--<string name="text_service_terms">제1조 (목적)

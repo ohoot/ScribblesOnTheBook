@@ -1,0 +1,46 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="250dp"
+    android:layout_height="250dp"
+    android:orientation="vertical"
+    tools:context="com.example.joo.scribblesonthebook.main.PagePickerDialogFragment">
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:transitionGroup="false"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="20dp">
+
+        <NumberPicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/numberPicker1_page_dialog"
+            android:solidColor="#ffffff"
+            android:divider="#d40303" />
+
+        <NumberPicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/numberPicker2_page_dialog"
+            android:divider="@drawable/btn_bookmark_select"
+            android:solidColor="#ffffff" />
+
+        <NumberPicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/numberPicker3_page_dialog"
+            android:solidColor="#ffffff" />
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_page_dialog"
+        android:id="@+id/btn_page_dialog"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/btn_bookmark_ok" />
+
+</LinearLayout>

@@ -13,11 +13,16 @@ import com.example.joo.scribblesonthebook.data.LoginRequest;
 import com.example.joo.scribblesonthebook.data.manager.NetworkManager;
 import com.example.joo.scribblesonthebook.data.manager.UserPropertyManager;
 import com.example.joo.scribblesonthebook.data.vo.SimpleRequest;
-import com.example.joo.scribblesonthebook.data.vo.Success;
 import com.example.joo.scribblesonthebook.find_password.FindPasswordActivity;
-import com.example.joo.scribblesonthebook.list_scribble.ScribbleListActivity;
 import com.example.joo.scribblesonthebook.main.MainActivity;
 import com.example.joo.scribblesonthebook.signup.SignupActivity;
+import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
 
 import java.io.UnsupportedEncodingException;
 
@@ -27,7 +32,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     EditText editId, editPassword;
     TextView textFindPassword, textSignup;
-
+    LoginManager loginManager;
+    CallbackManager callbackManager;
+    AccessTokenTracker tracker;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +54,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         btn = (Button) findViewById(R.id.btn_login_facebook);
         btn.setOnClickListener(this);
+
+        loginManager = LoginManager.getInstance();
+        callbackManager = CallbackManager.Factory.create();
     }
 
     private static final String NETWORK_ERROR_MESSAGE = "Network Error";
@@ -66,7 +76,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     NetworkManager.getInstance().userLogin(LoginActivity.this, editId.getText().toString(), editPassword.getText().toString(), new NetworkManager.OnResultListener<LoginRequest>() {
                         @Override
                         public void onSuccess(Request request, LoginRequest result) {
-                            if (result.success != null) {
+                            if (result.error == null) {
                                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                 UserPropertyManager.getInstance().userId = result.success.userId;
                                 finish();
@@ -85,7 +95,62 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
                 break;
             case R.id.btn_login_facebook :
+                facebookLogin();
                 break;
         }
+    }
+
+    private void facebookLogin() {
+        AccessToken token = AccessToken.getCurrentAccessToken();
+        if (token == null) {
+            loginManager.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+                @Override
+                public void onSuccess(LoginResult loginResult) {
+                    AccessToken token = AccessToken.getCurrentAccessToken();
+                    try {
+                        NetworkManager.getInstance().facebookLogin(LoginActivity.this, token.getToken(), new NetworkManager.OnResultListener<LoginRequest>() {
+                            @Override
+                            public void onSuccess(Request request, LoginRequest result) {
+                                if (result.error == null) {
+                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                    UserPropertyManager.getInstance().userId = result.success.userId;
+                                    Toast.makeText(LoginActivity.this, UserPropertyManager.getInstance().userId + "", Toast.LENGTH_SHORT).show();
+                                    finish();
+                                } else {
+                                    Toast.makeText(LoginActivity.this ,result.error.message, Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Request request, int code, Throwable cause) {
+
+                            }
+                        });
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+                @Override
+                public void onCancel() {
+
+                }
+
+                @Override
+                public void onError(FacebookException error) {
+
+                }
+            });
+            loginManager.logInWithReadPermissions(this, null);
+        } else {
+            loginManager.logOut();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 }

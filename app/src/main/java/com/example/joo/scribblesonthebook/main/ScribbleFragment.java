@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.example.joo.scribblesonthebook.R;
 import com.example.joo.scribblesonthebook.data.BookListSuccess;
 import com.example.joo.scribblesonthebook.data.manager.NetworkManager;
+import com.example.joo.scribblesonthebook.data.vo.BookData;
 import com.example.joo.scribblesonthebook.list_scribble.ScribbleListActivity;
 import com.example.joo.scribblesonthebook.main.adapter.DefaultPagerAdapter;
 import com.example.joo.scribblesonthebook.main.adapter.ScribblePagerAdapter;
@@ -36,6 +37,8 @@ import okhttp3.Request;
 public class ScribbleFragment extends Fragment {
 
     public static final int START_SPINNER_INDEX = 0;
+    public static final String CURRENT_BOOK = "currentBook";
+    public static final String START_PAGE = "startPage";
 
     public ScribbleFragment() {
         // Required empty public constructor
@@ -71,6 +74,24 @@ public class ScribbleFragment extends Fragment {
         mApdater.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(mApdater);
         viewPager = (ViewPager) view.findViewById(R.id.scribble_pager);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                BookData bd = sAdapter.getCurrentBook(viewPager.getCurrentItem());
+                seekBar.setProgress(bd.getCurrentPage());
+                seekBar.setMax(bd.getTotalPage());
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
         //sAdapter = new ScribblePagerAdapter(getChildFragmentManager());
         //viewPager.setAdapter(sAdapter);
         arrowView = (ImageView) view.findViewById(R.id.image_swaping_arrow);
@@ -84,10 +105,45 @@ public class ScribbleFragment extends Fragment {
         });
         totalBookView = (TextView) view.findViewById(R.id.text_total_books);
         seekBar = (SeekBar) view.findViewById(R.id.seekBar);
+        seekBar.setMax(999);
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(final SeekBar seekBar) {
+                BookData bookData = sAdapter.getCurrentBook(viewPager.getCurrentItem());
+                int startPage = bookData.getCurrentPage();
+                PagePickerDialogFragment fragment = new PagePickerDialogFragment();
+                Bundle b = new Bundle();
+                b.putSerializable(CURRENT_BOOK, bookData);
+                b.putInt(START_PAGE, startPage);
+                fragment.setArguments(b);
+                fragment.setPagePickerOkClickListener(new PagePickerDialogFragment.PagePickerOkClickListener() {
+                    @Override
+                    public void onPagePickerOkClick(int page) {
+                        seekBar.setProgress(page);
+                        callBookList(spinner.getSelectedItemPosition());
+                    }
+                });
+                fragment.show(getActivity().getSupportFragmentManager(), "");
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                BookData bd = sAdapter.getCurrentBook(viewPager.getCurrentItem());
+                seekBar.setProgress(bd.getCurrentPage());
+                seekBar.setMax(bd.getTotalPage());
+            }
+        });
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 callBookList(spinner.getSelectedItemPosition());
+
             }
 
             @Override
@@ -117,6 +173,10 @@ public class ScribbleFragment extends Fragment {
                         sAdapter.clearAll();
                         sAdapter.addAll(result.tenseList);
                         viewPager.setAdapter(sAdapter);
+
+                        BookData bd = sAdapter.getCurrentBook(viewPager.getCurrentItem());
+                        seekBar.setProgress(bd.getCurrentPage());
+                        seekBar.setMax(bd.getTotalPage());
                     }
                     setScribblePage(result);
                 }
@@ -141,5 +201,4 @@ public class ScribbleFragment extends Fragment {
         mApdater.add(getResources().getString(R.string.book_done));
         mApdater.add(getResources().getString(R.string.book_will));
     }
-
 }

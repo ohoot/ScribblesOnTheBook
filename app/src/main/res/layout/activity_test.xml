@@ -6,4 +6,29 @@
     android:id="@+id/test_container"
     tools:context="com.example.joo.scribblesonthebook.TestActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:id="@+id/view"
+        android:layout_gravity="center_horizontal|top"
+        android:background="#110e34">
+
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:id="@+id/image_toolbar_menu"
+            android:src="@drawable/btn_menu_nor" />
+
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:id="@+id/image_toolbar_add"
+            android:src="@drawable/btn_bookadd_nor"
+
+            />
+
+    </android.support.v7.widget.Toolbar>
+
+
+
 </FrameLayout>
