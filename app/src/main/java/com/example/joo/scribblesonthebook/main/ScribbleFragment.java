@@ -125,28 +125,32 @@ public class ScribbleFragment extends Fragment {
 
             @Override
             public void onStartTrackingTouch(final SeekBar seekBar) {
-                BookData bookData = sAdapter.getCurrentBook(viewPager.getCurrentItem());
-                int startPage = bookData.getCurrentPage();
-                PagePickerDialogFragment fragment = new PagePickerDialogFragment();
-                Bundle b = new Bundle();
-                b.putSerializable(CURRENT_BOOK, bookData);
-                b.putInt(START_PAGE, startPage);
-                fragment.setArguments(b);
-                fragment.setPagePickerOkClickListener(new PagePickerDialogFragment.PagePickerOkClickListener() {
-                    @Override
-                    public void onPagePickerOkClick(int page) {
-                        seekBar.setProgress(page);
-                        callBookList(spinner.getSelectedItemPosition());
-                    }
-                });
-                fragment.show(getActivity().getSupportFragmentManager(), "");
+                if (sAdapter.getCount() != 0) {
+                    BookData bookData = sAdapter.getCurrentBook(viewPager.getCurrentItem());
+                    int startPage = bookData.getCurrentPage();
+                    PagePickerDialogFragment fragment = new PagePickerDialogFragment();
+                    Bundle b = new Bundle();
+                    b.putSerializable(CURRENT_BOOK, bookData);
+                    b.putInt(START_PAGE, startPage);
+                    fragment.setArguments(b);
+                    fragment.setPagePickerOkClickListener(new PagePickerDialogFragment.PagePickerOkClickListener() {
+                        @Override
+                        public void onPagePickerOkClick(int page) {
+                            seekBar.setProgress(page);
+                            callBookList(spinner.getSelectedItemPosition());
+                        }
+                    });
+                    fragment.show(getActivity().getSupportFragmentManager(), "");
+                }
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                BookData bd = sAdapter.getCurrentBook(viewPager.getCurrentItem());
-                seekBar.setProgress(bd.getCurrentPage());
-                seekBar.setMax(bd.getTotalPage());
+                if (sAdapter.getCount() != 0) {
+                    BookData bd = sAdapter.getCurrentBook(viewPager.getCurrentItem());
+                    seekBar.setProgress(bd.getCurrentPage());
+                    seekBar.setMax(bd.getTotalPage());
+                }
             }
         });
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
