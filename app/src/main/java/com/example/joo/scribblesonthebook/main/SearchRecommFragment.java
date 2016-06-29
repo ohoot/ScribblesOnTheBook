@@ -40,11 +40,11 @@ public class SearchRecommFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search_recomm, container, false);
-        Fragment fragment = new RecommListFragment();
-        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-        ft.add(R.id.searching_recomm_container, fragment);
-        ft.addToBackStack(RECOMM_LIST_BACKSTACK);
-        ft.commit();
+//        Fragment fragment = new RecommListFragment();
+//        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+//        ft.add(R.id.searching_recomm_container, fragment);
+//        ft.addToBackStack(RECOMM_LIST_BACKSTACK);
+//        ft.commit();
 
         mIMM = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         keywordView = (EditText) view.findViewById(R.id.edit_searching_keyword);
