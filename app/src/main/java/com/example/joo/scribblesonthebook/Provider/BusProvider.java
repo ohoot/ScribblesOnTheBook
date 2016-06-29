@@ -6,14 +6,13 @@ import com.squareup.otto.Bus;
  * Created by Joo on 2016-06-29.
  */
 public class BusProvider {
-    private static Bus instance;
-
-    private BusProvider() {}
+    private static final Bus BUS = new Bus();
 
     public static Bus getInstance() {
-        if (instance == null) {
-            instance = new Bus();
-        }
-        return instance;
+        return BUS;
+    }
+
+    private BusProvider() {
+        // No instances.
     }
 }

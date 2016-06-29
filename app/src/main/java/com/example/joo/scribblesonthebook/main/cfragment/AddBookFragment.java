@@ -25,14 +25,12 @@ public class AddBookFragment extends Fragment {
         // Required empty public constructor
     }
 
-    Bus bus;
     ImageView searchView, barcodeView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        bus = BusProvider.getInstance();
-        bus.register(this);
+        BusProvider.getInstance().register(this);
     }
 
     @Override
@@ -46,8 +44,7 @@ public class AddBookFragment extends Fragment {
             public void onClick(View v) {
                 // When click the searching icon.
                 //getActivity().findViewById(R.id.tabhost).findViewWithTag(MainActivity.TABSPEC_SEARCHING_RECOMM).performClick();
-                Toast.makeText(getActivity(), "ATTest", Toast.LENGTH_SHORT).show();
-                bus.post(new SearchingIconClickEvent());
+                BusProvider.getInstance().post(new SearchingIconClickEvent());
             }
         });
         barcodeView = (ImageView) view.findViewById(R.id.image_addbook_barcode);
@@ -62,7 +59,7 @@ public class AddBookFragment extends Fragment {
 
     @Override
     public void onDestroy() {
-        bus.unregister(this);
+        BusProvider.getInstance().unregister(this);
         super.onDestroy();
     }
 }

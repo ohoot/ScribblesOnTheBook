@@ -90,5 +90,7 @@
     <string name="btn_add_book">Add Book</string>
     <string name="btn_page_dialog">OK</string>
     <string name="facebook_app_id">792738897525674</string>
+    <string name="msg_add_book">Please add books</string>
+
 
 </resources>

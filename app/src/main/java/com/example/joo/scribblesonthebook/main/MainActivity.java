@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.joo.scribblesonthebook.ChangePasswordActivity;
 import com.example.joo.scribblesonthebook.Events.SearchingIconClickEvent;
+import com.example.joo.scribblesonthebook.Provider.BusProvider;
 import com.example.joo.scribblesonthebook.R;
 import com.squareup.otto.Subscribe;
 
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.OnMe
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        BusProvider.getInstance().register(this);
         fab = (Button) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,6 +144,11 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.OnMe
     @Subscribe
     public void onSearchingIconClick(SearchingIconClickEvent searchingIconClickEvent) {
         fragmentTabHost.setCurrentTab(SEARCH_RECOMM_TAB_INDEX);
-        Toast.makeText(MainActivity.this, "BBTTest", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        BusProvider.getInstance().unregister(this);
+        super.onDestroy();
     }
 }

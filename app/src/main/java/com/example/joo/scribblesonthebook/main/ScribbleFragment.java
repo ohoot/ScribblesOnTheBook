@@ -64,7 +64,7 @@ public class ScribbleFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (sAdapter.getCount() == 0) {
-                    Toast.makeText(getActivity(), "책을 추가해 주세요.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.msg_add_book, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -105,7 +105,7 @@ public class ScribbleFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (sAdapter.getCount() == 0) {
-                    Toast.makeText(getActivity(), "책을 추가해주세요.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.msg_add_book, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 Intent intent = new Intent(getContext(), ScribbleListActivity.class);
