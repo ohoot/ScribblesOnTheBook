@@ -101,6 +101,10 @@ public class ScribbleFragment extends Fragment {
         arrowView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (sAdapter.getCount() == 0) {
+                    Toast.makeText(getActivity(), "책을 추가해주세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 Intent intent = new Intent(getContext(), ScribbleListActivity.class);
                 intent.putExtra(ScribbleListActivity.CURRENT_BOOK_DATA, sAdapter.getCurrentBook(viewPager.getCurrentItem()));
                 startActivity(intent);

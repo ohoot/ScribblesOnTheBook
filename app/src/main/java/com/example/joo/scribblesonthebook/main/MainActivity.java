@@ -142,6 +142,6 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.OnMe
     @Subscribe
     public void onSearchingIconClick(SearchingIconClickEvent searchingIconClickEvent) {
         fragmentTabHost.setCurrentTab(SEARCH_RECOMM_TAB_INDEX);
-        Toast.makeText(MainActivity.this, "TTest", Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, "BBTTest", Toast.LENGTH_LONG).show();
     }
 }

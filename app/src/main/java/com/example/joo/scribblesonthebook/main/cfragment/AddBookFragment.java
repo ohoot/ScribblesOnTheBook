@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.joo.scribblesonthebook.Events.SearchingIconClickEvent;
 import com.example.joo.scribblesonthebook.Provider.BusProvider;
@@ -31,11 +32,6 @@ public class AddBookFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         bus = BusProvider.getInstance();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
         bus.register(this);
     }
 
@@ -50,6 +46,7 @@ public class AddBookFragment extends Fragment {
             public void onClick(View v) {
                 // When click the searching icon.
                 //getActivity().findViewById(R.id.tabhost).findViewWithTag(MainActivity.TABSPEC_SEARCHING_RECOMM).performClick();
+                Toast.makeText(getActivity(), "ATTest", Toast.LENGTH_SHORT).show();
                 bus.post(new SearchingIconClickEvent());
             }
         });
@@ -64,8 +61,8 @@ public class AddBookFragment extends Fragment {
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
+    public void onDestroy() {
         bus.unregister(this);
+        super.onDestroy();
     }
 }
