@@ -59,7 +59,9 @@ public class RecommBookFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        Glide.with(getContext()).load(bookData.getCoverImage()).into(imageView);
+        if (bookData != null) {
+            Glide.with(getContext()).load(bookData.getCoverImage()).into(imageView);
+        }
         return view;
     }
 

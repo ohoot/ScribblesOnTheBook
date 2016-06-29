@@ -34,7 +34,7 @@ public class AddBookFragment extends Fragment {
             @Override
             public void onClick(View v) {
             // When click the searching icon.
-                getActivity().findViewById(R.id.tabhost).findViewWithTag(MainActivity.TABSPEC_SEARCHING_RECOMM).performClick();
+//                getActivity().findViewById(R.id.tabhost).findViewWithTag(MainActivity.TABSPEC_SEARCHING_RECOMM).performClick();
             }
         });
         barcodeView = (ImageView) view.findViewById(R.id.image_addbook_barcode);
