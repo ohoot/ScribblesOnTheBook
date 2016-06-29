@@ -18,7 +18,9 @@ import android.widget.TabHost;
 import android.widget.Toast;
 
 import com.example.joo.scribblesonthebook.ChangePasswordActivity;
+import com.example.joo.scribblesonthebook.Events.SearchingIconClickEvent;
 import com.example.joo.scribblesonthebook.R;
+import com.squareup.otto.Subscribe;
 
 public class MainActivity extends AppCompatActivity implements MenuFragment.OnMenuItemSeletedListener {
     public static final String TABSPEC_BOOKSHELF = "bookshelf";
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.OnMe
     public static final String TABSPEC_SEARCHING_RECOMM = "searchingRecomm";
 
     public static final int SCRIBBLE_TAB_INDEX = 1;
+    public static final int SEARCH_RECOMM_TAB_INDEX = 2;
 
     FragmentTabHost fragmentTabHost;
     Button fab;
@@ -135,4 +138,9 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.OnMe
         super.onBackPressed();
         finish();
     }*/
+
+    @Subscribe
+    public void onSearchingIconClick(SearchingIconClickEvent searchingIconClickEvent) {
+        fragmentTabHost.setCurrentTab(SEARCH_RECOMM_TAB_INDEX);
+    }
 }
