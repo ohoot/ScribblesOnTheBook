@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.joo.scribblesonthebook.Events.SearchingIconClickEvent;
+import com.example.joo.scribblesonthebook.Provider.BusProvider;
 import com.example.joo.scribblesonthebook.R;
 import com.example.joo.scribblesonthebook.main.MainActivity;
 import com.squareup.otto.Bus;
@@ -27,6 +28,12 @@ public class AddBookFragment extends Fragment {
     ImageView searchView, barcodeView;
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        bus = BusProvider.getInstance();
+    }
+
+    @Override
     public void onStart() {
         super.onStart();
         bus.register(this);
@@ -37,7 +44,6 @@ public class AddBookFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_book, container, false);
-        bus = new Bus();
         searchView = (ImageView) view.findViewById(R.id.image_addbook_searching);
         searchView.setOnClickListener(new View.OnClickListener() {
             @Override
