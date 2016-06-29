@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.OnMe
         }
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-
+            fragmentTabHost.setCurrentTab(SEARCH_RECOMM_TAB_INDEX);
             return true;
         }
 
