@@ -63,11 +63,14 @@ public class ScribbleFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), WritingScribbleActivity.class);
-                if (sAdapter.getCount() != 0) {
-                    intent.putExtra(WritingScribbleActivity.CURRENT_BOOK_DATA, sAdapter.getCurrentBook(viewPager.getCurrentItem()));
-                    intent.putExtra(WritingScribbleActivity.OUTPUT_TYPE, WritingScribbleActivity.OUTPUT_TYPE_WRITING);
+                if (sAdapter.getCount() == 0) {
+                    Toast.makeText(getActivity(), "책을 추가해 주세요.", Toast.LENGTH_SHORT).show();
+                    return;
                 }
+
+                Intent intent = new Intent(getContext(), WritingScribbleActivity.class);
+                intent.putExtra(WritingScribbleActivity.CURRENT_BOOK_DATA, sAdapter.getCurrentBook(viewPager.getCurrentItem()));
+                intent.putExtra(WritingScribbleActivity.OUTPUT_TYPE, WritingScribbleActivity.OUTPUT_TYPE_WRITING);
                 startActivity(intent);
             }
         });
