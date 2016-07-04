@@ -45,6 +45,7 @@ public class SearchingResultAdapter extends BaseAdapter {
                 onResultArrowClickListener.onResultArrowClick(items.get(position));
             }
         });
+        //view.setOnClickListener(items.get(position));
         view.setSearchingResultView(items.get(position));
         return view;
     }
